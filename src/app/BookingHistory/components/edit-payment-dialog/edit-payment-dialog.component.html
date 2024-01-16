@@ -1,0 +1,23 @@
+<p>edit-payment-dialog works!</p>
+<p><button mat-icon-button mat-dialog-close class="btn-close">
+    <mat-icon>close</mat-icon>
+</button></p>
+<p>
+    <mat-dialog-content>
+        <header style="display: flex ;">
+            <mat-icon> edit</mat-icon>&nbsp;&nbsp;
+            <h1>Editar</h1>
+        </header>
+        <form  #chatForm='ngForm'>
+            <div class="dialog-content">
+                <div>
+                    <mat-form-field appearance="outline">
+                        <input  matInput placeholder="Ex. S/200" [(ngModel)]="payment" name="payment">
+                    </mat-form-field>
+                </div>&nbsp;&nbsp;
+
+                <!--<div><button mat-raised-button  class="btn-save-payment" (click)="save()">Guardar</button></div>-->
+            </div>
+        </form>
+    </mat-dialog-content>
+</p>

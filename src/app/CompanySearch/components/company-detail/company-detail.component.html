@@ -1,0 +1,154 @@
+
+<br><br><br>
+
+<div class="container-title">
+  <h1 class="title">Información de empresa</h1>
+  <button mat-raised-button (click)="ReturnToCompanyTable()" class="return">Regresar</button>
+</div>
+
+<!--INFORMACION DE LA EMPRESA-->
+<mat-card class="custom-card">
+    <img mat-card-image src="{{company.photo}}" alt="Logo Company">
+    <mat-card-header>
+      <mat-card-title>{{company.name}}</mat-card-title>
+      <mat-card-subtitle>Empresa</mat-card-subtitle>
+    </mat-card-header>
+    
+    <mat-card-content>
+      <div>
+        <p class="label">Descripción: </p>
+        <p class="value">{{company.description}}</p>
+      </div>
+      <div>
+        <p class="label">Servicios: </p>
+        <ul>
+          <li class="value" *ngIf="company.transporte">Transporte</li>
+          <li class="value" *ngIf="company.carga">Carga</li>
+          <li class="value" *ngIf="company.embalaje">Embalaje</li>
+          <li class="value" *ngIf="company.montaje">Montaje</li>
+          <li class="value" *ngIf="company.desmontaje">Desmontaje</li>
+        </ul>
+      </div>
+      <div>
+        <p class="label">Dirección: </p>
+        <p class="value">{{company.direccion}}</p>
+      </div>
+      <div>
+        <p class="label">Número de contacto: </p>
+        <p class="value">{{company.numeroContacto}}</p>
+      </div>
+    </mat-card-content>
+  </mat-card>
+  
+  <!--AGREGAR RESERVA-->
+  <div class="section-container">
+    <div class="panel-container">
+      <section class="reviews">
+        <mat-expansion-panel>
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              Reseñas
+            </mat-panel-title>
+          </mat-expansion-panel-header>
+      
+          <div class="average-rating">
+            <h2>Calificación general</h2>
+            <div class="rating-container">
+              <div class="star-rating">
+                <mat-icon *ngFor="let _ of getStars(averageRating)">star</mat-icon>
+              </div>
+            </div>
+            <div class="company-logo-container">
+              <img src="{{company.photo}}" alt="logo de empresa" class="company-logo">
+            </div>
+          </div>
+      
+          <div *ngFor="let review of reviews" class="review">
+  
+            <div class="rating-container">
+              <div class="star-rating">
+                <mat-icon *ngFor="let _ of getStars(review.rating)">star</mat-icon>
+              </div>
+            </div> 
+  
+            <p>{{ review.comment }}</p>
+          </div>
+      
+          <div *ngIf="reviews.length === 0" class="review">
+            <p>Actualmente, no hay reseñas disponibles para esta empresa. Sé el primero en compartir tu experiencia.</p>
+          </div>
+          
+        </mat-expansion-panel>
+      </section>
+    </div>
+
+    <div class="panel-container">
+      <section class="custom-addReservation">
+        <mat-expansion-panel>
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              Reservar
+            </mat-panel-title>
+          </mat-expansion-panel-header>
+      
+          <form (ngSubmit)="onSubmit()" #reservationForm="ngForm">
+            <div class="reservation-info">
+              <mat-label>Fecha de hoy:</mat-label>
+              <mat-form-field>
+                <input type="text" matInput placeholder="Ex. 2023-09-25" required [(ngModel)]="reservation.bookingDate" name="bookingData">
+              </mat-form-field>
+    
+              <mat-label>Servicios:</mat-label>
+              <mat-form-field>
+                
+                <input type="text" matInput placeholder="Ex. Carga" required [(ngModel)]="reservation.services" name="services">
+              </mat-form-field>
+    
+              <mat-label>Dirección de entrega:</mat-label>
+              <mat-form-field>
+                <input type="text" matInput placeholder="Ex. Monterrico" required [(ngModel)]="reservation.pickupAddress" name="pickupAddress">
+              </mat-form-field>
+    
+              <mat-label>Dirección de destino:</mat-label>
+              <mat-form-field>
+                <input type="text" matInput placeholder="Ex. Monterrico" required [(ngModel)]="reservation.destinationAddress" name="destinationAddress">
+              </mat-form-field>
+    
+              <mat-label>Fecha cuando el servicio se lleva a cabo:</mat-label>
+              <mat-form-field>
+                <input type="text" matInput placeholder="Ex. 2023-09-30" required [(ngModel)]="reservation.movingDate" name="movingDate">
+              </mat-form-field>
+    
+              <mat-label>Hora cuando el servicio se lleva a cabo:</mat-label>
+              <mat-form-field>
+                <input type="text" matInput placeholder="Ex. 16:00" required [(ngModel)]="reservation.movingTime" name="movingTime">
+              </mat-form-field>
+    
+              <br>
+              <mat-label>Número de tarjeta de pago:</mat-label>
+              <mat-form-field>
+                <input type="text" matInput placeholder="Ex. 0000000000000000" required [(ngModel)]="numeroTarjeta" name="numeroTarjeta">
+              </mat-form-field>
+    
+              <mat-label>CVV de la tarjeta de pago</mat-label>
+              <mat-form-field>
+                <input type="text" matInput placeholder="000" required [(ngModel)]="CVV" name="CVV">
+              </mat-form-field>
+    
+              <mat-label>Fecha de vencimiento de la tarjeta:</mat-label>
+              <mat-form-field>
+                <input type="text" matInput placeholder="00/00" required [(ngModel)]="fechaVencimiento" name="fechaVencimiento">
+              </mat-form-field>
+              
+              <ng-container>
+                <button type="submit">Realizar reserva</button>
+              </ng-container>
+            </div>
+          </form>
+          
+        </mat-expansion-panel>
+      </section>
+    </div>
+</div>
+
+

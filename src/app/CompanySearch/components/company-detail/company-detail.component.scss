@@ -1,0 +1,156 @@
+/*TITLE */
+
+.container-title{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.return{
+    margin-left: 30px;
+    margin-top: -1px;
+    background-color: #FDAE39;
+}
+
+.title {
+    color: #FDAE39;
+    font-weight: bold;
+    font-size: 35px;
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+
+/* CARD */
+
+.custom-card {
+    width: 400px;
+    margin: 0 auto;
+    background-color: #ffffff;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    border-radius: 8px;
+    padding: 20px;
+    text-align: left;
+}
+
+.custom-card mat-card-title {
+    font-size: 24px;
+    font-weight: bold;
+    margin: 10px 0;
+}
+
+.custom-card img {
+    width: 300px;
+    height: auto;
+    margin: 0 auto;
+    border-radius: 15px;
+}
+
+.custom-card mat-card-content{
+    margin-top: 30px;
+}
+
+.label{
+    font-weight: bold;
+    font-size: 16px;
+}
+
+.value{
+    font-size: 16px;
+}
+
+
+.section-container{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-self: center;
+    width: 100%;
+}
+
+.panel-container {
+    flex: 1;
+}
+
+
+/* FORM RESERVATION */
+
+.custom-addReservation {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 20px;
+    padding: 20px;
+    background-color: #ffffff; 
+    border-radius: 15px;
+    
+}
+
+.reservation-info {
+    display: flex;
+    flex-direction: column;
+    margin-top: 10px; 
+    width: 350px;
+}
+
+button {
+    background-color: #ffffff;
+    color: #ee8f00;
+    border: 2px solid #ee8f00; 
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-size: 18px;
+    cursor: pointer;
+    margin-top: 20px; 
+}
+  
+button:hover {
+    background-color: #ee8f00; 
+    color: #ffffff;
+    border: 2px solid #ee8f00; 
+    box-shadow: 0px 0px 10px rgba(238, 143, 0, 0.5); 
+    transform: scale(1.05); 
+}
+
+//Reviews
+
+.reviews{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 20px;
+    padding: 20px;
+    background-color: #ffffff; 
+    border-radius: 15px;
+}
+
+.star-rating {
+    font-size: 24px;
+}
+  
+.star-filled {
+    color: gold;
+}
+  
+.star-empty {
+    color: #ccc; 
+}
+
+.company-logo-container img {
+    width: 200px;
+    height: auto;
+    margin-bottom: 20px;
+}
+
+rating-container {
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+    background-color: #ccc;
+    border-radius: 10px;
+    padding: 10px;
+    border: 1px solid black;
+}

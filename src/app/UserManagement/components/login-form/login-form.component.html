@@ -1,0 +1,29 @@
+<app-toolbar-landing></app-toolbar-landing>
+<br><br><br>
+<div class="login-form"> 
+
+    <form id="loginForm" [formGroup] ="loginForm" (ngSubmit)="onSubmit()">
+      <img src="https://github.com/LuceroObispoRios/Grupo1_SW53/blob/main/CargaSinEstres-V1/public-images/Cargalogo.png?raw=true" alt="logo" class="logo">
+      <h1>Carga Sin Estrés</h1>
+
+      <div class="content">
+        <div class="input-field">
+            <input type="email" id="email" formControlName="email" placeholder="Correo electrónico o Usuario" required autofocus>
+            <i class='bx bxs-user'></i>
+        </div>
+
+        <div class="input-field">
+          <input type="password" id="password" formControlName="password" placeholder="Contraseña" required>
+          <i class='bx bxs-lock'></i>
+        </div>
+
+        <div class="action" id="actionButtons">
+          <button id="login-button" type="submit">Iniciar Sesión</button>
+          <button id="cancel-button" type="button" (click)="cancelar()">Cancelar</button>
+        </div>
+        <div id="errorMessages" class="error-messages" [innerHTML]="errorMessage">{{errorMessage}}</div>
+      </div>
+
+    </form>
+
+</div>

@@ -1,0 +1,93 @@
+/* Botón de regreso */
+.btn-back {
+    margin-left: 15px;
+}
+
+/* Título historial de reservas */
+.title {
+    color: #FDAE39;
+    font-weight: bold;
+    font-size: 35px;
+    margin-bottom: 30px;
+}
+
+/* Contenedor de las tarjetas */
+.container {
+    padding: 24px;
+}
+
+.responsive-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(450px, 650px));
+    gap: 24px;
+    justify-content: center;
+}
+
+.card-body {
+    background-color: #FFF9F9;
+    border:  2px solid black;
+    border-radius: 20px;
+    /* margin: 20px; */
+    font-family: sans-serif;
+    padding: 5px;
+}
+
+/* Estilos del header */
+.card-title {
+    background-color: #D9D9D9;
+    border-radius: 5px;
+    padding-left: 5px;
+    padding-right: 5px;
+    font-size: medium;
+    text-align: center;
+}
+
+.card-subtitle {
+    margin-top: 10px;
+}
+
+/* Estilos del body */
+.bold {
+    font-weight: bold;
+}
+
+.logo-companies{
+    background-color: #FFFFFF;
+    width: 160px;
+    height: 160px;
+}
+
+.card-content {
+    position: relative;
+    top: 20px;
+}
+
+/* Estilos para los botones */
+.btn-group {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 15px;
+}
+
+.btn-group .btn-chat {
+    color:#FDAE39;
+    margin: 15px;
+    background-color: #FFFFFF;
+    border-radius: 5px;
+    border: 1px solid #FDAE39;
+}
+
+.btn-group .btn-cancel {
+    color:red;
+    margin: 15px;
+    background-color: #FFFFFF;
+    border-radius: 5px;
+    border: 1px solid red;
+}
+
+.btn-group .btn-details {
+    margin: 15px;
+    background-color: #FDAE39;
+    border-radius: 5px;
+    visibility: hidden; 
+}

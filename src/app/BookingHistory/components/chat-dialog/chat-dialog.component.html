@@ -1,0 +1,33 @@
+<p><button mat-icon-button mat-dialog-close class="btn-close">
+    <mat-icon>close</mat-icon>
+</button></p>
+<p>
+    <mat-dialog-content>
+        <header style="display: flex ;">
+            <mat-icon> chat_bubble</mat-icon>&nbsp;&nbsp;
+            <h1>Chat</h1>
+        </header>
+        <div *ngFor="let message of messages">
+            <div class="message-user">
+                    <mat-card>
+                        <mat-card-content>
+                            <div *ngIf="message.user == 'client' ; else elseBlock " ><b>Cliente</b></div>
+                            <ng-template #elseBlock><b>Compañía</b></ng-template>
+                            <p style="color: #9E9E9E; font-size: small; margin-bottom: 0px;">{{message.dateTime}}</p><p>{{message.message}}</p>
+                        </mat-card-content>
+                    </mat-card>
+            </div>
+        </div>
+        <form  #chatForm='ngForm'>
+            <div class="dialog-content">
+                <div>
+                    <mat-form-field appearance="outline">
+                        <textarea class="textarea-message" matInput placeholder="Escriba aquí su mensaje..." [(ngModel)]="chatData.message" name="message"></textarea>
+                    </mat-form-field>
+                </div>&nbsp;&nbsp;
+
+                <div><button mat-raised-button  class="btn-enviar-mensaje" (click)="sendMessage()">Enviar mensaje</button></div>
+            </div>
+        </form>
+    </mat-dialog-content>
+</p>

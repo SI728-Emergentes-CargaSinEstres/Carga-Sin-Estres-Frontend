@@ -1,0 +1,32 @@
+<div class="toolbar-section">
+  <mat-toolbar>
+    <img click="pageCompanyTable()" src="https://raw.githubusercontent.com/LuceroObispoRios/Grupo1_SW53/develop/CargaSinEstres-V1/public-images/Cargalogo.png" aria-label="Main page button" alt="Carga logo button" class="img-logo"/>
+    <span class="spacer"></span>
+    <div class="btn-section">
+      <button mat-button class="toolbar-btn" aria-label="User settings page button">
+        <div><h5 (click)="pageLanding()" class="toolbar-text">Inicio</h5></div>
+      </button>&nbsp;
+      <button mat-button class="toolbar-btn" aria-label="User settings page button">
+        <div><a class="toolbar-text" href="#services" (click)="pageLandingServices()">Servicios</a></div>
+      </button>&nbsp;
+      <button mat-button class="toolbar-btn" aria-label="User settings page button">
+        <div><a class="toolbar-text" href="#aboutus" (click)="pageLandingAboutUs()">Sobre Nosotros</a></div>
+      </button>&nbsp;
+      <button mat-button class="toolbar-btn" aria-label="User settings page button">
+        <div><a class="toolbar-text" href="#plans" (click)="pageLandingPlans()">Planes</a></div>
+      </button>&nbsp;
+      <button mat-button class="toolbar-btn" aria-label="User settings page button">
+        <div><a class="toolbar-text" href="#testimonials" (click)="pageLandingTestimonials()">Testimonios</a></div>
+      </button>&nbsp;
+      <button mat-button class="toolbar-btn" aria-label="User settings page button">
+        <div><h5 (click)="pageLoginForm()" class="toolbar-text">Iniciar Sesion</h5></div>
+      </button>&nbsp;
+      <button mat-button class="toolbar-btn" aria-label="Booking history page button">
+        <div><h5 (click)="pageClientForm()" class="toolbar-text">Registrar Cliente</h5></div>
+      </button>&nbsp;
+      <button mat-button class="toolbar-btn" aria-label="Booking history page button">
+        <div><h5 (click)="pageCompanyForm()" class="toolbar-text">Registrar Empresa</h5></div>
+      </button>&nbsp;
+    </div>
+  </mat-toolbar>
+</div>
