@@ -1,29 +1,39 @@
 <app-toolbar-landing></app-toolbar-landing>
-<br><br><br>
-<div class="login-form"> 
 
-    <form id="loginForm" [formGroup] ="loginForm" (ngSubmit)="onSubmit()">
-      <img src="https://github.com/LuceroObispoRios/Grupo1_SW53/blob/main/CargaSinEstres-V1/public-images/Cargalogo.png?raw=true" alt="logo" class="logo">
-      <h1>Carga Sin Estrés</h1>
+<div class="flex flex-col text-center justify-center mt-5 mx-auto">
+    <h1 class="text-black text-4xl font-bold mb-4">Bienvenido a Carga Sin Estrés</h1>
+    <div class="flex justify-center items-center mb-7">
+        <hr class="w-[130px] border-t border-[#DBDBDB]">
+        <p class="mx-4">Inicia sesión</p>
+        <hr class="w-[130px] border-t border-[#DBDBDB]">
+    </div>
 
-      <div class="content">
-        <div class="input-field">
-            <input type="email" id="email" formControlName="email" placeholder="Correo electrónico o Usuario" required autofocus>
-            <i class='bx bxs-user'></i>
-        </div>
+    <div class="max-w-2/3">
+        <form id="loginForm" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+            <div class="mb-3">
+                <mat-form-field class="md:w-1/4">
+                    <mat-label>Correo electrónico</mat-label>
+                    <input matInput type="email" id="email" formControlName="email" required>
+                </mat-form-field>
+            </div>
+            <div class="mb-3">
+                <mat-form-field class="md:w-1/4">
+                    <mat-label>Contraseña</mat-label>
+                    <input matInput type="password" id="password" formControlName="password" required>
+                </mat-form-field>
+            </div>
 
-        <div class="input-field">
-          <input type="password" id="password" formControlName="password" placeholder="Contraseña" required>
-          <i class='bx bxs-lock'></i>
-        </div>
+            <div class="mb-3">
+                <button class="hover:text-white border border-amber-400 hover:bg-amber-500 focus:ring-4 focus:outline-none focus:ring-amber-300 font-medium rounded mb-5 px-14 lg:px-32 py-2.5 text-center">
+                    Iniciar sesión
+                </button>
+                <p>¿No tienes una cuenta? <span class="text-amber-500">Regístrate</span></p>
+            </div>
 
-        <div class="action" id="actionButtons">
-          <button id="login-button" type="submit">Iniciar Sesión</button>
-          <button id="cancel-button" type="button" (click)="cancelar()">Cancelar</button>
-        </div>
-        <div id="errorMessages" class="error-messages" [innerHTML]="errorMessage">{{errorMessage}}</div>
-      </div>
+            <div id="errorMessages" class="text-red-600 text-sm" [innerHTML]="errorMessage">
+                <p>{{errorMessage}}</p>
+            </div>
 
-    </form>
-
+        </form>
+    </div>
 </div>

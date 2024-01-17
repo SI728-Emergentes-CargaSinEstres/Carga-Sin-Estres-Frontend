@@ -4,5 +4,21 @@
 @tailwind components;
 @tailwind utilities;
 
+@font-face {
+  font-family: 'poppins';
+  src: url('https://fonts.googleapis.com/css?family=Poppins');
+}
+
+:root {
+  --font-primary: poppins;
+}
+
 html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+body {
+  margin: 0;
+  font-family: var(--font-primary);
+}
+
+* {
+  font-family: var(--font-primary) !important;
+}
