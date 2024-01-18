@@ -38,10 +38,7 @@ export class ToolbarLandingComponent {
   pageLoginForm(){
     this.router.navigateByUrl('/login');
   }
-  pageClientForm(){
-    this.router.navigateByUrl('/client-form');
-  }
-  pageCompanyForm(){
-    this.router.navigateByUrl('/company-form');
+  pageSignUpForm(){
+    this.router.navigateByUrl('/sign-up');
   }
 }

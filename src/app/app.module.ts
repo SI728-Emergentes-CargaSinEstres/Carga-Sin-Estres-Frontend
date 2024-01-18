@@ -27,6 +27,7 @@ import { ToolbarClientComponent } from './Public/components/toolbar-client/toolb
 import { ToolbarCompanyComponent } from './Public/components/toolbar-company/toolbar-company.component';
 import { ReviewDialogComponent } from './BookingHistory/components/review-dialog/review-dialog.component';
 import { EditPaymentDialogComponent } from './BookingHistory/components/edit-payment-dialog/edit-payment-dialog.component';
+import { SignUpFormComponent } from './UserManagement/components/sign-up-form/sign-up-form.component';
 
 @NgModule({
   declarations: [
@@ -48,7 +49,8 @@ import { EditPaymentDialogComponent } from './BookingHistory/components/edit-pay
     ToolbarClientComponent,
     ToolbarCompanyComponent,
     ReviewDialogComponent,
-    EditPaymentDialogComponent
+    EditPaymentDialogComponent,
+    SignUpFormComponent
   ],
   imports: [
     BrowserModule,

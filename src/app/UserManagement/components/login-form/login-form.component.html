@@ -29,11 +29,12 @@
                                         </mat-form-field>
                                     </div>
 
+                                    <button class="hover:text-white border border-amber-400 hover:bg-amber-500 focus:ring-4 focus:outline-none focus:ring-amber-300 font-medium rounded mb-5 px-14 lg:px-32 py-2.5 text-center">
+                                        Iniciar sesión
+                                    </button>
+
                                     <div class="mb-3">
-                                        <button class="hover:text-white border border-amber-400 hover:bg-amber-500 focus:ring-4 focus:outline-none focus:ring-amber-300 font-medium rounded mb-5 px-14 lg:px-32 py-2.5 text-center">
-                                            Iniciar sesión
-                                        </button>
-                                        <p>¿No tienes una cuenta? <span class="text-amber-500">Regístrate</span></p>
+                                        <a routerLink='/sign-up'>¿No tienes una cuenta? <span class="text-amber-500">Regístrate</span></a>
                                     </div>
 
                                     <div id="errorMessages" class="text-red-600 text-sm" [innerHTML]="errorMessage">
