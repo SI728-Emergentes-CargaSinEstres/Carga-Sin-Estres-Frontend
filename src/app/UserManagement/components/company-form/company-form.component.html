@@ -1,64 +1,144 @@
 <app-toolbar-landing></app-toolbar-landing>
-<br><br><br>
-<div class="container">
-    <div class="container-back"> 
-        <div class="user-info">
 
-            <form [formGroup]="companyRegistrationForm" id="registro" action="" method="POST" (ngSubmit)="onSubmit()">
-                <h2>Registrar Cuenta de Empresa</h2>
-                <img src="https://github.com/LuceroObispoRios/Grupo1_SW53/blob/main/CargaSinEstres-V1/public-images/Cargalogo.png?raw=true" alt="Logo de Carga sin estres" class="logo">
+<div class="h-full">
+    <div class="flex flex-wrap items-center justify-center">
+        <div class="w-full">
+            <div class="block bg-white">
+                <div class="g-0 lg:flex lg:flex-wrap">
+                    <div class="px-4 md:px-0 py-10 lg:w-8/12">
+                        <div class="flex flex-col text-center justify-center mt-5 mx-auto">
+                            <h1 class="text-black text-4xl font-bold mb-4">Bienvenido a Carga Sin Estrés</h1>
+                            <div class="flex justify-center items-center mb-7">
+                                <hr class="w-[130px] border-t border-[#DBDBDB]">
+                                <p class="mx-4">Regístrate</p>
+                                <hr class="w-[130px] border-t border-[#DBDBDB]">
+                            </div>
 
-                <div class="right-section">
-                    <input type="text" placeholder="Nombre de la empresa" formControlName="name" id="nombre">
-                    <input type="text" placeholder="Email de la empresa" formControlName="email" id="email">
-                    <input type="text" placeholder="Dirección" formControlName="direccion" id="direccion" >
-                    <input type="text" placeholder="Telefono" formControlName="numeroContacto" id="numeroContacto">
-                    <input type="password" placeholder="Contraseña" formControlName="password" id="password">
-                    <input type="password" placeholder="Confirmar contraseña" formControlName="confirmarpassword" id="confirmarpassword">
-                    <input type="text" placeholder="Link al logo" formControlName="photo" id="photo"> <!--se añadio logo-->
+                            <div class="max-w-2/3">
+                                <form [formGroup]="companyRegistrationForm" id="registro" action="" method="POST"
+                                      (ngSubmit)="onSubmit()">
+                                    <div class="mb-3">
+                                        <mat-form-field class="md:w-1/2">
+                                            <mat-label>Razón social</mat-label>
+                                            <input matInput type="text" id="nombre" formControlName="name" required>
+                                        </mat-form-field>
+                                    </div>
+                                    <div class="mb-3">
+                                        <mat-form-field class="md:w-1/2">
+                                            <mat-label>Dirección</mat-label>
+                                            <input matInput type="text" id="direccion" formControlName="direccion"
+                                                   required>
+                                        </mat-form-field>
+                                    </div>
+                                    <div class="mb-3">
+                                        <mat-form-field class="md:w-1/2">
+                                            <mat-label>Número de teléfono</mat-label>
+                                            <input matInput type="text" id="numeroContacto"
+                                                   formControlName="numeroContacto" required>
+                                        </mat-form-field>
+                                    </div>
+                                    <div class="mb-3">
+                                        <mat-form-field class="md:w-1/2">
+                                            <mat-label>Enlace al logo de la empresa</mat-label>
+                                            <input matInput type="text" id="photo" formControlName="photo" required>
+                                        </mat-form-field>
+                                    </div>
+                                    <div class="mb-3">
+                                        <mat-form-field class="md:w-1/2">
+                                            <mat-label>Correo electrónico</mat-label>
+                                            <input matInput type="email" id="email" formControlName="email" required>
+                                        </mat-form-field>
+                                    </div>
+                                    <div class="mb-3">
+                                        <mat-form-field class="md:w-1/2">
+                                            <mat-label>Contraseña</mat-label>
+                                            <input matInput type="password" id="password" formControlName="password"
+                                                   required>
+                                        </mat-form-field>
+                                    </div>
+                                    <div class="mb-3">
+                                        <mat-form-field class="md:w-1/2">
+                                            <mat-label>Confirmar contraseña</mat-label>
+                                            <input matInput type="password" id="confirmarpassword"
+                                                   formControlName="confirmarpassword" required>
+                                        </mat-form-field>
+                                    </div>
+                                    <div class="w-1/2 mx-auto mb-4">
+                                        <div>
+                                            <p class="mb-3">Marque los servicios que ofrece su empresa:</p>
+                                            <div class="flex flex-col md:flex-row justify-center mb-3 md:gap-8">
+                                                <div class="flex items-baseline">
+                                                    <input class="mr-2 cursor-pointer" type="checkbox" name="transporte"
+                                                           formControlName="transporte" value="transporte"
+                                                           id="transporte">
+                                                    <label for="transporte">Transporte</label>
+                                                </div>
+                                                <div class="flex items-baseline">
+                                                    <input class="mr-2 cursor-pointer" type="checkbox" name="carga"
+                                                           formControlName="carga" value="carga" id="carga">
+                                                    <label for="carga">Carga</label>
+                                                </div>
+                                                <div class="flex items-baseline">
+                                                    <input class="mr-2 cursor-pointer" type="checkbox" name="embalaje"
+                                                           formControlName="embalaje" value="embalaje" id="embalaje">
+                                                    <label for="embalaje">Embalaje</label>
+                                                </div>
+                                                <div class="flex items-baseline">
+                                                    <input class="mr-2 cursor-pointer" type="checkbox" name="montaje"
+                                                           formControlName="montaje" value="montaje" id="montaje">
+                                                    <label for="montaje">Montaje</label>
+                                                </div>
+                                                <div class="flex items-baseline">
+                                                    <input class="mr-2 cursor-pointer" type="checkbox" name="desmontaje"
+                                                           formControlName="desmontaje" value="desmontaje"
+                                                           id="desmontaje">
+                                                    <label for="desmontaje">Desmontaje</label>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="flex flex-col">
+                                            <label for="description">Descripción corta de la empresa:</label>
+                                            <textarea class="border border-amber-400" name="description"
+                                                      formControlName="description" rows="6"
+                                                      id="description">
+                                            </textarea>
+                                        </div>
+                                    </div>
+
+                                    <button class="hover:text-white border border-amber-400 hover:bg-amber-500
+                                                   focus:ring-4 focus:outline-none focus:ring-amber-300 font-medium
+                                                   rounded mb-5 px-14 lg:px-32 py-2.5 text-center"
+                                    >
+                                        Crear cuenta
+                                    </button>
+
+                                    <div class="mb-3">
+                                        <a routerLink='/login'>
+                                            ¿Ya tienes una cuenta? <span class="text-amber-500">Inicia sesión</span>
+                                        </a>
+                                    </div>
+
+                                    <div id="errorMessages" class="text-red-600 text-sm" [innerHTML]="errorMessage">
+                                        <p>{{errorMessage}}</p>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="flex items-center lg:w-4/12"
+                         style="background: linear-gradient(to right, #ff930f, #fff95b)">
+                    </div>
                 </div>
-    
-                <div class="service-boxes">
-                    <p>Marque los servicios que ofrece su empresa:</p>
-                    <div class="checkboxes col">
-                        <div class="check row-1">
-                            <input type="checkbox" name="transporte" formControlName="transporte" value="transporte" id="transporte">
-                            <label for="transporte">Transporte</label>                           
-                        </div>
-                        
-                        <div class="check row-1">
-                            <input type="checkbox" name="carga" formControlName="carga" value="carga" id="carga">
-                            <label for="carga">Carga</label>                            
-                        </div>
-                        
-                        <div class="check row-1">
-                            <input type="checkbox" name="embalaje" formControlName="embalaje" value="embalaje" id="embalaje">
-                            <label for="embalaje">Embalaje</label>                           
-                        </div>
-                        
-                        <div class="check row-1">
-                            <input type="checkbox" name="montaje" formControlName="montaje" value="montaje" id="montaje">
-                            <label for="montaje">Montaje</label>                        
-                        </div>
-                        
-                        <div class="check row-1">
-                            <input type="checkbox" name="desmontaje" formControlName="desmontaje" value="desmontaje" id="desmontaje">
-                            <label for="desmontaje">Desmontaje</label>                          
-                        </div>
-                        
-                    </div>       
-                </div>
-    
-                <div class="description-box">
-                    <label for="description">Descripción corta de la empresa:</label>
-                    <textarea name="description" formControlName="description" rows="6"  id="description"></textarea>
-                </div>
-    
-                <button id="registro-button" type="submit">Registrar Empresa</button>
-                <button id="cancel-button" type="button" (click)="cancelar()">Cancelar</button>
-                <div id="errorMessages" class="error-messages" [innerHTML]="errorMessage">{{errorMessage}}</div>
-            </form>
+            </div>
         </div>
     </div>
 </div>
-<br><br><br>
+
+
+
+
+
+
+
