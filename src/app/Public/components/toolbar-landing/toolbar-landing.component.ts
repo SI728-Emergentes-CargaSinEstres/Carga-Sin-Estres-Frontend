@@ -8,6 +8,10 @@ import { Router } from '@angular/router';
 })
 
 export class ToolbarLandingComponent {
+  showMenu = false;
+  toggleMenu() {
+    this.showMenu = !this.showMenu;
+  }
 
   constructor(private router: Router) { }
 

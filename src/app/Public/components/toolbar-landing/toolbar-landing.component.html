@@ -1,29 +1,100 @@
-<div class="toolbar-section">
-  <mat-toolbar>
-    <img click="pageCompanyTable()" src="https://raw.githubusercontent.com/LuceroObispoRios/Grupo1_SW53/develop/CargaSinEstres-V1/public-images/Cargalogo.png" aria-label="Main page button" alt="Carga logo button" class="img-logo"/>
-    <span class="spacer"></span>
-    <div class="btn-section">
-      <button mat-button class="toolbar-btn" aria-label="User settings page button">
-        <div><h5 (click)="pageLanding()" class="toolbar-text">Inicio</h5></div>
-      </button>&nbsp;
-      <button mat-button class="toolbar-btn" aria-label="User settings page button">
-        <div><a class="toolbar-text" href="#services" (click)="pageLandingServices()">Servicios</a></div>
-      </button>&nbsp;
-      <button mat-button class="toolbar-btn" aria-label="User settings page button">
-        <div><a class="toolbar-text" href="#aboutus" (click)="pageLandingAboutUs()">Sobre Nosotros</a></div>
-      </button>&nbsp;
-      <button mat-button class="toolbar-btn" aria-label="User settings page button">
-        <div><a class="toolbar-text" href="#plans" (click)="pageLandingPlans()">Planes</a></div>
-      </button>&nbsp;
-      <button mat-button class="toolbar-btn" aria-label="User settings page button">
-        <div><a class="toolbar-text" href="#testimonials" (click)="pageLandingTestimonials()">Testimonios</a></div>
-      </button>&nbsp;
-      <button mat-button class="toolbar-btn" aria-label="User settings page button">
-        <div><h5 (click)="pageLoginForm()" class="toolbar-text">Iniciar Sesión</h5></div>
-      </button>&nbsp;
-      <button mat-button class="toolbar-btn" aria-label="Booking history page button">
-        <div><h5 (click)="pageSignUpForm()" class="toolbar-text">Regístrate</h5></div>
-      </button>&nbsp;
+<nav class="navbar flex flex-wrap items-center justify-between align-items-center py-2 px-4">
+  <div class="container mx-auto py-2 px-4 md:px-0 flex flex-wrap items-center justify-between text-amber-300">
+    <div class="w-full relative flex justify-between md:w-auto md:px-0 md:static md:block md:justify-start">
+      <a class="font-semibold flex whitespace-nowrap items-center" routerLink="/">
+        <img src="https://raw.githubusercontent.com/LuceroObispoRios/Grupo1_SW53/develop/CargaSinEstres-V1/public-images/Cargalogo.png" aria-label="Main page button" alt="Carga logo button" class="img-logo"/>
+      </a>
+
+      <button class="md:hidden text-xl" (click)="toggleMenu()" aria-label="Open/Close toolbar menu">
+        <p>E</p>
+      </button>
     </div>
-  </mat-toolbar>
+
+    <div class="md:flex md:flex-grow items-center dropdown {{ showMenu ? 'open' : '' }}">
+      <ul class="flex flex-col md:flex-row list-none md:ml-auto gap-x-4 md:gap-x-16">
+        <li>
+          <a href="#services">
+            <h2 class="hover:text-white mt-3 md:mt-auto">Servicios</h2>
+          </a>
+        </li>
+        <li>
+          <a href="#aboutus">
+            <h2 class="hover:text-white mt-3 md:mt-auto">Sobre Nosotros</h2>
+          </a>
+        </li>
+        <li>
+          <a href="#plans">
+            <h2 class="hover:text-white mt-3 md:mt-auto">Planes</h2>
+          </a>
+        </li>
+        <li>
+          <a href="#testimonials">
+            <h2 class="hover:text-white mt-3 md:mt-auto">Testimonios</h2>
+          </a>
+        </li>
+        <li>
+          <a routerLink="/login">
+            <h2 class="hover:text-white mt-3 md:mt-auto">Iniciar sesión</h2>
+          </a>
+        </li>
+        <li>
+          <a routerLink="/sign-up">
+            <h2 class="hover:text-white mt-3 md:mt-auto">Regístrate</h2>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+<!--
+<div class="navbar">
+  <nav class="flex flex-wrap items-center justify-between align-middle py-2 px-4">
+    <div class="container mx-auto py-2 px-4 md:px-0 flex flex-wrap items-center justify-between text-amber-500">
+      <div class="w-full relative flex justify-between md:w-auto md:px-0 md:static md:block md:justify-start">
+        <a class="font-semibold flex whitespace-nowrap items-center" routerLink="/">
+          <img src="https://raw.githubusercontent.com/LuceroObispoRios/Grupo1_SW53/develop/CargaSinEstres-V1/public-images/Cargalogo.png" aria-label="Main page button" alt="Carga logo button" class="img-logo"/>
+        </a>
+
+        <button class="md:hidden text-xl" (click)="toggleMenu()" aria-label="Open/Close toolbar menu">
+          <p>E</p>
+        </button>
+      </div>
+
+      <div class="md:flex md:flex-grow items-center dropdown {{ showMenu ? 'open' : '' }}">
+        <ul class="flex flex-col md:flex-row list-none md:ml-auto gap-x-4 md:gap-x-16">
+          <li>
+            <a href="#services">
+              <h2 class="hover:text-white mt-3 md:mt-auto">Servicios</h2>
+            </a>
+          </li>
+          <li>
+            <a href="#aboutus">
+              <h2 class="hover:text-white mt-3 md:mt-auto">Sobre Nosotros</h2>
+            </a>
+          </li>
+          <li>
+            <a href="#plans">
+              <h2 class="hover:text-white mt-3 md:mt-auto">Planes</h2>
+            </a>
+          </li>
+          <li>
+            <a href="#testimonials">
+              <h2 class="hover:text-white mt-3 md:mt-auto">Testimonios</h2>
+            </a>
+          </li>
+          <li>
+            <a routerLink="/login">
+              <h2 class="hover:text-white mt-3 md:mt-auto">Iniciar sesión</h2>
+            </a>
+          </li>
+          <li>
+            <a routerLink="/sign-up">
+              <h2 class="hover:text-white mt-3 md:mt-auto">Regístrate</h2>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
 </div>
+-->
