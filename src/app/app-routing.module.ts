@@ -13,9 +13,11 @@ import { MembershipComponent } from './Memberships/components/membership/members
 import { PaymentFormComponent } from './Memberships/components/payment-form/payment-form.component';
 import { ToolbarClientComponent } from './Public/components/toolbar-client/toolbar-client.component';
 import { ToolbarCompanyComponent } from './Public/components/toolbar-company/toolbar-company.component';
+import {SignUpFormComponent} from "./UserManagement/components/sign-up-form/sign-up-form.component";
 
 const routes: Routes = [
   {path: 'login', component: LoginFormComponent},
+  {path: 'sign-up', component: SignUpFormComponent},
   {path: 'landing-page', component: LandingPageComponent},
   {path: 'client-form', component: ClientFormComponent},
   {path: 'company-form', component: CompanyFormComponent},
