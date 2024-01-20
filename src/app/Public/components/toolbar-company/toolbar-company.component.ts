@@ -9,6 +9,10 @@ import { MatSnackBar } from '@angular/material/snack-bar';
   styleUrls: ['./toolbar-company.component.scss']
 })
 export class ToolbarCompanyComponent implements OnInit {
+  showMenu = false;
+  toggleMenu() {
+    this.showMenu = !this.showMenu;
+  }
 
   userId: string = '';
   userType: string = '';
@@ -28,7 +32,7 @@ export class ToolbarCompanyComponent implements OnInit {
 
   pageLanding(){
     this.router.navigateByUrl('/landing-page');
-    this._snackBar.open('Se cerro sesión con éxito', 'Cerrar', {
+    this._snackBar.open('Se cerró la sesión con éxito', 'Cerrar', {
       duration: 2000, // Duración en milisegundos
     });
   }
