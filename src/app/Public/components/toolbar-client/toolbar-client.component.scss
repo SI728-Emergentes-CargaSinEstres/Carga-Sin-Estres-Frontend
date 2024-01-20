@@ -1,42 +1,36 @@
 .img-logo {
-    width: 80px;
-    height: 80px;
-    margin-right: 10px;
+  width: 40px;
+  height: 40px;
+  margin-right: 10px;
 }
 
-.spacer {
-    flex: 1 1 auto;
+button {
+  outline: none;
 }
 
-.toolbar-section {
-  background-color: #454545;
-  padding: 20px 0;
+.navbar {
+  position: fixed;
+  width: 100%;
+  top: 0;
+  background-color: #232323;
+  backdrop-filter: blur(8px);
+  z-index: 100;
 }
 
-.btn-section {
-  display:flex;
-  flex-wrap: wrap;
-  min-width: 300px;
+.dropdown.open {
+  visibility: visible;
+  opacity: 1;
+  width: 100%;
+  text-align: end;
+  max-height: 500px;
+  transition: opacity 0.3s ease-in-out, max-height 0.3s ease-in-out;
 }
 
-.toolbar-btn:hover {
-  background-color: #b5b3b3;
-}
-
-.toolbar-text {
-  font-size: 13px;
-}
-
-mat-toolbar {
-  background-color:#454545; 
-  color:white;
-  font-size: 13px;
-}
-
-.toolbar-btn-logout {
-  background-color: black;
-}
-
-.toolbar-btn-logout:hover {
-  background-color: #b5b3b3;
+@media (max-width: 768px) {
+  .dropdown:not(.open) {
+    visibility: hidden;
+    opacity: 0;
+    max-height: 0;
+    transition: opacity 0.3s ease-in-out, max-height 0.3s ease-in-out;
+  }
 }
