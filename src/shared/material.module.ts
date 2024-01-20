@@ -20,26 +20,6 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 @NgModule({
-    imports: [
-        BrowserAnimationsModule,
-        MatButtonModule,
-        MatCardModule,
-        MatIconModule,
-        MatPaginatorModule,
-        MatProgressSpinnerModule,
-        MatTableModule,
-        MatInputModule,
-        MatToolbarModule,
-        MatFormFieldModule,
-        MatChipsModule,
-        MatGridListModule,
-        MatExpansionModule,
-        FormsModule,
-        ReactiveFormsModule,
-        MatSelectModule,
-        MatDialogModule,
-        MatSnackBarModule
-    ],
     exports: [
         BrowserAnimationsModule,
         MatButtonModule,
@@ -58,6 +38,26 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
         MatChipsModule,
         MatGridListModule,
         MatExpansionModule,
+        MatDialogModule,
+        MatSnackBarModule
+    ],
+    imports: [
+        BrowserAnimationsModule,
+        MatButtonModule,
+        MatCardModule,
+        MatIconModule,
+        MatPaginatorModule,
+        MatProgressSpinnerModule,
+        MatTableModule,
+        MatInputModule,
+        MatToolbarModule,
+        MatFormFieldModule,
+        MatChipsModule,
+        MatGridListModule,
+        MatExpansionModule,
+        FormsModule,
+        ReactiveFormsModule,
+        MatSelectModule,
         MatDialogModule,
         MatSnackBarModule
     ]
