@@ -1,7 +1,27 @@
-img {
-    width: 300px;
-    height: 300px;
-    margin-right: 10px;
+
+
+table th {
+    background-color: var(--primary-yellow);
+    font-size: var(--normal-text-regular-size);
+    font-weight: bold;
+}
+
+::ng-deep .mat-mdc-text-field-wrapper {
+    background-color: transparent !important;
+}
+
+::ng-deep .mat-mdc-text-field-wrapper .mat-mdc-floating-label {
+    color: var(--black) !important;
+}
+
+.golden-background {
+    background-color: #ffe2b7;
+    border: 3px solid #FDAE39;
+}
+
+.default-background {
+    background-color: white;
+    border: 1px solid transparent;
 }
 
 /*
@@ -42,14 +62,6 @@ img {
     margin-top: -20px;
 }
 
-.golden-background {
-    background-color: #ffe2b7;
-    border: 3px solid #FDAE39;
-}
-  
-.default-background {
-    background-color: white;
-    border: 1px solid transparent;
-}
+
 
 */

@@ -11,12 +11,14 @@
 
 :root {
   --font-primary: poppins;
+  --primary-yellow: rgb(245 158 11);
 }
 
 html, body { height: 100%; }
 body {
   margin: 0;
   font-family: var(--font-primary);
+  background-color: #F0F2F5;
 }
 
 * :not(i) {

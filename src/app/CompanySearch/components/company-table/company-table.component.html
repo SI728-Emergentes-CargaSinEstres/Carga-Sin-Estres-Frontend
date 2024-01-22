@@ -1,13 +1,13 @@
-<div class="flex flex-col flex-wrap py-10 items-center justify-center mx-auto container">
+<div class="flex flex-col py-10 justify-center mx-auto container max-w-screen-xl">
     <h1 class="text-center text-black text-4xl font-bold mt-5 mb-4">
         ¡Hola, {{userFullName}}!
     </h1>
 
-    <div class="my-12 items-center md:flex justify-center bg-[#232323] rounded-3xl md:mx-40">
-        <div class="py-6 px-20 items-center">
-            <div class="flex justify-center">
-                <div class="md:w-1/2 my-3 flex flex-col justify-center items-center md:items-start text-center md:text-left">
-                    <h1 class="text-3xl font-semibold text-amber-400 ">Carga Rápida</h1>
+    <div class="my-12 bg-[#232323] rounded-3xl">
+        <div class="py-6 px-20 ">
+            <div class="flex">
+                <div class="md:w-1/2 my-3 flex flex-col justify-center md:items-start">
+                    <h1 class="text-3xl font-semibold text-amber-400  text-center md:text-left">Carga Rápida</h1>
                     <p class="py-4 mb-4 text-white">
                         ¿Necesitas contratar un servicio de carga para hoy? Pulsa el botón y las empresas disponibles
                         responderán a tu solicitud.
@@ -28,88 +28,83 @@
 
     <h1 class="text-center text-black text-4xl font-bold mt-5 mb-4">Reservar servicios</h1>
 
+    <div class="mx-auto container">
+        <div class="flex flex-col md:flex-row justify-between gap-4">
+            <!-- Buscar por nombre de empresa -->
+            <mat-form-field class="md:w-1/2" color="accent">
+                <mat-label for="companyName">Buscar...</mat-label>
+                <input matInput [(ngModel)]="manualCompanyName" (keyup)="searchByCompanyName()" id="companyName">
+            </mat-form-field>
 
-    <div class="header">
+            <!-- Buscar por servicios -->
+            <mat-form-field>
+                <mat-label for="services">Tipo de servicio</mat-label>
+                <mat-select (selectionChange)="onServiceSelectionChange($event)" multiple>
+                    <mat-option *ngFor="let service of servicesList" [value]="service"
+                                id="services">{{ service }}</mat-option>
+                </mat-select>
+            </mat-form-field>
 
-        <!-- Buscar por nombre de empresa -->
-        <mat-form-field color="accent">
-            <mat-label for="companyName">Nombre</mat-label>
-            <input matInput [(ngModel)]="manualCompanyName" (keyup)="searchByCompanyName()" id="companyName">
-        </mat-form-field>
+            <!-- Selector para elegir método de búsqueda -->
+            <mat-form-field>
+                <mat-label for="location">Ubicación</mat-label>
+                <mat-select [(ngModel)]="searchMethod" (selectionChange)="searchByLocation()">
+                    <mat-option value="userLocation" id="location">Mi Ubicación</mat-option>
+                    <mat-option value="manualLocation" id="location">Ubicación Manual</mat-option>
+                    <mat-option value="noFilter" id="location">Sin filtro</mat-option>
+                </mat-select>
+            </mat-form-field>
 
-        <!-- Buscar por servicios -->
-        <mat-form-field>
-            <mat-label for="services">Servicios</mat-label>
-            <mat-select (selectionChange)="onServiceSelectionChange($event)" multiple>
-                <mat-option *ngFor="let service of servicesList" [value]="service"
-                            id="services">{{ service }}</mat-option>
-            </mat-select>
-        </mat-form-field>
+            <!-- Buscar por ubicacion -->
+            <mat-form-field *ngIf="searchMethod === 'manualLocation'">
+                <mat-label>Filtrar por ubicación Manual</mat-label>
+                <input matInput [(ngModel)]="manualLocation" (keyup)="searchByLocation()">
+            </mat-form-field>
+        </div>
 
-        <!-- Selector para elegir método de búsqueda -->
-        <mat-form-field>
-            <mat-label for="location">Ubicación</mat-label>
-            <mat-select [(ngModel)]="searchMethod" (selectionChange)="searchByLocation()">
-                <mat-option value="userLocation" id="location">Mi Ubicación</mat-option>
-                <mat-option value="manualLocation" id="location">Ubicación Manual</mat-option>
-                <mat-option value="noFilter" id="location">Sin filtro</mat-option>
-            </mat-select>
-        </mat-form-field>
+        <div class="overflow-scroll md:overflow-auto">
+            <table mat-table [dataSource]="dataSource_company">
 
-        <!-- Buscar por ubicacion -->
-        <mat-form-field *ngIf="searchMethod === 'manualLocation'">
-            <mat-label>Ubicación Manual</mat-label>
-            <input matInput [(ngModel)]="manualLocation" (keyup)="searchByLocation()">
-        </mat-form-field>
+                <!-- Photo Column -->
+                <ng-container matColumnDef="photo">
+                    <th mat-header-cell *matHeaderCellDef> Logo</th>
+                    <td class="cursor-pointer" mat-cell *matCellDef="let element">
+                        <img src="{{element.photo}}" alt="company" width="100" height="100">
+                    </td>
+                </ng-container>
 
-        <button class="btn-open" (click)="openDialog()">Carga Rapida</button>
+                <!-- Name Column -->
+                <ng-container matColumnDef="name">
+                    <th mat-header-cell *matHeaderCellDef> Nombre</th>
+                    <td class="cursor-pointer" mat-cell *matCellDef="let element">
+                        {{element.name}}
+                    </td>
+                </ng-container>
 
-    </div>
+                <!-- Services Column -->
+                <ng-container matColumnDef="services">
+                    <th mat-header-cell *matHeaderCellDef> Servicios</th>
+                    <td class="cursor-pointer" mat-cell *matCellDef="let element">
+                        <span *ngIf="element.transporte">Transporte, </span>
+                        <span *ngIf="element.carga">Carga, </span>
+                        <span *ngIf="element.embalaje">Embalaje, </span>
+                        <span *ngIf="element.montaje">Montaje, </span>
+                        <span *ngIf="element.desmontaje">Desmontaje</span>
+                    </td>
+                </ng-container>
 
+                <!-- Location Column -->
+                <ng-container matColumnDef="location">
+                    <th mat-header-cell *matHeaderCellDef> Ubicación</th>
+                    <td class="cursor-pointer" mat-cell *matCellDef="let element"> {{element.direccion}} </td>
+                </ng-container>
 
-    <div class="mat-elevation-z8 container">
-
-        <table mat-table [dataSource]="dataSource_company">
-
-            <!-- Photo Column -->
-            <ng-container matColumnDef="photo">
-                <th mat-header-cell *matHeaderCellDef> Logo</th>
-                <td class="cursor-pointer" mat-cell *matCellDef="let element">
-                    <img src="{{element.photo}}" alt="company" width="100" height="100">
-                </td>
-            </ng-container>
-
-            <!-- Name Column -->
-            <ng-container matColumnDef="name">
-                <th mat-header-cell *matHeaderCellDef> Nombre</th>
-                <td class="cursor-pointer" mat-cell *matCellDef="let element">
-                    {{element.name}}
-                </td>
-            </ng-container>
-
-            <!-- Services Column -->
-            <ng-container matColumnDef="services">
-                <th mat-header-cell *matHeaderCellDef> Servicios</th>
-                <td class="cursor-pointer" mat-cell *matCellDef="let element">
-                    <span *ngIf="element.transporte">Transporte, </span>
-                    <span *ngIf="element.carga">Carga, </span>
-                    <span *ngIf="element.embalaje">Embalaje, </span>
-                    <span *ngIf="element.montaje">Montaje, </span>
-                    <span *ngIf="element.desmontaje">Desmontaje</span>
-                </td>
-            </ng-container>
-
-            <!-- Location Column -->
-            <ng-container matColumnDef="location">
-                <th mat-header-cell *matHeaderCellDef> Ubicación</th>
-                <td class="cursor-pointer" mat-cell *matCellDef="let element"> {{element.direccion}} </td>
-            </ng-container>
-
-            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-            <tr mat-row *matRowDef="let row; columns: displayedColumns;"
-                [ngClass]="row.hasMembership ? 'golden-background' : 'default-background'" (click)="getRow(row)"></tr>
-        </table>
-
+                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                <tr mat-row *matRowDef="let row; columns: displayedColumns;"
+                    [ngClass]="row.hasMembership ? 'golden-background' : 'default-background'"
+                    (click)="getRow(row)"></tr>
+            </table>
+        </div>
         <mat-paginator [pageSize]="5" [pageSizeOptions]="[5, 10, 15]" showFirstLastButtons></mat-paginator>
     </div>
 </div>
