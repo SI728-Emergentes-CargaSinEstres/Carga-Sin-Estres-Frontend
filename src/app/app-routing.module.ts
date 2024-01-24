@@ -13,7 +13,8 @@ import { MembershipComponent } from './Memberships/components/membership/members
 import { PaymentFormComponent } from './Memberships/components/payment-form/payment-form.component';
 import { ToolbarClientComponent } from './Public/components/toolbar-client/toolbar-client.component';
 import { ToolbarCompanyComponent } from './Public/components/toolbar-company/toolbar-company.component';
-import {SignUpFormComponent} from "./UserManagement/components/sign-up-form/sign-up-form.component";
+import { SignUpFormComponent } from "./UserManagement/components/sign-up-form/sign-up-form.component";
+import { PageNotFoundComponent } from "./Public/components/page-not-found/page-not-found.component";
 
 const routes: Routes = [
   {path: 'login', component: LoginFormComponent},
@@ -43,7 +44,7 @@ const routes: Routes = [
     ]
   },
   {path: '', redirectTo: '/login', pathMatch: 'full' },
-  {path: '**', redirectTo: '/landing-page', pathMatch: 'full'}
+  {path: '**', component: PageNotFoundComponent }
 ];
 
 @NgModule({

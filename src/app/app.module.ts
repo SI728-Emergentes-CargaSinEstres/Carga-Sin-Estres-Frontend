@@ -28,6 +28,7 @@ import { ToolbarCompanyComponent } from './Public/components/toolbar-company/too
 import { ReviewDialogComponent } from './BookingHistory/components/review-dialog/review-dialog.component';
 import { EditPaymentDialogComponent } from './BookingHistory/components/edit-payment-dialog/edit-payment-dialog.component';
 import { SignUpFormComponent } from './UserManagement/components/sign-up-form/sign-up-form.component';
+import { PageNotFoundComponent } from './Public/components/page-not-found/page-not-found.component';
 
 @NgModule({
   declarations: [
@@ -50,7 +51,8 @@ import { SignUpFormComponent } from './UserManagement/components/sign-up-form/si
     ToolbarCompanyComponent,
     ReviewDialogComponent,
     EditPaymentDialogComponent,
-    SignUpFormComponent
+    SignUpFormComponent,
+    PageNotFoundComponent
   ],
   imports: [
     BrowserModule,
