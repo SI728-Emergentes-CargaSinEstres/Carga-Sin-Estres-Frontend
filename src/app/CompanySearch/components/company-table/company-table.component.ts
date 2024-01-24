@@ -20,7 +20,7 @@ import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 export class CompanyTableComponent{
 
   dataSource_company = new MatTableDataSource();
-  displayedColumns: string[] = ['photo', 'name', 'services', 'location'];
+  displayedColumns: string[] = ['name', 'services', 'location'];
 
   @ViewChild(MatPaginator, {static: true})
   paginator!: MatPaginator;
