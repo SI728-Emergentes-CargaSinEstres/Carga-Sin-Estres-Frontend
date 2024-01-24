@@ -20,7 +20,7 @@ import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 export class CompanyTableComponent{
 
   dataSource_company = new MatTableDataSource();
-  displayedColumns: string[] = ['id', 'name', 'services', 'location', 'photo'];
+  displayedColumns: string[] = ['name', 'services', 'location'];
 
   @ViewChild(MatPaginator, {static: true})
   paginator!: MatPaginator;
@@ -43,7 +43,8 @@ export class CompanyTableComponent{
   ngOnInit(): void {
     this.getUserDistrict();
     this.dataSource_company.paginator = this.paginator;
-    this.getAllCompanies(); 
+    this.getAllCompanies();
+    this.getUserFullName();
   }
 
   getAllCompanies() {
@@ -121,7 +122,16 @@ export class CompanyTableComponent{
   searchMethod: string = 'noFilter'; // Opción predeterminada <----------------//Membreship
   manualLocation: string = ''; // Ubicación manual ingresada por el usuario
   userLocation: string = ''; // Ubicación del usuario
+  userFullName: string = ''
 
+
+  getUserFullName() {
+    this.companyDataService.getClientById(this.userId).subscribe(
+        (client) => {
+            this.userFullName = client.name + ' ' + client.apellidoPaterno;
+        }
+    );
+  }
   getUserDistrict() {
     this.companyDataService.getClientById(this.userId).subscribe(
       (client) => {
