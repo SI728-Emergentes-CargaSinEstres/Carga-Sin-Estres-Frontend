@@ -15,6 +15,7 @@ export class ClientSettingsComponent {
   userSettingsForm: FormGroup;
   errorMessage: string = '';
   id: any;
+  client: any;
 
   constructor(private fb: FormBuilder, private api: CargaSinEstresDataService, private route: ActivatedRoute, private router: Router, private _snackBar: MatSnackBar) {
     this.userSettingsForm = this.fb.group({
@@ -33,11 +34,23 @@ export class ClientSettingsComponent {
         this.id = url[1].path;
       }
     ); 
+
+    this.getClient(this.id);
   }
 
   
 
   ngOnInit(){}
+
+  getClient(id: any){
+    this.api.getClientById(id).subscribe(
+      (res: any) => 
+      {
+        this.client = res;
+      }
+    );
+  }
+
 
   onSubmit(){
     this.errorMessage = '';

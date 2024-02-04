@@ -1,28 +1,91 @@
-<br><br>
-<div class="container">
-    <div class="container-back"> 
-        <div class="user-info">  
-            <form id="settings" action="" method="post" [formGroup]="userSettingsForm" (submit)="onSubmit()">
-                <h2>Editar datos de Perfil de Cliente</h2>
+<div class="flex flex-col py-10 justify-center mx-auto container max-w-full">
 
-                <div class="right-section">
-                    <input type="text" placeholder="Nombre" formControlName="name" id="name" required>
-                    <input type="text" placeholder="Apellido Materno" formControlName="apellidoMaterno" id="apellidoMaterno" required>
-                    <input type="text" placeholder="Apellido Paterno" formControlName="apellidoPaterno" id="apellidoPaterno" required>
-                    <input type="text" placeholder="Celular" formControlName="celular" id="celular" required>
-                    <input type="text" placeholder="Dirección" formControlName="direccion" id="direccion" required>
-                </div>
-                <div class="right-section">
-                    <input type="email" placeholder="Correo electrónico" formControlName="email" id="email" required>
-                    <input type="password" placeholder="Contraseña" formControlName="password" id="password" required> <!--change to text?-->
-                    <input type="password" placeholder="Repetir contraseña" formControlName="confirmarpassword" id="confirmarpassword" required>
-                </div>
-
-                <button id="submitButton" type="submit">Guardar cambios</button>
-                <button id="cancelButton" type="button" (click)="cancelar()">Cancelar</button>
-                <div id="errorMessages" class="error-messages" [innerHTML]="errorMessage">{{errorMessage}}</div>
-            </form>
-        </div>     
+    <div class="flex items-center">
+        <img src="assets/public-images/settingsIcon.png" alt="Settings" class="w-14 h-14 ml-32 mr-6">
+        <h1 class="text-black text-4xl font-bold mt-4 mb-3 mr-20">
+            Datos y Configuración de Mi Perfil
+        </h1>
     </div>
+
+    <hr class="my-12 border-t-2 border-gray-300 ml-14 mr-14">
+
+    <form id="settings" action="" method="post" [formGroup]="userSettingsForm" (submit)="onSubmit()">
+        <!--Cuenta-->
+        <div class="md:flex lg:flex mb-10 mx-32">
+            <div class="w-full md:w-1/2 lg:w-1/2 mb-10">
+                <h2 class="text-black font-bold mt-1">Cuenta</h2>
+            </div>
+        
+            <div class="w-full lg:w-1/2 lg:flex flex-col"> 
+                <label for="name" class="mb-2">Nombres</label>
+                <input type="text" placeholder="{{client.name}}" formControlName="name" id="name" required class="w-full p-2 mb-4">
+                
+                <div class="lg:flex"> <!--TODO: Cambiar a apellidos-->
+                    <div class="flex flex-col lg:w-1/2">
+                        <label class="mb-2">Apellido Materno</label>
+                        <input type="text" placeholder="{{client.apellidoMaterno}}" formControlName="apellidoMaterno" id="apellidoMaterno" required class="w-full p-2 mb-4">
+                    </div>
+                    <div class="flex flex-col lg:w-1/2 lg:ml-4">
+                        <label class="mb-2">Apellido Paterno</label>
+                        <input type="text" placeholder="{{client.apellidoPaterno}}" formControlName="apellidoPaterno" id="apellidoPaterno" required class="w-full p-2 mb-4">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <hr class="my-12 border-t-2 border-gray-300 ml-14 mr-14">
+
+        <!-- Contacto -->
+        <div class="md:flex lg:flex mb-10 mx-32">
+            <div class="w-full md:w-1/2 lg:w-1/2 mb-10">
+                <h2 class="text-black font-bold mt-1">Contacto</h2>
+            </div>
+        
+            <div class="w-full lg:w-1/2 lg:flex">
+                <div class="flex flex-col lg:w-1/2"> <!--TODO: Mostrar email actual-->
+                    <label for="email" class="mb-2">Email</label>
+                    <input type="email" placeholder="" formControlName="email" id="email" required class="w-full p-2 mb-4">
+                </div>
+                <div class="flex flex-col lg:w-1/2 lg:ml-4">
+                    <label for="celular" class="mb-2">Celular</label>
+                    <input type="text" placeholder="{{client.celular}}" formControlName="celular" id="celular" required class="w-full p-2 mb-4">
+                </div>
+            </div>
+        </div>
+        <hr class="my-12 border-t-2 border-gray-300 ml-14 mr-14">
+        
+        <!-- Dirección -->
+        <div class="md:flex lg:flex mb-10 mx-32">
+            <div class="w-full md:w-1/2 lg:w-1/2 mb-10">
+                <h2 class="text-black font-bold mt-1">Ubicación</h2>
+            </div>
+        
+            <div class="w-full flex flex-col lg:w-1/2">
+                <label for="direccion" class="mb-2">Dirección</label>
+                <input type="text" placeholder="{{client.direccion}}" formControlName="direccion" id="direccion" required class="w-full p-2 mb-4">
+            </div>
+        </div>
+        <hr class="my-12 border-t-2 border-gray-300 ml-14 mr-14">
+        
+        <!-- Contraseña -->
+        <div class="md:flex lg:flex mb-10 mx-32">
+            <div class="w-full md:w-1/2 lg:w-1/2 mb-10">
+                <h2 class="text-black font-bold mt-1">Cambiar contraseña</h2>
+            </div>
+
+            <div class="w-full lg:w-1/2 lg:flex">
+                <div class="flex flex-col lg:w-1/2">
+                    <label for="password" class="mb-2">Nueva Contraseña</label>
+                    <input type="password" placeholder="" formControlName="password" id="password" required class="w-full p-2 mb-4">
+                </div>
+                <div class="flex flex-col lg:w-1/2 lg:ml-4">
+                    <label for="celular" class="mb-2">Confirmar contraseña</label>
+                    <input type="password" placeholder="" formControlName="confirmarpassword" id="confirmarpassword" required class="w-full p-2 mb-4">
+                </div>
+            </div>
+        </div>
+
+        <button id="submitButton" type="submit">Guardar cambios</button>
+        <button id="cancelButton" type="button" (click)="cancelar()">Cancelar</button>
+        <div id="errorMessages" class="error-messages" [innerHTML]="errorMessage">{{errorMessage}}</div>
+    </form>
 </div>
-<br><br><br>
