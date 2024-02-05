@@ -69,7 +69,7 @@
         <!-- Contraseña -->
         <div class="md:flex lg:flex mb-10 mx-32">
             <div class="w-full md:w-1/2 lg:w-1/2 mb-10">
-                <h2 class="text-black font-bold mt-1">Cambiar contraseña</h2>
+                <h2 class="text-black font-bold mt-1 mr-10">Cambiar contraseña</h2>
             </div>
 
             <div class="w-full lg:w-1/2 lg:flex">
@@ -84,8 +84,17 @@
             </div>
         </div>
 
-        <button id="submitButton" type="submit">Guardar cambios</button>
-        <button id="cancelButton" type="button" (click)="cancelar()">Cancelar</button>
+        <div class="lg:mt-32 flex flex-col items-center lg:justify-between mx-32 lg:mx-48 lg:flex-row xl:mx-64">
+            <button id="submitButton" type="submit" class="text-black bg-amber-500 hover:bg-amber-300 font-medium rounded py-2.5 text-center w-full lg:w-1/2 px-4 mb-5 lg:mb-0 lg:mr-10">
+                Guardar cambios
+            </button>
+        
+            <button id="cancelButton" type="button" (click)="cancelar()" class="text-black bg-gray-400 hover:bg-gray-300 font-medium rounded py-2.5 text-center w-full lg:w-1/2 px-4 mb-5 lg:mb-0 lg:ml-10">
+                Cancelar
+            </button>
+        </div>
+        
+        
         <div id="errorMessages" class="error-messages" [innerHTML]="errorMessage">{{errorMessage}}</div>
     </form>
 </div>

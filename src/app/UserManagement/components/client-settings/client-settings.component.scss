@@ -7,24 +7,6 @@ select {
     border-radius: 5px;
 }
 
-button {
-    width: 180px;
-    background-color: #000000;
-    color: #fff;
-    font-size: 18px;
-    padding: 5px 10px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    align-self: flex-start;
-    margin-top: 10px;
-    margin-right: 10px;
-}
-
-button:hover {
-    background-color: #FDAE39;
-}
-
 .error-messages {
     color: #ff0000;
     font-weight: bold;
