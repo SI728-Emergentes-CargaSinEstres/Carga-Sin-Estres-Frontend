@@ -12,5 +12,13 @@
     "thePath": "The path",
     "notFound": "does not exist.",
     "home": "Home"
+  },
+  "login": {
+    "title": "Welcome to Carga Sin Estrés",
+    "signIn": "Sign in",
+    "email": "Email",
+    "password": "Password",
+    "noAccount": "Don't have an account?",
+    "signUp": "Sign up"
   }
 }

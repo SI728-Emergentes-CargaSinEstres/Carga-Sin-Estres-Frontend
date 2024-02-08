@@ -12,5 +12,13 @@
     "thePath": "La ruta",
     "notFound": "no existe.",
     "home": "Regresar"
+  },
+  "login": {
+    "title": "Bienvenido a Carga Sin Estrés",
+    "signIn": "Inicia sesión",
+    "email": "Correo electrónico",
+    "password": "Contraseña",
+    "noAccount": "¿No tienes una cuenta?",
+    "signUp": "Regístrate"
   }
 }
