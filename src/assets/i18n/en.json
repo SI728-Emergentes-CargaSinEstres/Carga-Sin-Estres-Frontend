@@ -1,0 +1,10 @@
+{
+  "toolbarLanding": {
+    "services": "Services",
+    "aboutUs": "About us",
+    "plans": "Plans",
+    "testimonials": "Testimonials",
+    "login": "Login",
+    "signUp": "Sign up"
+  }
+}

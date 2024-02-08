@@ -7,8 +7,10 @@ import { LoginFormComponent } from './UserManagement/components/login-form/login
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { MaterialModule } from 'src/shared/material.module';
-import { HttpClientModule } from '@angular/common/http';
+import {HttpClient, HttpClientModule} from '@angular/common/http';
 import { RouterModule } from '@angular/router';
+import {TranslateHttpLoader} from "@ngx-translate/http-loader";
+import {TranslateLoader, TranslateModule} from "@ngx-translate/core";
 
 import { ToolbarLandingComponent } from './Public/components/toolbar-landing/toolbar-landing.component';
 import { FooterComponent } from './Public/components/footer/footer.component';
@@ -29,6 +31,11 @@ import { ReviewDialogComponent } from './BookingHistory/components/review-dialog
 import { EditPaymentDialogComponent } from './BookingHistory/components/edit-payment-dialog/edit-payment-dialog.component';
 import { SignUpFormComponent } from './UserManagement/components/sign-up-form/sign-up-form.component';
 import { PageNotFoundComponent } from './Public/components/page-not-found/page-not-found.component';
+import { LanguageSelectionComponent } from "./Public/components/language-selection/language-selection.component";
+
+export function createTranslateLoader(http: HttpClient) {
+  return new TranslateHttpLoader(http, './assets/i18n/', '.json');
+}
 
 @NgModule({
   declarations: [
@@ -52,7 +59,8 @@ import { PageNotFoundComponent } from './Public/components/page-not-found/page-n
     ReviewDialogComponent,
     EditPaymentDialogComponent,
     SignUpFormComponent,
-    PageNotFoundComponent
+    PageNotFoundComponent,
+    LanguageSelectionComponent
   ],
   imports: [
     BrowserModule,
@@ -60,6 +68,11 @@ import { PageNotFoundComponent } from './Public/components/page-not-found/page-n
     BrowserAnimationsModule,
     MaterialModule,
     HttpClientModule,
+    TranslateModule.forRoot({
+      defaultLanguage: 'en', loader: {
+        provide: TranslateLoader, useFactory: (createTranslateLoader), deps: [HttpClient]
+      }
+    }),
     RouterModule
   ],
   providers: [],
