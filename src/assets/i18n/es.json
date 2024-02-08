@@ -6,5 +6,11 @@
     "testimonials": "Testimonios",
     "login": "Iniciar sesión",
     "signUp": "Regístrate"
+  },
+  "pageNotFound": {
+    "title": "Página no encontrada",
+    "thePath": "La ruta",
+    "notFound": "no existe.",
+    "home": "Regresar"
   }
 }

@@ -6,5 +6,11 @@
     "testimonials": "Testimonials",
     "login": "Login",
     "signUp": "Sign up"
+  },
+  "pageNotFound": {
+    "title": "Page not found",
+    "thePath": "The path",
+    "notFound": "does not exist.",
+    "home": "Home"
   }
 }
