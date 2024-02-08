@@ -7,15 +7,15 @@
                 <div class="g-0 lg:flex lg:flex-wrap">
                     <div class="px-4 md:px-0 py-10 lg:w-8/12">
                         <div class="flex flex-col text-center justify-center mt-5 mx-auto">
-                            <h1 class="text-black text-4xl font-bold mb-4">Bienvenido a Carga Sin Estrés</h1>
+                            <h1 class="text-black text-4xl font-bold mb-4">{{ 'signUp.title' | translate }}</h1>
                             <div class="flex justify-center items-center mb-7">
                                 <hr class="w-[130px] border-t border-[#DBDBDB]">
-                                <p class="mx-4">Regístrate</p>
+                                <p class="mx-4">{{ 'signUp.signUp' | translate }}</p>
                                 <hr class="w-[130px] border-t border-[#DBDBDB]">
                             </div>
 
                             <div class="max-w-2/3">
-                                <p class="mb-3">Por favor, elige el tipo de cuenta que deseas crear.</p>
+                                <p class="mb-3">{{ 'signUp.accountType' | translate }}</p>
 
                                 <div class="mb-3">
                                     <div class="flex flex-wrap items-center justify-center">
@@ -29,7 +29,7 @@
                                                     <img [src]="account.img" class="w-full object-cover grayscale">
                                                 </label>
                                             </div>
-                                            <div class="text-sm capitalize">{{ account.name }}</div>
+                                            <div class="text-sm capitalize">{{ 'signUp.' + account.name.toLowerCase() | translate }}</div>
                                         </div>
                                     </div>
                                 </div>
@@ -39,13 +39,13 @@
                                   text-center" (click)="navigateToAccountForm()"
                                 >
                                     <span class="flex justify-center">
-                                        {{ selectedAccount ? 'Continuar como ' + selectedAccount.name : 'Continuar como...' }}
+                                        {{ 'signUp.continueAs' | translate }}{{ selectedAccount ? ' ' + selectedAccount.name : '...'}}
                                     </span>
                                 </button>
 
                                 <div class="mb-3">
                                     <a routerLink='/login'>
-                                        ¿Ya tienes una cuenta? <span class="text-amber-500">Inicia sesión</span>
+                                        {{ 'signUp.alreadyHaveAccount' | translate }} <span class="text-amber-500">{{ 'signUp.signIn' | translate }}</span>
                                     </a>
                                 </div>
                             </div>

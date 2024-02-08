@@ -20,5 +20,15 @@
     "password": "Contraseña",
     "noAccount": "¿No tienes una cuenta?",
     "signUp": "Regístrate"
+  },
+  "signUp": {
+    "title": "Bienvenido a Carga Sin Estrés",
+    "signUp": "Regístrate",
+    "accountType": "Por favor, elige el tipo de cuenta que deseas crear",
+    "continueAs": "Continuar como",
+    "company": "Empresa",
+    "customer": "Cliente",
+    "alreadyHaveAccount": "¿Ya tienes una cuenta?",
+    "signIn": "Inicia sesión"
   }
 }

@@ -20,5 +20,15 @@
     "password": "Password",
     "noAccount": "Don't have an account?",
     "signUp": "Sign up"
+  },
+  "signUp": {
+    "title": "Welcome to Carga Sin Estrés",
+    "signUp": "Sign up",
+    "accountType": "Please, select the type of account you want to create",
+    "continueAs": "Continue as",
+    "company": "Company",
+    "customer": "Customer",
+    "alreadyHaveAccount": "Already have an account?",
+    "signIn": "Sign in"
   }
 }
