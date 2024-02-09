@@ -30,5 +30,26 @@
     "customer": "Customer",
     "alreadyHaveAccount": "Already have an account?",
     "signIn": "Sign in"
+  },
+  "companyForm": {
+    "title": "Welcome to Carga Sin Estrés",
+    "signUp": "Sign up",
+    "companyName": "Company name",
+    "address": "Address",
+    "phone": "Phone number",
+    "url": "Link to your company's logo",
+    "email": "Email",
+    "password": "Password",
+    "confirmPassword": "Confirm password",
+    "selectServices": "Select the services you offer",
+    "transport": "Transport",
+    "load": "Load",
+    "packing": "Packing",
+    "assembly": "Assembly",
+    "disassembly": "Disassembly",
+    "createAccount": "Create account",
+    "description": "Short description of your company",
+    "alreadyHaveAccount": "Already have an account?",
+    "signIn": "Sign in"
   }
 }

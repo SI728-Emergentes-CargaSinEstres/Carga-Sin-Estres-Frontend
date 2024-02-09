@@ -30,5 +30,26 @@
     "customer": "Cliente",
     "alreadyHaveAccount": "¿Ya tienes una cuenta?",
     "signIn": "Inicia sesión"
+  },
+  "companyForm": {
+    "title": "Bienvenido a Carga Sin Estrés",
+    "signUp": "Regístrate",
+    "companyName": "Razón social",
+    "address": "Dirección",
+    "phone": "Número de teléfono",
+    "url": "Enlace al logo de la empresa",
+    "email": "Correo electrónico",
+    "password": "Contraseña",
+    "confirmPassword": "Confirmar contraseña",
+    "selectServices": "Marque los servicios que ofrece su empresa",
+    "transport": "Transporte",
+    "load": "Carga",
+    "packing": "Embalaje",
+    "assembly": "Montaje",
+    "disassembly": "Desmontaje",
+    "description": "Descripción corta de la empresa",
+    "createAccount": "Crear cuenta",
+    "alreadyHaveAccount": "¿Ya tienes una cuenta?",
+    "signIn": "Inicia sesión"
   }
 }
