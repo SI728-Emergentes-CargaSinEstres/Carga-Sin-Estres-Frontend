@@ -51,5 +51,19 @@
     "createAccount": "Crear cuenta",
     "alreadyHaveAccount": "¿Ya tienes una cuenta?",
     "signIn": "Inicia sesión"
+  },
+  "customerForm": {
+    "title": "Bienvenido a Carga Sin Estrés",
+    "signUp": "Iniciar sesión",
+    "name": "Nombres",
+    "lastName": "Apellidos",
+    "phone": "Número de teléfono",
+    "address": "Dirección",
+    "email": "Correo electrónico",
+    "password": "Contraseña",
+    "confirmPassword": "Confirmar contraseña",
+    "createAccount": "Crear cuenta",
+    "alreadyHaveAccount": "¿Ya tienes una cuenta?",
+    "signIn": "Inicia sesión"
   }
 }

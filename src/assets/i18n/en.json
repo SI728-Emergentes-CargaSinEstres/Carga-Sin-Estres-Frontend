@@ -51,5 +51,19 @@
     "description": "Short description of your company",
     "alreadyHaveAccount": "Already have an account?",
     "signIn": "Sign in"
+  },
+  "customerForm": {
+    "title": "Welcome to Carga Sin Estrés",
+    "signUp": "Sign up",
+    "name": "Name",
+    "lastName": "Last name",
+    "phone": "Phone number",
+    "address": "Address",
+    "email": "Email",
+    "password": "Password",
+    "confirmPassword": "Confirm password",
+    "createAccount": "Create account",
+    "alreadyHaveAccount": "Already have an account?",
+    "signIn": "Sign in"
   }
 }
