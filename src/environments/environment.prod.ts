@@ -1,6 +1,6 @@
 export const environment = {
     production: true,
-    baseURL: 'https://cargasinestres.zeabur.app/api/v1',
+    baseURL: 'https://cargasinestres.azurewebsites.net/api/v1',
 
     firebaseConfig: {
         apiKey: "AIzaSyA0d_Pt39uLmE3H01_5DwrkYuryIK9fjw0",
