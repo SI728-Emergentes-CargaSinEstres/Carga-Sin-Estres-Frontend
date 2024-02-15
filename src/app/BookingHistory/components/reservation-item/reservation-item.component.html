@@ -1,0 +1,53 @@
+<div class="mb-8 bg-white rounded-3xl">
+    <div class="p-8 md:px-20 md:py-12">
+        <div class="flex items-center justify-between mb-4">
+            <p class="text-gray-500">Fecha para realizar el servicio</p>
+            <div class="text-right flex">
+                <p class="text-right">{{ reservation.movingDate | date:'EEEE dd/MM/yyyy' }}</p>
+                <p class="text-right"> ・ {{ reservation.movingTime }} hs</p>
+            </div>
+        </div>
+
+        <div class="flex mb-6">
+            <img src="assets/public-images/origin-destination.svg" alt="origin-destination" class="h-40 mr-3">
+            <div>
+                <div class="mt-[2px]">
+                    <p class="bg-gradient-to-b from-[#8856F3] to-[#44B0FF] inline-block text-transparent bg-clip-text font-bold">
+                        Origen
+                    </p>
+                    <p>{{reservation.pickupAddress}}</p>
+                </div>
+                <div class="mt-[62px]">
+                    <p class="bg-gradient-to-b from-[#F36F56] to-[#FFC444] inline-block text-transparent bg-clip-text font-bold">
+                        Destino
+                    </p>
+                    <p>{{ reservation.destinationAddress }}</p>
+                </div>
+            </div>
+        </div>
+
+        <div *ngIf="reservation.status === 'solicited'">
+            <app-reservation-detail [reservation]="reservation"></app-reservation-detail>
+
+            <div class="flex justify-between">
+                <button class="text-black bg-amber-500 hover:bg-amber-300 font-medium rounded py-2.5 text-center md:w-1/3 px-4">
+                    Aceptar
+                </button>
+                <button class="text-black bg-[#F36F56] hover:bg-rose-400 font-medium rounded py-2.5 text-center md:w-1/3 px-4">
+                    Cancelar
+                </button>
+            </div>
+        </div>
+
+        <div *ngIf="reservation.status === 'accepted'">
+            <app-reservation-detail [reservation]="reservation" *ngIf="showDetails"></app-reservation-detail>
+
+            <div class="mt-6 flex justify-between">
+                <a (click)="cancelReservation(reservation)" class="cursor-pointer text-[#F36F56]">Cancelar servicio</a>
+                <a class="cursor-pointer"><i class="fa-regular fa-message mr-2"></i> Abrir chat</a>
+                <a (click)="toggleDetails()" class="cursor-pointer">Ver detalles</a>
+            </div>
+        </div>
+
+    </div>
+</div>
