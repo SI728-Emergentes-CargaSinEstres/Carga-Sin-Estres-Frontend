@@ -14,7 +14,6 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 export class EditPaymentDialogComponent {
 
   payment: any;
-
   paymentForm!: NgForm;
 
   @ViewChild('paymentForm', {static: false}) currentForm!: NgForm;

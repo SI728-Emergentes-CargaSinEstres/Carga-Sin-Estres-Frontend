@@ -14,18 +14,9 @@ export class ReservationDetailComponent {
   constructor(private dialog: MatDialog) { }
   openEditPaymentDialog() {
     this.dialog.open(EditPaymentDialogComponent, {
-      width: '400px',
-      data: { element: this.reservation },
-    });
-  }
-
-  openChatDialog(element: any) {
-    this.dialog.open(ChatDialogComponent, {
       width: '600px',
-      data:{
-        userId:this.reservation.id,
-        userType: this.reservation,
-        element
+      data: {
+        element: this.reservation
       }
     });
   }

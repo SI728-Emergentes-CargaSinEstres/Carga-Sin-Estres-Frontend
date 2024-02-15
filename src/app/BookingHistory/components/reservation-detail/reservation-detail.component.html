@@ -13,7 +13,7 @@
     </div>
 
     <div class="flex justify-between mb-2" *ngIf="reservation.status === 'En curso'">
-        <p (click)="openChatDialog(reservation)" class="text-gray-500">Costo del servicio</p>
+        <p class="text-gray-500">Costo del servicio</p>
         <a (click)="openEditPaymentDialog()" class="cursor-pointer">S/. {{ reservation.payment }} <i class="ml-2 fa fa-pen"></i></a>
     </div>
 

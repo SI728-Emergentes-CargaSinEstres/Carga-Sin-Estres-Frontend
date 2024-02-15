@@ -39,15 +39,15 @@
             </div>
         </div>
 
-        <div *ngIf="reservation.status === 'accepted'">
+        <div *ngIf="reservation.status === 'En curso'" class="flex flex-col">
             <app-reservation-detail [reservation]="reservation" *ngIf="showDetails"></app-reservation-detail>
-
-            <div class="mt-6 flex justify-between">
-                <a (click)="cancelReservation(reservation)" class="cursor-pointer text-[#F36F56]">Cancelar servicio</a>
-                <a class="cursor-pointer"><i class="fa-regular fa-message mr-2"></i> Abrir chat</a>
-                <a (click)="toggleDetails()" class="cursor-pointer">Ver detalles</a>
+            <div class="flex flex-col justify-center items-end">
+                <div class="mt-6 flex justify-end">
+                    <a (click)="cancelReservation(reservation)" class="mr-6 cursor-pointer text-[#F36F56]">Cancelar servicio</a>
+                    <a (click)="openChatDialog(reservation)" class="mr-6 cursor-pointer"><i class="fa-regular fa-message mr-2"></i> Abrir chat</a>
+                    <a (click)="toggleDetails()" class="cursor-pointer">Ver detalles</a>
+                </div>
             </div>
         </div>
-
     </div>
 </div>

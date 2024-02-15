@@ -89,7 +89,7 @@ export class CargaSinEstresDataService {
   
   //Client Controller ---------------------------------------------------------------
   getClientsForLogin(email: string, password: string): Observable<any> {
-    const url = `https://cargasinestres.zeabur.app/api/v1/clients?Email=${email}&Password=${password}`;
+    const url = `${this.base_url}/clients?Email=${email}&Password=${password}`;
     return this.http.get(`${url}`, this.httpOptions);
   }
 
@@ -131,5 +131,15 @@ export class CargaSinEstresDataService {
     return this.http.get<any>(`${this.base_url}/reviews/${companyId}`, this.httpOptions)
       .pipe(retry(2),catchError(this.handleError))
   }
+
+  // Obtain companies by status of the reservation
+  getReservationsByCompanyIdAndStatus(companyId: any, status: string): Observable<BookingHistory[]> {
+    return this.http.get<BookingHistory[]>(`${this.base_url}/bookingHistory/company/${companyId}?status=${status}`, this.httpOptions)
+        .pipe(
+            retry(2),
+            catchError(this.handleError)
+        );
+  }
+
 
 }
