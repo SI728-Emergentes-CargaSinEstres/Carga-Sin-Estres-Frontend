@@ -75,7 +75,7 @@ export class CargaSinEstresDataService {
       .pipe(retry(2),catchError(this.handleError))
   }
 
-  //update payment
+   //update payment
   updateBookingHistoryPayment(id: any, data: any): Observable<BookingHistory> {
     return this.http.patch<BookingHistory>(`${this.base_url}/bookingHistory/${id}/payment`, JSON.stringify(data), this.httpOptions)
       .pipe(retry(2),catchError(this.handleError))
