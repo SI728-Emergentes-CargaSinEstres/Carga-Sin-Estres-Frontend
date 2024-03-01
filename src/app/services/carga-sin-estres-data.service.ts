@@ -75,7 +75,7 @@ export class CargaSinEstresDataService {
       .pipe(retry(2),catchError(this.handleError))
   }
 
-  //update payment
+   //update payment
   updateBookingHistoryPayment(id: any, data: any): Observable<BookingHistory> {
     return this.http.patch<BookingHistory>(`${this.base_url}/bookingHistory/${id}/payment`, JSON.stringify(data), this.httpOptions)
       .pipe(retry(2),catchError(this.handleError))
@@ -131,5 +131,15 @@ export class CargaSinEstresDataService {
     return this.http.get<any>(`${this.base_url}/reviews/${companyId}`, this.httpOptions)
       .pipe(retry(2),catchError(this.handleError))
   }
+
+  // Obtain companies by status of the reservation
+  getReservationsByCompanyIdAndStatus(companyId: any, status: string): Observable<BookingHistory[]> {
+    return this.http.get<BookingHistory[]>(`${this.base_url}/bookingHistory/company/${companyId}?status=${status}`, this.httpOptions)
+        .pipe(
+            retry(2),
+            catchError(this.handleError)
+        );
+  }
+
 
 }
