@@ -69,7 +69,7 @@
                     <th mat-header-cell *matHeaderCellDef>Empresa</th>
                     <td class="cursor-pointer" mat-cell *matCellDef="let element">
                         <span class="flex flex-col md:flex-row items-center gap-3">
-                            <img src="{{element.photo}}" alt="company" width="100" height="100">
+                            <img src="{{element.logo}}" alt="company" width="100" height="100">
                             {{element.name}}
                         </span>
                     </td>
@@ -90,7 +90,7 @@
                 <!-- Location Column -->
                 <ng-container matColumnDef="location">
                     <th mat-header-cell *matHeaderCellDef>Ubicación</th>
-                    <td class="cursor-pointer" mat-cell *matCellDef="let element"> {{element.direccion}} </td>
+                    <td class="cursor-pointer" mat-cell *matCellDef="let element"> {{element.direction}} </td>
                 </ng-container>
 
                 <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>

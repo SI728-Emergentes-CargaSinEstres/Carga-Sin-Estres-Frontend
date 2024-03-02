@@ -43,7 +43,7 @@ export class ClientSettingsComponent {
   ngOnInit(){}
 
   getClient(id: any){
-    this.api.getClientById(id).subscribe(
+    this.api.getCustomerById(id).subscribe(
       (res: any) => 
       {
         this.client = res;

@@ -56,61 +56,68 @@ export class CargaSinEstresDataService {
   //BookingHistory Controller ---------------------------------------------------------------
   createReservation(clientId: any ,companyId: any,item: any): Observable<BookingHistory>{
     console.log("clientId: " + clientId);
-    return this.http.post<BookingHistory>(`${this.base_url}/bookingHistory?idClient=${clientId}&idCompany=${companyId}`, JSON.stringify(item), this.httpOptions).pipe(retry(2),catchError(this.handleError));
+    return this.http.post<BookingHistory>(`${this.base_url}/reservations?idClient=${clientId}&idCompany=${companyId}`, JSON.stringify(item), this.httpOptions).pipe(retry(2),catchError(this.handleError));
   }
 
   getBookingHistoryById(clientId: any): Observable<BookingHistory> {
-    return this.http.get<BookingHistory>(`${this.base_url}/bookingHistory/client/${clientId}`, this.httpOptions)
+    return this.http.get<BookingHistory>(`${this.base_url}/reservations/customer/${clientId}`, this.httpOptions)
       .pipe(retry(2),catchError(this.handleError))
   }
 
   getBookingHistoryByCompanyId(companyId: any): Observable<BookingHistory> {
-    return this.http.get<BookingHistory>(`${this.base_url}/bookingHistory/company/${companyId}`, this.httpOptions)
+    return this.http.get<BookingHistory>(`${this.base_url}/reservations/companies/${companyId}`, this.httpOptions)
       .pipe(retry(2),catchError(this.handleError))
   }
 
   //update status
   updateBookingHistoryStatus(id: any, data: any): Observable<BookingHistory> {
-    return this.http.patch<BookingHistory>(`${this.base_url}/bookingHistory/${id}/status`, JSON.stringify(data), this.httpOptions)
+    return this.http.patch<BookingHistory>(`${this.base_url}/reservations/${id}/status`, JSON.stringify(data), this.httpOptions)
       .pipe(retry(2),catchError(this.handleError))
   }
 
    //update payment
   updateBookingHistoryPayment(id: any, data: any): Observable<BookingHistory> {
-    return this.http.patch<BookingHistory>(`${this.base_url}/bookingHistory/${id}/payment`, JSON.stringify(data), this.httpOptions)
+    return this.http.patch<BookingHistory>(`${this.base_url}/reservations/${id}/payment`, JSON.stringify(data), this.httpOptions)
       .pipe(retry(2),catchError(this.handleError))
   }
 
   //Chat Controller ---------------------------------------------------------------
   updateBookingHistoryMessage(id: any, userType: any, data: any): Observable<any> {
-    return this.http.post<any>(`${this.base_url}/bookingHistory/${id}/chat?userType=${userType}`, JSON.stringify(data), this.httpOptions)
+    return this.http.post<any>(`${this.base_url}/reservations/${id}/chat?userType=${userType}`, JSON.stringify(data), this.httpOptions)
       .pipe(retry(2),catchError(this.handleError))
   }
   
   //Client Controller ---------------------------------------------------------------
   getClientsForLogin(email: string, password: string): Observable<any> {
-    const url = `${this.base_url}/clients?Email=${email}&Password=${password}`;
+    const url = `${this.base_url}/customers?email=${email}&password=${password}`;
     return this.http.get(`${url}`, this.httpOptions);
   }
 
   createClient(data: any): Observable<any> {
-    return this.http.post(`${this.base_url}/clients`, JSON.stringify(data), this.httpOptions);
+    return this.http.post(`${this.base_url}/customers`, JSON.stringify(data), this.httpOptions);
   }
 
   //for settings
   updateClient(id: any, data: any): Observable<any> {
-    return this.http.put(`${this.base_url}/clients/${id}`, JSON.stringify(data), this.httpOptions);
+    return this.http.put(`${this.base_url}/customers/${id}`, JSON.stringify(data), this.httpOptions);
   }
 
   //get client by id
-  getClientById(clientId: any): Observable<any> {
-    return this.http.get<any>(`${this.base_url}/clients/${clientId}`, this.httpOptions)
+  getCustomerById(clientId: any): Observable<any> {
+    return this.http.get<any>(`${this.base_url}/customers/${clientId}`, this.httpOptions)
     .pipe(retry(2),catchError(this.handleError));
+  }
+
+  //Services Controller ------------------------------------------------------------------
+
+  getAllServicios() {
+    return this.http.get(`${this.base_url}/services`, this.httpOptions)
+        .pipe(retry(2),catchError(this.handleError));
   }
 
   //Subscription Controller ---------------------------------------------------------------
   createSubscription(companyId: any, subscriptionData: any): Observable<any> {
-    return this.http.post<any>(`${this.base_url}/subscriptions/${companyId}`, JSON.stringify(subscriptionData), this.httpOptions)
+    return this.http.post<any>(`${this.base_url}/memberships/${companyId}`, JSON.stringify(subscriptionData), this.httpOptions)
       .pipe(retry(2),catchError(this.handleError));
   }
 
