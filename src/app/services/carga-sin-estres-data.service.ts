@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { Observable, catchError, retry, throwError } from 'rxjs';
 import { environment } from '../../environments/environment';
-import { BookingHistory } from '../models/booking-history.model';
+import { Reservation } from '../models/booking-history.model';
 import { map } from 'rxjs';
 
 @Injectable({
@@ -54,35 +54,35 @@ export class CargaSinEstresDataService {
 
 
   //BookingHistory Controller ---------------------------------------------------------------
-  createReservation(clientId: any ,companyId: any,item: any): Observable<BookingHistory>{
-    console.log("clientId: " + clientId);
-    return this.http.post<BookingHistory>(`${this.base_url}/reservations?idClient=${clientId}&idCompany=${companyId}`, JSON.stringify(item), this.httpOptions).pipe(retry(2),catchError(this.handleError));
+  createReservation(customerId: any ,companyId: any,item: any): Observable<Reservation>{
+    console.log("customerId: " + customerId);
+    return this.http.post<Reservation>(`${this.base_url}/reservations?customerId=${customerId}&idCompany=${companyId}`, JSON.stringify(item), this.httpOptions).pipe(retry(2),catchError(this.handleError));
   }
 
-  getBookingHistoryById(clientId: any): Observable<BookingHistory> {
-    return this.http.get<BookingHistory>(`${this.base_url}/reservations/customer/${clientId}`, this.httpOptions)
+  getReservationById(clientId: any): Observable<Reservation> {
+    return this.http.get<Reservation>(`${this.base_url}/reservations/customer/${clientId}`, this.httpOptions)
       .pipe(retry(2),catchError(this.handleError))
   }
 
-  getBookingHistoryByCompanyId(companyId: any): Observable<BookingHistory> {
-    return this.http.get<BookingHistory>(`${this.base_url}/reservations/companies/${companyId}`, this.httpOptions)
+  getReservationByCompanyId(companyId: any): Observable<Reservation> {
+    return this.http.get<Reservation>(`${this.base_url}/reservations/companies/${companyId}`, this.httpOptions)
       .pipe(retry(2),catchError(this.handleError))
   }
 
   //update status
-  updateBookingHistoryStatus(id: any, data: any): Observable<BookingHistory> {
-    return this.http.patch<BookingHistory>(`${this.base_url}/reservations/${id}/status`, JSON.stringify(data), this.httpOptions)
+  updateReservationStatus(id: any, data: any): Observable<Reservation> {
+    return this.http.patch<Reservation>(`${this.base_url}/reservations/${id}/status`, JSON.stringify(data), this.httpOptions)
       .pipe(retry(2),catchError(this.handleError))
   }
 
    //update payment
-  updateBookingHistoryPayment(id: any, data: any): Observable<BookingHistory> {
-    return this.http.patch<BookingHistory>(`${this.base_url}/reservations/${id}/payment`, JSON.stringify(data), this.httpOptions)
+  updateReservationPayment(id: any, data: any): Observable<Reservation> {
+    return this.http.patch<Reservation>(`${this.base_url}/reservations/${id}/payment`, JSON.stringify(data), this.httpOptions)
       .pipe(retry(2),catchError(this.handleError))
   }
 
   //Chat Controller ---------------------------------------------------------------
-  updateBookingHistoryMessage(id: any, userType: any, data: any): Observable<any> {
+  updateReservationMessage(id: any, userType: any, data: any): Observable<any> {
     return this.http.post<any>(`${this.base_url}/reservations/${id}/chat?userType=${userType}`, JSON.stringify(data), this.httpOptions)
       .pipe(retry(2),catchError(this.handleError))
   }
@@ -103,8 +103,8 @@ export class CargaSinEstresDataService {
   }
 
   //get client by id
-  getCustomerById(clientId: any): Observable<any> {
-    return this.http.get<any>(`${this.base_url}/customers/${clientId}`, this.httpOptions)
+  getCustomerById(customerId: any): Observable<any> {
+    return this.http.get<any>(`${this.base_url}/customers/${customerId}`, this.httpOptions)
     .pipe(retry(2),catchError(this.handleError));
   }
 
@@ -140,8 +140,8 @@ export class CargaSinEstresDataService {
   }
 
   // Obtain companies by status of the reservation
-  getReservationsByCompanyIdAndStatus(companyId: any, status: string): Observable<BookingHistory[]> {
-    return this.http.get<BookingHistory[]>(`${this.base_url}/bookingHistory/company/${companyId}?status=${status}`, this.httpOptions)
+  getReservationsByCompanyIdAndStatus(companyId: any, status: string): Observable<Reservation[]> {
+    return this.http.get<Reservation[]>(`${this.base_url}/bookingHistory/company/${companyId}?status=${status}`, this.httpOptions)
         .pipe(
             retry(2),
             catchError(this.handleError)

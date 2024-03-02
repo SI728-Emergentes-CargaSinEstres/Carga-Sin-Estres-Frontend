@@ -1,6 +1,6 @@
 <mat-dialog-content>
   <div class="flex flex-col md:flex-row">
-    <div class="md:w-1/3 my-3 flex flex-col justify-center items-center md:items-start">
+    <div class="md:w-1/3 my-3 flex flex-col justify-center items-center md:items-start md:mr-4">
       <img src="{{ data.company.logo }}" width="250px"/>
     </div>
     <div class="md:w-2/3 my-3 flex flex-col justify-center md:items-start">
@@ -27,6 +27,13 @@
       <p class="text-gray-500">Ubicación</p>
       <p class="ml-2 text-black">{{ data.company.direction }}</p>
     </div>
+
+    <div class="flex justify-between mb-2">
+      <p class="text-gray-500">Servicios que ofrece</p>
+      <div class="ml-2">
+        <p *ngFor="let servicio of data.company.servicios" class=" text-black">{{ servicio.name }}, </p>
+      </div>
+    </div>
   </div>
 
   <hr class="my-6 border-t-2 border-gray-200">
@@ -37,31 +44,49 @@
     <form id="myForm" action="" method="post" (submit)="onSubmit()">
       <mat-form-field class="w-5/6" color="accent">
         <mat-label for="originAddress">Dirección de origen</mat-label>
-        <input matInput id="originAddress">
+        <input matInput id="originAddress" name="originAddress" [(ngModel)]="reservation.originAddress">
       </mat-form-field>
 
       <mat-form-field class="w-5/6" color="accent">
         <mat-label for="destinationAddress">Dirección de destino</mat-label>
-        <input matInput id="destinationAddress">
+        <input matInput id="destinationAddress" name="destinationAddress" [(ngModel)]="reservation.destinationAddress">
       </mat-form-field>
 
+      <div class="flex justify-between mb-4">
+        <mat-form-field class="w-1/2" color="accent">
+          <mat-label for="startDate">Fecha</mat-label>
+          <input matInput id="startDate" name="startDate" [matDatepicker]="picker" [(ngModel)]="reservation.movingDate">
+          <mat-hint>MM/DD/YYYY</mat-hint>
+          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+
+        <mat-form-field class="w-1/2" color="accent">
+          <mat-label for="startTime">Hora</mat-label>
+          <input matInput id="startTime" name="startTime" type="time" [(ngModel)]="reservation.movingTime">
+        </mat-form-field>
+      </div>
+
+      <div>
+        <p class="font-bold my-4">Selecciona los servicios a reservar</p>
+        <div class="flex flex-col md:flex-row justify-center mb-3 md:gap-8">
+          <div class="flex items-baseline" *ngFor="let servicio of data.company.servicios">
+            <input type="checkbox" class="mr-2 cursor-pointer" [value]="servicio.name" [id]="servicio.name" name="services" [(ngModel)]="selectedServices[servicio.name]" />
+            <label [for]="servicio.name">{{ servicio.name }}</label>
+          </div>
+        </div>
+      </div>
+
       <div class="flex justify-between">
-
-          <mat-form-field class="w-1/2" color="accent">
-            <mat-label for="date">Fecha</mat-label>
-            <input matInput id="date" [matDatepicker]="picker">
-            <mat-hint>MM/DD/YYYY</mat-hint>
-            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-            <mat-datepicker #picker></mat-datepicker>
-          </mat-form-field>
-
-            <mat-form-field class="w-1/2" color="accent">
-            <mat-label for="time">Hora</mat-label>
-            <input matInput id="time" type="time">
-            </mat-form-field>
-
+        <button class="text-black bg-amber-500 hover:bg-amber-300 font-medium rounded py-2.5 text-center md:w-1/3 px-4" type="submit">
+          Reservar
+        </button>
+        <button class="text-black bg-gray-300 hover:bg-gray-200 font-medium rounded py-2.5 text-center md:w-1/3 px-4" (click)="cancel()">
+          Cancelar
+        </button>
       </div>
     </form>
+
   </div>
 </mat-dialog-content>
 

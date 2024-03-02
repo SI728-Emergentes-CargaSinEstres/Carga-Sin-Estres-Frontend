@@ -152,7 +152,7 @@ export class CompanyTableComponent{
   /* GO TO COMPANY INFO PAGE */
   getRow(row: any) {
     const dialogRef = this.dialog.open(CompanyDetailComponent, {
-      width: '800px',
+
       data: { company: row }
     });
   }

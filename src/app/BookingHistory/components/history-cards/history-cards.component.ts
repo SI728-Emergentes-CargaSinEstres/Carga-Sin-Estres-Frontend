@@ -1,6 +1,6 @@
 import {Component, ViewChild, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
-import {BookingHistory} from 'src/app/models/booking-history.model';
+import {Reservation} from 'src/app/models/booking-history.model';
 import {MatPaginator} from '@angular/material/paginator';
 import {PageEvent} from '@angular/material/paginator';
 import {MatDialog} from '@angular/material/dialog';

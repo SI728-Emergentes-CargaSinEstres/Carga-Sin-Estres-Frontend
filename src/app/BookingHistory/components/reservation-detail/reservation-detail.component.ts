@@ -1,5 +1,5 @@
 import {Component, Input} from '@angular/core';
-import {BookingHistory} from "../../../models/booking-history.model";
+import {Reservation} from "../../../models/booking-history.model";
 import { MatDialog } from '@angular/material/dialog';
 import { EditPaymentDialogComponent } from '../edit-payment-dialog/edit-payment-dialog.component';
 import {ChatDialogComponent} from "../chat-dialog/chat-dialog.component";
@@ -10,7 +10,7 @@ import {ChatDialogComponent} from "../chat-dialog/chat-dialog.component";
   styleUrls: ['./reservation-detail.component.scss']
 })
 export class ReservationDetailComponent {
-  @Input() reservation!: BookingHistory;
+  @Input() reservation!: Reservation;
   constructor(private dialog: MatDialog) { }
   openEditPaymentDialog() {
     this.dialog.open(EditPaymentDialogComponent, {
