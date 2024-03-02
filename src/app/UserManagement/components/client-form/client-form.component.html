@@ -6,10 +6,10 @@
                 <div class="g-0 lg:flex lg:flex-wrap">
                     <div class="px-4 md:px-0 py-10 lg:w-8/12">
                         <div class="flex flex-col text-center justify-center mt-5 mx-auto">
-                            <h1 class="text-black text-4xl font-bold mb-4">Bienvenido a Carga Sin Estrés</h1>
+                            <h1 class="text-black text-4xl font-bold mb-4">{{ 'customerForm.title' | translate }}</h1>
                             <div class="flex justify-center items-center mb-7">
                                 <hr class="w-[130px] border-t border-[#DBDBDB]">
-                                <p class="mx-4">Regístrate</p>
+                                <p class="mx-4">{{ 'customerForm.signUp' | translate }}</p>
                                 <hr class="w-[130px] border-t border-[#DBDBDB]">
                             </div>
 
@@ -18,64 +18,65 @@
                                       (submit)="onSubmit()">
                                     <div class="mb-3">
                                         <mat-form-field class="md:w-1/2">
-                                            <mat-label>Nombres</mat-label>
+                                            <mat-label>{{ 'customerForm.name' | translate }}</mat-label>
                                             <input matInput type="text" id="name" formControlName="name" required>
                                         </mat-form-field>
                                     </div>
                                     <div class="mb-3">
                                         <mat-form-field class="md:w-1/2">
-                                            <mat-label>Apellido paterno</mat-label>
+                                            <mat-label>{{ 'customerForm.lastName' | translate }}</mat-label>
                                             <input matInput type="text" id="apellidoPaterno"
                                                    formControlName="apellidoPaterno" required>
                                         </mat-form-field>
                                     </div>
                                     <div class="mb-3">
                                         <mat-form-field class="md:w-1/2">
-                                            <mat-label>Apellido materno</mat-label>
+                                            <mat-label>{{ 'customerForm.lastName' | translate }}</mat-label>
                                             <input matInput type="text" id="apellidoMaterno"
                                                    formControlName="apellidoMaterno" required>
                                         </mat-form-field>
                                     </div>
                                     <div class="mb-3">
                                         <mat-form-field class="md:w-1/2">
-                                            <mat-label>Celular</mat-label>
+                                            <mat-label>{{ 'customerForm.phone' | translate }}</mat-label>
                                             <input matInput type="text" id="celular" formControlName="celular" required>
                                         </mat-form-field>
                                     </div>
                                     <div class="mb-3">
                                         <mat-form-field class="md:w-1/2">
-                                            <mat-label>Dirección</mat-label>
+                                            <mat-label>{{ 'customerForm.address' | translate }}</mat-label>
                                             <input matInput type="text" id="direccion" formControlName="direccion"
                                                    required>
                                         </mat-form-field>
                                     </div>
                                     <div class="mb-3">
                                         <mat-form-field class="md:w-1/2">
-                                            <mat-label>Correo electrónico</mat-label>
+                                            <mat-label>{{ 'customerForm.email' | translate }}</mat-label>
                                             <input matInput type="email" id="email" formControlName="email" required>
                                         </mat-form-field>
                                     </div>
                                     <div class="mb-3">
                                         <mat-form-field class="md:w-1/2">
-                                            <mat-label>Contraseña</mat-label>
+                                            <mat-label>{{ 'customerForm.password' | translate }}</mat-label>
                                             <input matInput type="password" id="password" formControlName="password"
                                                    required>
                                         </mat-form-field>
                                     </div>
                                     <div class="mb-3">
                                         <mat-form-field class="md:w-1/2">
-                                            <mat-label>Confirmar contraseña</mat-label>
+                                            <mat-label>{{ 'customerForm.confirmPassword' | translate }}</mat-label>
                                             <input matInput type="password" id="confirmarpassword"
                                                    formControlName="confirmarpassword" required>
                                         </mat-form-field>
                                     </div>
 
                                     <button class="hover:text-white border border-amber-400 hover:bg-amber-500 focus:ring-4 focus:outline-none focus:ring-amber-300 font-medium rounded mb-5 px-14 lg:px-32 py-2.5 text-center">
-                                        Crear cuenta
+                                        {{ 'customerForm.createAccount' | translate }}
                                     </button>
 
                                     <div class="mb-3">
-                                        <a routerLink='/login'>¿Ya tienes una cuenta? <span class="text-amber-500">Inicia sesión</span></a>
+                                        <a routerLink='/login'>{{ 'customerForm.alreadyHaveAccount' | translate }} <span
+                                                class="text-amber-500">{{ 'customerForm.signIn' | translate }}</span></a>
                                     </div>
 
                                     <div id="errorMessages" class="text-red-600 text-sm" [innerHTML]="errorMessage">
