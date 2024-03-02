@@ -1,10 +1,43 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
-import { CargaSinEstresDataService } from 'src/app/services/carga-sin-estres-data.service';
-import { ActivatedRoute } from '@angular/router';
-import { NgForm } from '@angular/forms';
-import { Router } from '@angular/router';
-import { MatSnackBar } from '@angular/material/snack-bar';
+import {Component, Inject} from '@angular/core';
+import { MAT_DIALOG_DATA } from '@angular/material/dialog';
+import {MatDatepicker} from "@angular/material/datepicker";
 
+@Component({
+    selector: 'app-company-detail',
+    templateUrl: './company-detail.component.html',
+    styleUrls: ['./company-detail.component.scss'],
+})
+export class CompanyDetailComponent {
+    picker!: MatDatepicker<Date>;
+    constructor(@Inject(MAT_DIALOG_DATA) public data: any) { }
+
+    getStars(rating: number): number[] {
+        if(!rating ){
+            return Array(0).fill(0);
+        }
+        else{
+            rating = Math.round(rating);
+            return Array(rating).fill(0);
+        }
+    }
+
+    getEmptyStars(rating: number): number[] {
+        if (!rating) {
+            return Array(5).fill(0);
+        } else {
+            const filledStars = this.getStars(rating).length;
+            const emptyStars = 5 - filledStars;
+            return Array(emptyStars).fill(0);
+        }
+    }
+
+    onSubmit() {
+
+    }
+}
+
+
+/*
 @Component({
   selector: 'app-company-detail',
   templateUrl: './company-detail.component.html',
@@ -127,4 +160,4 @@ export class CompanyDetailComponent implements OnInit {
       this.router.navigateByUrl(`client/${this.userId}/company-table`);
     }
 }
-
+*/

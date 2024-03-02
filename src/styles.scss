@@ -21,6 +21,8 @@ body {
   background-color: #F0F2F5;
 }
 
-* :not(i) {
+* :not(i, .mat-icon){
   font-family: var(--font-primary) !important;
 }
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

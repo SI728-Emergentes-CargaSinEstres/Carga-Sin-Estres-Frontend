@@ -11,6 +11,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
+import {CompanyDetailComponent} from "../company-detail/company-detail.component";
 
 @Component({
   selector: 'app-company-table',
@@ -149,8 +150,11 @@ export class CompanyTableComponent{
   }
 
   /* GO TO COMPANY INFO PAGE */
-  getRow(row: { id: any; }){
-    this.router.navigateByUrl(`client/${this.userId}/company/${row.id}`);
+  getRow(row: any) {
+    const dialogRef = this.dialog.open(CompanyDetailComponent, {
+      width: '800px',
+      data: { company: row }
+    });
   }
 
   openDialog(){
