@@ -65,7 +65,7 @@ import { ReservationDetailComponent } from './BookingHistory/components/reservat
     EditPaymentDialogComponent,
     SignUpFormComponent,
     PageNotFoundComponent,
-    LanguageSelectionComponent
+    LanguageSelectionComponent,
     ReservationItemComponent,
     ReservationDetailComponent
   ],

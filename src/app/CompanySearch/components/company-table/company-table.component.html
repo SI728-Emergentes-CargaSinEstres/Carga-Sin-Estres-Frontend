@@ -79,11 +79,7 @@
                 <ng-container matColumnDef="services">
                     <th mat-header-cell *matHeaderCellDef>Servicios</th>
                     <td class="cursor-pointer" mat-cell *matCellDef="let element">
-                        <span *ngIf="element.transporte">Transporte, </span>
-                        <span *ngIf="element.carga">Carga, </span>
-                        <span *ngIf="element.embalaje">Embalaje, </span>
-                        <span *ngIf="element.montaje">Montaje, </span>
-                        <span *ngIf="element.desmontaje">Desmontaje</span>
+                        <span *ngFor="let servicio of element.servicios">{{ servicio.name }}, </span>
                     </td>
                 </ng-container>
 
