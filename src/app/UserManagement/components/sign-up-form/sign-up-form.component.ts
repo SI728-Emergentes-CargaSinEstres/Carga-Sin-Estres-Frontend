@@ -15,12 +15,12 @@ export class SignUpFormComponent {
   account_types = [
     {
       id: '1',
-      name: 'cliente',
+      name: 'customer',
       img: 'assets/public-images/accountCustomer.jpg',
     },
     {
       id: '2',
-      name: 'empresa',
+      name: 'company',
       img: 'assets/public-images/accountCompany.jpg',
     },
   ];
