@@ -15,11 +15,9 @@ export class ClientFormComponent {
 
   constructor(private fb: FormBuilder, private router: Router, private api: CargaSinEstresDataService, private _snackBar: MatSnackBar) { //private http: HttpClient
     this.clientRegistrationForm = this.fb.group({
-      name: ['', Validators.required],
-      apellidoMaterno: ['', Validators.required],
-      apellidoPaterno: ['', Validators.required],
-      celular: ['', [Validators.required, Validators.pattern(/^\d+$/)]],
-      direccion: ['', Validators.required],
+      firstName: ['', Validators.required],
+      lastName: ['', Validators.required],
+      phoneNumber: ['', [Validators.required, Validators.pattern(/^\d+$/)]],
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required, Validators.pattern(/^(?=.*[A-Z])(?=.*\d).{12,}$/)]],
       confirmarpassword: ['', Validators.required],
@@ -31,11 +29,11 @@ export class ClientFormComponent {
     const formData = this.clientRegistrationForm.value;
     let warnings = '';
     
-    if (!formData.name || !formData.apellidoMaterno || !formData.apellidoPaterno || !formData.celular || !formData.direccion || !formData.email || !formData.password || !formData.confirmarpassword) {
+    if (!formData.firstName || !formData.lastName || !formData.phoneNumber || !formData.email || !formData.password || !formData.confirmarpassword) {
       warnings += 'Todos los campos son obligatorios. <br>';
     }
 
-    if (!formData.celular || !/^\d+$/.test(formData.celular)) {
+    if (!formData.phoneNumber || !/^\d+$/.test(formData.phoneNumber)) {
       warnings += 'El celular debe contener solo dígitos enteros.<br>';
     }
 
@@ -55,11 +53,9 @@ export class ClientFormComponent {
 
     if (this.errorMessage == '') { // Si no hay errores, se registra el usuario
       const clientData={
-        name: formData.name,
-        apellidoMaterno: formData.apellidoMaterno,
-        apellidoPaterno: formData.apellidoPaterno,
-        celular: formData.celular,
-        direccion: formData.direccion,
+        firstName: formData.firstName,
+        lastName: formData.lastName,
+        phoneNumber: formData.phoneNumber,
         email: formData.email,
         password: formData.password,
         userType: 'client',

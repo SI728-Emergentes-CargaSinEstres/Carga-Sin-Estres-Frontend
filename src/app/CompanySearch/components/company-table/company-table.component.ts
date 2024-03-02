@@ -41,7 +41,6 @@ export class CompanyTableComponent{
   }
 
   ngOnInit(): void {
-    this.getUserDistrict();
     this.dataSource_company.paginator = this.paginator;
     this.getAllCompanies();
     this.getUserFullName();
@@ -126,17 +125,10 @@ export class CompanyTableComponent{
 
 
   getUserFullName() {
-    this.companyDataService.getClientById(this.userId).subscribe(
-        (client) => {
-            this.userFullName = client.name + ' ' + client.apellidoPaterno;
+    this.companyDataService.getCustomerById(this.userId).subscribe(
+        (customer) => {
+            this.userFullName = customer.firstName + ' ' + customer.lastName;
         }
-    );
-  }
-  getUserDistrict() {
-    this.companyDataService.getClientById(this.userId).subscribe(
-      (client) => {
-        this.userLocation = client.direccion;
-      }
     );
   }
 
