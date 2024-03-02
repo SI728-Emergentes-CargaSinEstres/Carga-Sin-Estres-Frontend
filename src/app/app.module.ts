@@ -31,11 +31,16 @@ import { ReviewDialogComponent } from './BookingHistory/components/review-dialog
 import { EditPaymentDialogComponent } from './BookingHistory/components/edit-payment-dialog/edit-payment-dialog.component';
 import { SignUpFormComponent } from './UserManagement/components/sign-up-form/sign-up-form.component';
 import { PageNotFoundComponent } from './Public/components/page-not-found/page-not-found.component';
+
 import { LanguageSelectionComponent } from "./Public/components/language-selection/language-selection.component";
 
 export function createTranslateLoader(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
 }
+
+import { ReservationItemComponent } from './BookingHistory/components/reservation-item/reservation-item.component';
+import { ReservationDetailComponent } from './BookingHistory/components/reservation-detail/reservation-detail.component';
+
 
 @NgModule({
   declarations: [
@@ -61,6 +66,8 @@ export function createTranslateLoader(http: HttpClient) {
     SignUpFormComponent,
     PageNotFoundComponent,
     LanguageSelectionComponent
+    ReservationItemComponent,
+    ReservationDetailComponent
   ],
   imports: [
     BrowserModule,

@@ -1,93 +1,39 @@
+<div class="flex flex-col py-10 justify-center mx-auto container max-w-screen-xl">
+    <h1 class="text-center text-black text-4xl font-bold mt-5 mb-4">
+        Nuevas solicitudes
+    </h1>
 
-<br><br><br>
-<div>
-    <div class="title">
-      <p align="center">Historial de Reservas</p>
-    </div>
-  </div>
-  <div class="container responsive-grid">
-    <mat-card *ngFor="let element of pageSlice" class="card-body">
-      <mat-card-header>
-        <mat-card-title-group>
-          <mat-card-title class="card-title">
-            {{element.counter}} . Reserva {{element.bookingDate | date:'dd/MM/yyyy'}}
-          </mat-card-title>
-          <mat-card-subtitle>
-            <div class="card-subtitle">
-              <p>
-                <span class="bold">Fecha mudanza : </span><span>{{element.movingDate | date:'dd/MM/yyyy'}}</span>
-              </p>
-              <p>
-                <span class="bold">Estado de reserva : </span><span>{{element.status}}</span>
-              </p>
+    <div class="my-12 md:mx-24">
+        <div *ngIf="newReservations.length > 0; else noNewReservations">
+            <div *ngFor="let reservation of newReservations">
+                <app-reservation-item [reservation]="reservation" [userType]="userType"></app-reservation-item>
             </div>
-          </mat-card-subtitle>
-          <img src="{{element.company.photo}}" alt="element.company.photo" class="logo-companies">
-        </mat-card-title-group>
-  
-      </mat-card-header>
-      <mat-card-content class="card-content">
-          
-          <div><span class="bold">Dirección de recojo :  </span><span>{{element.pickupAddress}}</span></div>
-          <div><p><span class="bold">Dirección de entrega : </span><span>{{element.destinationAddress}}</span></p></div>
-          <!------------------------------------------ Pago ------------------------------------>
-          <div>
-            <p><span class="bold">Pago total: </span>
-              <span> S/.{{element.payment}}
-              <button mat-icon-button color="primary" (click)="editItem(element)" *ngIf="userType == 'company'">
-                <mat-icon>edit</mat-icon>
-              </button>
-            </span></p>
-          </div>
-          <ng-container *ngIf="element.isEditMode == true && userType == 'company'">
-            <form (submit)="onSubmit(element)" [formGroup]="paymentForm">
-              <mat-form-field>
-                <input matInput placeholder="Payment" name="payment" formControlName="payment" required>
-              </mat-form-field>
-              <br>
-              <button mat-raised-button color="primary"  type="submit">Guardar</button>&nbsp;
-              <button mat-raised-button color="warn" (click)="cancelEdit(element)">Cancelar</button>
-              <br><br>
-            </form>
-          </ng-container>
-         <!------------------------------------------------------------------------------>
+        </div>
+        <ng-template #noNewReservations>
+            <p class="text-center text-gray-500">No se encontraron nuevas solicitudes</p>
+        </ng-template>
+    </div>
 
-          <div><p><span class="bold">Empresa contratada: </span><span>{{element.company.name}}</span></p></div>
-      </mat-card-content>
-      <div class="btn-group">
-        <div >
-          <mat-dialog-actions >
-            <ng-container *ngIf="element.status == 'En curso'">
-              <button mat-button class="btn-chat" (click)="openDialog(element)">
-                <mat-icon> chat_bubble</mat-icon>
-                  Chat
-              </button>
-            </ng-container>
-            <ng-container *ngIf="element.status == 'Finalizado' && userType === 'client'">
-              <button mat-button class="btn-chat" (click)="openDialogReview(element)">
-                <mat-icon> rate_review</mat-icon>
-                  Review
-              </button>
-            </ng-container>
-            <!------------------------------------Botón de Pago ------------------------------------>
-            <ng-container *ngIf="element.status != 'Finalizado'">
-              <button mat-button class="btn-cancel" (click)="cancelBooking(element)">
-                <mat-icon>cancel</mat-icon>
-                  Cancelar 
-              </button>
-            </ng-container>
-            <!------------------------------------------------------------------------------------->
-          </mat-dialog-actions>
+    <h1 class="text-center text-black text-4xl font-bold mt-5 mb-4">
+        Solicitudes pendientes
+    </h1>
+
+    <div class="my-12 md:mx-24">
+        <div class="flex justify-center">
+            <!-- Filter results -->
+            <mat-form-field class="w-full md:w-1/2" color="accent">
+                <mat-label for="companyName">Buscar...</mat-label>
+                <input matInput (keyup)="applyFilter($event)" id="companyName">
+            </mat-form-field>
         </div>
-        <div>
+
+        <div *ngIf="pendingReservations.length > 0; else noPendingReservations">
+            <div *ngFor="let reservation of pendingReservations">
+                <app-reservation-item [reservation]="reservation" [userType]="userType"></app-reservation-item>
+            </div>
         </div>
-      </div>
-      
-    </mat-card>
-    <br>
-  </div>
-      <mat-paginator [length]="this.elementData.length" [pageSize]="4" [pageSizeOptions]="[4, 8, 12]" 
-                     (page)="onPageChange($event)"
-                     aria-label="Select page of list of Bookings">
-      </mat-paginator>
-      <br><br><br>
+        <ng-template #noPendingReservations>
+            <p class="text-center text-gray-500">No se encontraron solicitudes pendientes</p>
+        </ng-template>
+    </div>
+</div>
