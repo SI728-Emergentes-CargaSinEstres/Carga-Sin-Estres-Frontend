@@ -18,6 +18,8 @@ import {MatGridListModule} from '@angular/material/grid-list';
 import {MatExpansionModule} from '@angular/material/expansion';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatNativeDateModule } from '@angular/material/core';
+import {MatDatepickerModule} from "@angular/material/datepicker";
 
 @NgModule({
     exports: [
@@ -59,7 +61,9 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
         ReactiveFormsModule,
         MatSelectModule,
         MatDialogModule,
-        MatSnackBarModule
+        MatSnackBarModule,
+        MatDatepickerModule,
+        MatNativeDateModule,
     ]
 })
 export class MaterialModule { }

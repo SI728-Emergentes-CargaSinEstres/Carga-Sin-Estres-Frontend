@@ -28,7 +28,7 @@ export class EditPaymentDialogComponent {
   }
 
   updatePayment() {
-    this.cargaSinEstresDataService.updateBookingHistoryPayment(this.data.id, this.payment).subscribe((response: any) => {
+    this.cargaSinEstresDataService.updateReservationPayment(this.data.id, this.payment).subscribe((response: any) => {
       this.data.element.map((o: any)=> {
         if (o.id === response.id) {
           o = response;

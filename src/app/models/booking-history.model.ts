@@ -1,4 +1,4 @@
-export interface BookingHistory {
+export interface Reservation {
     id: any;
     company: any;
     client: any;

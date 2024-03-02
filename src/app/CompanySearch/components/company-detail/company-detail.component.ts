@@ -1,10 +1,88 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
-import { CargaSinEstresDataService } from 'src/app/services/carga-sin-estres-data.service';
-import { ActivatedRoute } from '@angular/router';
-import { NgForm } from '@angular/forms';
-import { Router } from '@angular/router';
-import { MatSnackBar } from '@angular/material/snack-bar';
+import {Component, Inject} from '@angular/core';
+import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material/dialog';
+import {CargaSinEstresDataService} from "../../../services/carga-sin-estres-data.service";
+import {MatSnackBar} from "@angular/material/snack-bar";
+import {ActivatedRoute, Router} from "@angular/router";
 
+@Component({
+    selector: 'app-company-detail',
+    templateUrl: './company-detail.component.html',
+    styleUrls: ['./company-detail.component.scss'],
+})
+export class CompanyDetailComponent {
+    selectedServices: { [key: string]: boolean } = {};
+    customerId: any = '';
+    reservation: any = {
+        originAddress: undefined,
+        destinationAddress: undefined,
+        movingDate: undefined,
+        movingTime: undefined,
+        services: []
+    };
+
+    constructor(@Inject(MAT_DIALOG_DATA) public data: any, private activatedRoute: ActivatedRoute, private router: Router, private api: CargaSinEstresDataService, private snackBar: MatSnackBar, private dialogRef: MatDialogRef<CompanyDetailComponent>) {
+        this.activatedRoute.pathFromRoot[0].url.subscribe(
+            url => {
+                this.customerId = url[0].path;
+            }
+        );
+    }
+
+    getStars(rating: number): number[] {
+        if (!rating) {
+            return Array(0).fill(0);
+        } else {
+            rating = Math.round(rating);
+            return Array(rating).fill(0);
+        }
+    }
+
+    getEmptyStars(rating: number): number[] {
+        if (!rating) {
+            return Array(5).fill(0);
+        } else {
+            const filledStars = this.getStars(rating).length;
+            const emptyStars = 5 - filledStars;
+            return Array(emptyStars).fill(0);
+        }
+    }
+
+    openSnackBar(message: string) {
+        this.snackBar.open(message, 'Cerrar', {
+            panelClass: ['color-snackbar-created'],
+            duration: 5000,
+            horizontalPosition: 'center',
+            verticalPosition: 'bottom',
+        });
+    }
+
+    addReservation() {
+        this.reservation = {
+            originAddress: this.reservation.originAddress,
+            destinationAddress: this.reservation.destinationAddress,
+            movingDate: this.reservation.movingDate,
+            movingTime: this.reservation.movingTime,
+            services: Object.keys(this.selectedServices).filter(key => this.selectedServices[key])
+        };
+
+        this.api.createReservation(this.customerId, this.data.id, this.reservation).subscribe(
+            (res: any) => {
+                this.openSnackBar('Reserva agregada exitosamente');
+            }
+        );
+    }
+
+    onSubmit() {
+        this.addReservation();
+    }
+
+    cancel() {
+        this.dialogRef.close();
+    }
+}
+
+
+/*
 @Component({
   selector: 'app-company-detail',
   templateUrl: './company-detail.component.html',
@@ -127,4 +205,4 @@ export class CompanyDetailComponent implements OnInit {
       this.router.navigateByUrl(`client/${this.userId}/company-table`);
     }
 }
-
+*/

@@ -49,7 +49,7 @@ export class ChatDialogComponent {
     const newMensaje = {
       message : this.chatData.message
     }
-    this.companyDataService.updateBookingHistoryMessage(this.data.element.id, this.userType,newMensaje).subscribe((response: any) => {
+    this.companyDataService.updateReservationMessage(this.data.element.id, this.userType,newMensaje).subscribe((response: any) => {
 
       //se actualiza el arreglo de mensajes
       this.messages.push(response);

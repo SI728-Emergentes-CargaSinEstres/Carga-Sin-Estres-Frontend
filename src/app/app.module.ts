@@ -40,6 +40,8 @@ export function createTranslateLoader(http: HttpClient) {
 
 import { ReservationItemComponent } from './BookingHistory/components/reservation-item/reservation-item.component';
 import { ReservationDetailComponent } from './BookingHistory/components/reservation-detail/reservation-detail.component';
+import {MatDatepickerModule} from "@angular/material/datepicker";
+import {FormsModule} from "@angular/forms";
 
 
 @NgModule({
@@ -65,7 +67,7 @@ import { ReservationDetailComponent } from './BookingHistory/components/reservat
     EditPaymentDialogComponent,
     SignUpFormComponent,
     PageNotFoundComponent,
-    LanguageSelectionComponent
+    LanguageSelectionComponent,
     ReservationItemComponent,
     ReservationDetailComponent
   ],
@@ -75,12 +77,14 @@ import { ReservationDetailComponent } from './BookingHistory/components/reservat
     BrowserAnimationsModule,
     MaterialModule,
     HttpClientModule,
+    FormsModule,
     TranslateModule.forRoot({
       defaultLanguage: 'en', loader: {
         provide: TranslateLoader, useFactory: (createTranslateLoader), deps: [HttpClient]
       }
     }),
-    RouterModule
+    RouterModule,
+    MatDatepickerModule
   ],
   providers: [],
   bootstrap: [AppComponent]
