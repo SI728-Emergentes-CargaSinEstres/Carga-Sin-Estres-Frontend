@@ -1,5 +1,5 @@
 import {Component, Input} from '@angular/core';
-import {Reservation} from "../../../models/booking-history.model";
+import {Reservation} from "../../../models/reservation.model";
 import { MatDialog } from '@angular/material/dialog';
 import { EditPaymentDialogComponent } from '../edit-payment-dialog/edit-payment-dialog.component';
 import {ChatDialogComponent} from "../chat-dialog/chat-dialog.component";

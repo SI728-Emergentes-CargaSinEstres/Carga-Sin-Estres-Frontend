@@ -3,8 +3,8 @@
         <div class="flex items-center justify-between mb-4">
             <p class="text-gray-500">Fecha para realizar el servicio</p>
             <div class="text-right flex">
-                <p class="text-right">{{ reservation.movingDate | date:'EEEE dd/MM/yyyy' }}</p>
-                <p class="text-right"> ・ {{ reservation.movingTime }} hs</p>
+                <p class="text-right">{{ reservation.startDate | date:'EEEE dd/MM/yyyy' }}</p>
+                <p class="text-right"> ・ {{ reservation.startTime }} hs</p>
             </div>
         </div>
 
@@ -15,7 +15,7 @@
                     <p class="bg-gradient-to-b from-[#8856F3] to-[#44B0FF] inline-block text-transparent bg-clip-text font-bold">
                         Origen
                     </p>
-                    <p>{{reservation.pickupAddress}}</p>
+                    <p>{{reservation.originAddress}}</p>
                 </div>
                 <div class="mt-[62px]">
                     <p class="bg-gradient-to-b from-[#F36F56] to-[#FFC444] inline-block text-transparent bg-clip-text font-bold">

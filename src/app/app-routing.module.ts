@@ -28,7 +28,6 @@ const routes: Routes = [
     children: [
       {path: 'client-settings', component: ClientSettingsComponent},
       {path: 'company-table', component: CompanyTableComponent},
-      {path: 'company/:id', component: CompanyDetailComponent},
       {path: 'history-cards', component: HistoryCardsComponent},
     ]
   },

@@ -2,7 +2,6 @@ import {Component, Inject} from '@angular/core';
 import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material/dialog';
 import {CargaSinEstresDataService} from "../../../services/carga-sin-estres-data.service";
 import {MatSnackBar} from "@angular/material/snack-bar";
-import {ActivatedRoute, Router} from "@angular/router";
 
 @Component({
     selector: 'app-company-detail',
@@ -11,21 +10,21 @@ import {ActivatedRoute, Router} from "@angular/router";
 })
 export class CompanyDetailComponent {
     selectedServices: { [key: string]: boolean } = {};
-    customerId: any = '';
+
     reservation: any = {
         originAddress: undefined,
         destinationAddress: undefined,
-        movingDate: undefined,
-        movingTime: undefined,
+        startDate: undefined,
+        startTime: undefined,
         services: []
     };
 
-    constructor(@Inject(MAT_DIALOG_DATA) public data: any, private activatedRoute: ActivatedRoute, private router: Router, private api: CargaSinEstresDataService, private snackBar: MatSnackBar, private dialogRef: MatDialogRef<CompanyDetailComponent>) {
-        this.activatedRoute.pathFromRoot[0].url.subscribe(
-            url => {
-                this.customerId = url[0].path;
-            }
-        );
+    constructor(
+        @Inject(MAT_DIALOG_DATA) public data: any,
+        private api: CargaSinEstresDataService,
+        private snackBar: MatSnackBar,
+        private dialogRef: MatDialogRef<CompanyDetailComponent>
+    ) {
     }
 
     getStars(rating: number): number[] {
@@ -60,12 +59,14 @@ export class CompanyDetailComponent {
         this.reservation = {
             originAddress: this.reservation.originAddress,
             destinationAddress: this.reservation.destinationAddress,
-            movingDate: this.reservation.movingDate,
-            movingTime: this.reservation.movingTime,
-            services: Object.keys(this.selectedServices).filter(key => this.selectedServices[key])
+            startDate: this.reservation.startDate.toISOString(),
+            startTime: this.reservation.startTime,
+            services: Object.keys(this.selectedServices).filter(key => this.selectedServices[key]).join(', ')
         };
 
-        this.api.createReservation(this.customerId, this.data.id, this.reservation).subscribe(
+        console.log(this.reservation, "customerId: ", this.data.customerId, " companyId: ", this.data.company.id);
+
+        this.api.createReservation(this.data.customerId, this.data.company.id, this.reservation).subscribe(
             (res: any) => {
                 this.openSnackBar('Reserva agregada exitosamente');
             }

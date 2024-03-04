@@ -44,18 +44,18 @@
     <form id="myForm" action="" method="post" (submit)="onSubmit()">
       <mat-form-field class="w-5/6" color="accent">
         <mat-label for="originAddress">Dirección de origen</mat-label>
-        <input matInput id="originAddress" name="originAddress" [(ngModel)]="reservation.originAddress">
+        <input matInput id="originAddress" name="originAddress" [(ngModel)]="reservation.originAddress" required>
       </mat-form-field>
 
       <mat-form-field class="w-5/6" color="accent">
         <mat-label for="destinationAddress">Dirección de destino</mat-label>
-        <input matInput id="destinationAddress" name="destinationAddress" [(ngModel)]="reservation.destinationAddress">
+        <input matInput id="destinationAddress" name="destinationAddress" [(ngModel)]="reservation.destinationAddress" required>
       </mat-form-field>
 
       <div class="flex justify-between mb-4">
         <mat-form-field class="w-1/2" color="accent">
           <mat-label for="startDate">Fecha</mat-label>
-          <input matInput id="startDate" name="startDate" [matDatepicker]="picker" [(ngModel)]="reservation.movingDate">
+          <input matInput id="startDate" name="startDate" [matDatepicker]="picker" [(ngModel)]="reservation.startDate" required>
           <mat-hint>MM/DD/YYYY</mat-hint>
           <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
           <mat-datepicker #picker></mat-datepicker>
@@ -63,7 +63,7 @@
 
         <mat-form-field class="w-1/2" color="accent">
           <mat-label for="startTime">Hora</mat-label>
-          <input matInput id="startTime" name="startTime" type="time" [(ngModel)]="reservation.movingTime">
+          <input matInput id="startTime" name="startTime" type="time" [(ngModel)]="reservation.startTime" required>
         </mat-form-field>
       </div>
 

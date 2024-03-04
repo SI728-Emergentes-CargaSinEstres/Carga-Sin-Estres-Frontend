@@ -28,14 +28,17 @@ export class CompanyTableComponent{
 
   originalData: any[] = []; //contiene todas las empresas sin ningún filtro aplicado
 
-  userId: string = '';
-  constructor(private companyDataService: CargaSinEstresDataService, private router: Router,
-     private route: ActivatedRoute, public dialog: MatDialog) { 
+  customerId: string = '';
+  constructor(
+      private companyDataService: CargaSinEstresDataService,
+      private router: Router,
+      private route: ActivatedRoute,
+      public dialog: MatDialog) {
 
     // Obtiene el id del usuario
     this.route.pathFromRoot[1].url.subscribe(
       url => {
-        this.userId = url[1].path;
+        this.customerId = url[1].path;
       }
     ); 
 
@@ -126,7 +129,7 @@ export class CompanyTableComponent{
 
 
   getUserFullName() {
-    this.companyDataService.getCustomerById(this.userId).subscribe(
+    this.companyDataService.getCustomerById(this.customerId).subscribe(
         (customer) => {
             this.userFullName = customer.firstName + ' ' + customer.lastName;
         }
@@ -152,15 +155,14 @@ export class CompanyTableComponent{
   /* GO TO COMPANY INFO PAGE */
   getRow(row: any) {
     const dialogRef = this.dialog.open(CompanyDetailComponent, {
-
-      data: { company: row }
+      data: { company: row, customerId: this.customerId }
     });
   }
 
   openDialog(){
     const dialogRef = this.dialog.open(CargaRapidaDialog, {
       data:{
-        userId: parseInt(this.userId),
+        userId: parseInt(this.customerId),
       }
     });
     dialogRef.afterClosed().subscribe(result => {

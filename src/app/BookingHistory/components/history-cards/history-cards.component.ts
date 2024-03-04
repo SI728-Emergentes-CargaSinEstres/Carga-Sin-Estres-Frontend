@@ -1,6 +1,6 @@
 import {Component, ViewChild, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
-import {Reservation} from 'src/app/models/booking-history.model';
+import {Reservation} from 'src/app/models/reservation.model';
 import {MatPaginator} from '@angular/material/paginator';
 import {PageEvent} from '@angular/material/paginator';
 import {MatDialog} from '@angular/material/dialog';
@@ -24,8 +24,13 @@ export class HistoryCardsComponent implements OnInit {
     pendingReservations: any[];
     serviceFilter: string = '';
 
-    constructor(private companyDataService: CargaSinEstresDataService, private router: Router, private dialog: MatDialog,
-                private route: ActivatedRoute, private fb: FormBuilder) {
+    constructor(
+        private companyDataService: CargaSinEstresDataService,
+        private router: Router,
+        private dialog: MatDialog,
+        private route: ActivatedRoute,
+        private fb: FormBuilder
+    ) {
         this.newReservations = [];
         this.pendingReservations = [];
         this.route.pathFromRoot[1].url.subscribe(

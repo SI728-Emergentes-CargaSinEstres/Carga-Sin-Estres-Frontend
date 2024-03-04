@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { Observable, catchError, retry, throwError } from 'rxjs';
 import { environment } from '../../environments/environment';
-import { Reservation } from '../models/booking-history.model';
+import { Reservation } from '../models/reservation.model';
 import { map } from 'rxjs';
 
 @Injectable({
@@ -55,7 +55,7 @@ export class CargaSinEstresDataService {
 
   //BookingHistory Controller ---------------------------------------------------------------
   createReservation(customerId: any ,companyId: any,item: any): Observable<Reservation>{
-    console.log("customerId: " + customerId);
+    console.log("customerId: ", customerId, " companyId: ", companyId, " item: ", item)
     return this.http.post<Reservation>(`${this.base_url}/reservations?customerId=${customerId}&idCompany=${companyId}`, JSON.stringify(item), this.httpOptions).pipe(retry(2),catchError(this.handleError));
   }
 
@@ -141,7 +141,7 @@ export class CargaSinEstresDataService {
 
   // Obtain companies by status of the reservation
   getReservationsByCompanyIdAndStatus(companyId: any, status: string): Observable<Reservation[]> {
-    return this.http.get<Reservation[]>(`${this.base_url}/bookingHistory/company/${companyId}?status=${status}`, this.httpOptions)
+    return this.http.get<Reservation[]>(`${this.base_url}/reservations/company/${companyId}?status=${status}`, this.httpOptions)
         .pipe(
             retry(2),
             catchError(this.handleError)

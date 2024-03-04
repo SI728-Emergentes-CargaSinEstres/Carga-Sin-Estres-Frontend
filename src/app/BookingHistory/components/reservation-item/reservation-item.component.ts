@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { Reservation } from 'src/app/models/booking-history.model';
+import { Reservation } from 'src/app/models/reservation.model';
 import { CargaSinEstresDataService } from 'src/app/services/carga-sin-estres-data.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ChatDialogComponent } from "../chat-dialog/chat-dialog.component";
@@ -23,7 +23,7 @@ export class ReservationItemComponent {
   }
 
   cancelReservation(company: any) {
-    const cancelStatus = 'Finalizado';
+    const cancelStatus = 'cancelled';
     this.companyDataService.updateReservationStatus(company.id, cancelStatus).subscribe((response: any) => {
       this._snackBar.open('Se canceló la reserva con éxito', 'Cancelado', {
         duration: 2000, // Duración en milisegundos
