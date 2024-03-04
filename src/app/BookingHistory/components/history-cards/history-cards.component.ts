@@ -56,7 +56,7 @@ export class HistoryCardsComponent implements OnInit {
     }
 
     getPendingReservations() {
-        const status = 'En curso';
+        const status = 'scheduled';
         this.companyDataService.getReservationsByCompanyIdAndStatus(this.companyId, status).subscribe((res: any) => {
             this.pendingReservations = res;
         });

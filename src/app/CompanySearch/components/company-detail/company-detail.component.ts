@@ -64,13 +64,12 @@ export class CompanyDetailComponent {
             services: Object.keys(this.selectedServices).filter(key => this.selectedServices[key]).join(', ')
         };
 
-        console.log(this.reservation, "customerId: ", this.data.customerId, " companyId: ", this.data.company.id);
-
         this.api.createReservation(this.data.customerId, this.data.company.id, this.reservation).subscribe(
             (res: any) => {
                 this.openSnackBar('Reserva agregada exitosamente');
             }
         );
+        this.dialogRef.close();
     }
 
     onSubmit() {
