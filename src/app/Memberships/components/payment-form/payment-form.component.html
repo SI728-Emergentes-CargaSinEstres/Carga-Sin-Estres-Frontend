@@ -4,30 +4,6 @@
 <div class="container">
   <form (ngSubmit)="onSubmit()" [formGroup]="subscriptionForm" >
     <img class="logo-img" src="https://github.com/LuceroObispoRios/Grupo1_SW53/blob/main/CargaSinEstres-V1/public-images/Cargalogo.png?raw=true" alt="logo Carga sin estres">
-  
-    <label for="Correo">Ingrese el correo de la cuenta empresa</label> 
-    <mat-form-field class="form-group" appearance="fill" id="correo">
-        <mat-label>Correo</mat-label>
-        <input matInput formControlName="correo" name="correo" required>
-    </mat-form-field>
-  
-    <label for="Contrasenia">Ingrese la contraseña de su cuenta empresa</label>
-    <mat-form-field class="form-group" appearance="fill" id="contrasenia">
-        <mat-label>Contraseña</mat-label>
-        <input matInput type="password"  formControlName="password" name="contrasenia" required>
-    </mat-form-field>
-  
-    <label for="ruc">Ingrese su RUC</label>
-    <mat-form-field class="form-group" appearance="fill" id="ruc">
-        <mat-label>RUC</mat-label>
-        <input matInput formControlName="ruc" name="ruc" required>
-    </mat-form-field>
-  
-    <label for="direccion">Ingrese su dirección</label>
-    <mat-form-field class="form-group" appearance="fill" id="direccion">
-      <mat-label>Dirección</mat-label>
-      <input matInput formControlName="direccion" name="direccion" required>
-    </mat-form-field>
 
     <label for="vigenciaSuscripcion">Selecciona la vigencia de su suscripción</label>
     <mat-form-field class="form-group" id="vigenciaSuscripcion">
