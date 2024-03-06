@@ -98,7 +98,7 @@ export class ClientSettingsComponent {
         password: formData.password,
       }
 
-      this.api.updateClient(this.id, newClientSettings).subscribe(
+      this.api.updateCustomer(this.id, newClientSettings).subscribe(
         (response) => {
           console.log('Respuesta del servidor: ', response);
           this._snackBar.open('Edicion de datos exitoso', 'Cerrar', {

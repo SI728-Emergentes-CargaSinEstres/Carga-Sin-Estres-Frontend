@@ -19,13 +19,13 @@
                                     <div class="mb-3">
                                         <mat-form-field class="md:w-[360px]">
                                             <mat-label>{{ 'login.email' | translate }}</mat-label>
-                                            <input matInput type="email" id="email" formControlName="email" required>
+                                            <input matInput type="email" id="email" formControlName="email" autocomplete="current-email"  required>
                                         </mat-form-field>
                                     </div>
                                     <div class="mb-3">
                                         <mat-form-field class="md:w-[360px]">
                                             <mat-label>{{ 'login.password' | translate }}</mat-label>
-                                            <input matInput type="password" id="password" formControlName="password" required>
+                                            <input matInput type="password" id="password" formControlName="password" autocomplete="current-password" required>
                                         </mat-form-field>
                                     </div>
 

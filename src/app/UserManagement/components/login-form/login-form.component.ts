@@ -50,7 +50,7 @@ export class LoginFormComponent {
       try {
         // Buscar en clientes
         
-        this.api.getClientsForLogin(this.emailVerify, this.passwordVerify)
+        this.api.getCustomersForLogin(this.emailVerify, this.passwordVerify)
           .subscribe((clientResponse: any) => {
             if (clientResponse != null) {
               // Las credenciales son válidas para un cliente, redirigir a la página correspondiente

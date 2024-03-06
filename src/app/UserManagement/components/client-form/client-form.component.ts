@@ -62,7 +62,7 @@ export class ClientFormComponent {
         dateOfBirth: formData.dateOfBirth,
       }
 
-      this.api.createClient(clientData).subscribe((clientResponse: any) => {
+      this.api.createCustomer(clientData).subscribe((clientResponse: any) => {
         if (clientResponse && clientResponse.id) { //se crea automaticamente el id del cliente
           this._snackBar.open('Registro exitoso', 'Cerrar', {
             duration: 2000, // Duración en milisegundos

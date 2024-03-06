@@ -54,8 +54,7 @@ export class CargaSinEstresDataService {
 
 
   //BookingHistory Controller ---------------------------------------------------------------
-  createReservation(customerId: any ,companyId: any,item: any): Observable<Reservation>{
-    console.log("customerId: ", customerId, " companyId: ", companyId, " item: ", item)
+  createReservation(customerId: any, companyId: any, item: any): Observable<Reservation>{
     return this.http.post<Reservation>(`${this.base_url}/reservations?customerId=${customerId}&idCompany=${companyId}`, JSON.stringify(item), this.httpOptions).pipe(retry(2),catchError(this.handleError));
   }
 
@@ -88,17 +87,17 @@ export class CargaSinEstresDataService {
   }
   
   //Client Controller ---------------------------------------------------------------
-  getClientsForLogin(email: string, password: string): Observable<any> {
+  getCustomersForLogin(email: string, password: string): Observable<any> {
     const url = `${this.base_url}/customers?email=${email}&password=${password}`;
     return this.http.get(`${url}`, this.httpOptions);
   }
 
-  createClient(data: any): Observable<any> {
+  createCustomer(data: any): Observable<any> {
     return this.http.post(`${this.base_url}/customers`, JSON.stringify(data), this.httpOptions);
   }
 
   //for settings
-  updateClient(id: any, data: any): Observable<any> {
+  updateCustomer(id: any, data: any): Observable<any> {
     return this.http.put(`${this.base_url}/customers/${id}`, JSON.stringify(data), this.httpOptions);
   }
 
@@ -116,8 +115,8 @@ export class CargaSinEstresDataService {
   }
 
   //Subscription Controller ---------------------------------------------------------------
-  createSubscription(companyId: any, subscriptionData: any): Observable<any> {
-    return this.http.post<any>(`${this.base_url}/memberships/${companyId}`, JSON.stringify(subscriptionData), this.httpOptions)
+  createMembership(companyId: any, data: any): Observable<any> {
+    return this.http.post<any>(`${this.base_url}/memberships/${companyId}`, JSON.stringify(data), this.httpOptions)
       .pipe(retry(2),catchError(this.handleError));
   }
 

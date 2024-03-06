@@ -51,20 +51,20 @@
                                     <div class="mb-3">
                                         <mat-form-field class="md:w-1/2">
                                             <mat-label>{{ 'companyForm.email' | translate }}</mat-label>
-                                            <input matInput type="email" id="email" formControlName="email" required>
+                                            <input matInput type="email" id="email" formControlName="email" required autocomplete="email">
                                         </mat-form-field>
                                     </div>
                                     <div class="mb-3">
                                         <mat-form-field class="md:w-1/2">
                                             <mat-label>{{ 'companyForm.password' | translate }}</mat-label>
-                                            <input matInput type="password" id="password" formControlName="password"
+                                            <input matInput type="password" id="password" formControlName="password" autocomplete="new-password"
                                                    required>
                                         </mat-form-field>
                                     </div>
                                     <div class="mb-3">
                                         <mat-form-field class="md:w-1/2">
                                             <mat-label>{{ 'companyForm.confirmPassword' | translate }}</mat-label>
-                                            <input matInput type="password" id="confirmarpassword"
+                                            <input matInput type="password" id="confirmarpassword" autocomplete="new-password"
                                                    formControlName="confirmarpassword" required>
                                         </mat-form-field>
                                     </div>
