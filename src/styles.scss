@@ -5,12 +5,12 @@
 @tailwind utilities;
 
 @font-face {
-  font-family: 'poppins';
+  font-family: Poppins;
   src: url('https://fonts.googleapis.com/css?family=Poppins');
 }
 
 :root {
-
+  --font-primary: 'Poppins', sans-serif;
   --primary-yellow: rgb(245 158 11);
 }
 
@@ -24,5 +24,3 @@ body {
 * :not(i, .mat-icon){
   font-family: var(--font-primary) !important;
 }
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

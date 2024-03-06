@@ -22,6 +22,7 @@ export class PaymentFormComponent {
 
     newMembership: any = {
         startDate: undefined,
+        endDate: undefined,
         price: undefined
     };
 
@@ -52,13 +53,21 @@ export class PaymentFormComponent {
     //incializar la firma aleatoria
     firma: string = this.generarCodigoAleatorio();
 
+    calculateEndDate(startDate: Date, months: number): Date {
+        const endDate = new Date(startDate);
+        endDate.setMonth(endDate.getMonth() + months);
+        return endDate;
+    }
+
     addMembership() {
+        const startDate = new Date();
         this.newMembership = {
-            startDate: new Date().toISOString(),
+            startDate: startDate.toISOString(),
+            endDate: this.calculateEndDate(startDate, this.selectedPlan.months).toISOString(),
             price: this.selectedPlan.price
         };
 
-        console.log("Test", this.newMembership)
+        console.log("Test", this.newMembership);
 
         this.dataService.createMembership(this.companyId, this.newMembership).subscribe(
             (response) => {
