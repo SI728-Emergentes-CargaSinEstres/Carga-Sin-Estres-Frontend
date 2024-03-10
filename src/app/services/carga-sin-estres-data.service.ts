@@ -49,7 +49,7 @@ export class CargaSinEstresDataService {
   }
 
   updateCompany(id: any, data: any): Observable<any> {
-    return this.http.put(`${this.base_url}/companies/${id}`, JSON.stringify(data), this.httpOptions);
+    return this.http.patch(`${this.base_url}/companies/${id}`, JSON.stringify(data), this.httpOptions);
   }
 
 
@@ -98,7 +98,7 @@ export class CargaSinEstresDataService {
 
   //for settings
   updateCustomer(id: any, data: any): Observable<any> {
-    return this.http.put(`${this.base_url}/customers/${id}`, JSON.stringify(data), this.httpOptions);
+    return this.http.patch(`${this.base_url}/customers/${id}`, JSON.stringify(data), this.httpOptions);
   }
 
   //get client by id
