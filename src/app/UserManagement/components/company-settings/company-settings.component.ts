@@ -14,23 +14,21 @@ export class CompanySettingsComponent {
   companySettingsForm: FormGroup;
   errorMessage: string = '';
   id: any;
+  company: any;
+  servicioIds = [];
 
-  constructor(private fb: FormBuilder, private api: CargaSinEstresDataService,
-     private route: ActivatedRoute, private router: Router, private _snackBar: MatSnackBar) {//private http: HttpClient
+  constructor(private fb: FormBuilder, private api: CargaSinEstresDataService, private route: ActivatedRoute, private router: Router, private _snackBar: MatSnackBar) {//private http: HttpClient
     this.companySettingsForm = this.fb.group({
-      name: ['', Validators.required],
-      email: ['', [Validators.required, Validators.email]],
-      direccion: ['', Validators.required],
-      numeroContacto: ['', Validators.pattern(/^\d+$/)],
-      password: ['', [Validators.required, Validators.minLength(6)]],
-      confirmarpassword: ['', Validators.required],
-      photo: ['', Validators.required],
-      transporte: [false],
-      carga: [false],
-      embalaje: [false],
-      montaje: [false],
-      desmontaje: [false],
-      description: ['']
+      name: [null],
+      email: [null],
+      direction: [null],
+      phoneNumber: [null],
+      password: [null],
+      confirmPassword: [null],
+      logo: [null],
+      servicioIds: [null],
+      tic: [null],
+      description: [null]
     });
 
     this.route.pathFromRoot[1].url.subscribe(
@@ -38,29 +36,33 @@ export class CompanySettingsComponent {
         this.id = url[1].path;
       }
     ); 
+
+    this.getCompany(this.id);
   }
 
   ngOnInit(){}
 
+  getCompany(id: any){
+    this.api.getCompanyById(id).subscribe(
+      (res: any) => 
+      {
+        this.company = res;
+        this.servicioIds = this.company.servicioIds;
+      }
+    );
+  }
+
   onSubmit(){
-    this.errorMessage = '';
     const formData = this.companySettingsForm.value;
-    let warnings = "";
 
-    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
-      warnings += `La nueva dirección de email electronico no es válida.<br>`;
-    }
+    // Verificar si todos los campos son nulos
+    const allFieldsAreNull = Object.values(formData).every(value => value === null);
 
-    if (!/^\d+$/.test(formData.numeroContacto)) {
-      warnings += `El numero de contacto nuevo no es valido <br>`;
-    }
-
-    if (formData.password.length < 6) {
-      warnings += `La nueva contraseña no es valida <br>`;
-    }
-
-    if (formData.password !== formData.confirmarpassword) {
-      warnings += `No se confirmo la nueva contraseña correctamente <br>`;
+    if (allFieldsAreNull) {
+      this._snackBar.open('No hay cambios para guardar', 'Cerrar', {
+        duration: 5000, // Duración en milisegundos
+      });
+      return;
     }
 
     // Handle checkbox validation
@@ -76,49 +78,51 @@ export class CompanySettingsComponent {
       }
     });
 
-    if (services.length === 0) {
-      warnings += 'Seleccione al menos un servicio <br>';
+    const newCompanySettings={
+      name: formData.name,
+      email: formData.email,
+      direction: formData.direction,
+      phoneNumber: formData.phoneNumber,
+      password: formData.password,
+      logo: formData.logo,
+      servicioIds: [],
+      tic: formData.tic,
+      description: formData.description
     }
 
-    if (!formData.description || formData.description.length < 4) {
-      warnings += `La descripcion es muy corta <br>`;
-    }
-
-    this.errorMessage = warnings;
-
-    if(this.errorMessage == ''){
-      const newCompanySettings={
-        name: formData.name,
-        email: formData.email,
-        direccion: formData.direccion,
-        numeroContacto: formData.numeroContacto,
-        password: formData.password,
-        photo: formData.photo,
-        transporte: formData.transporte,
-        carga: formData.carga,
-        embalaje: formData.embalaje,
-        montaje: formData.montaje,
-        desmontaje: formData.desmontaje,
-        description: formData.description,
+    if (formData.password !== null) {
+      if (formData.password !== formData.confirmPassword) {
+        this._snackBar.open('La contraseña y la confirmación de contraseña no coinciden', 'Cerrar', {
+          duration: 5000, // Duración en milisegundos
+        });
+        return;
       }
-
-      this.api.updateCompany(this.id, newCompanySettings).subscribe(
-        data => {
-          this._snackBar.open('Se actualizo correctamente los datos de su compañia', 'Cerrar', {
-            duration: 2000, // Duración en milisegundos
-          });
-          alert('Los ajustes se han actualizado correctamente');
-        },
-        error => {
-          this._snackBar.open('Hubo un error actualizando los datos de su compañia', 'Cerrar', {
-            duration: 2000, // Duración en milisegundos
-          });
-          alert('Ha ocurrido un error al actualizar los ajustes de tu empresa, por favor inténtalo de nuevo más tarde');
-        }
-      )
-      
     }
 
+    this.api.updateCompany(this.id, newCompanySettings).subscribe(
+      (response) => {
+        console.log('Respuesta del servidor: ', response);
+        this._snackBar.open('Edicion de datos exitoso', 'Cerrar', {
+          duration: 2000, // Duración en milisegundos
+        });
+
+        setTimeout(() => { location.reload();}, 2000);
+      },
+      (error) => {
+        console.log('Error al actualizar los ajustes: ', error);
+
+        // Mostrar mensaje de error del servidor
+        if (error && error.error && error.error.message) {
+          this._snackBar.open(`${error.error.message}`, 'Cerrar', {
+            duration: 5000, // Duración en milisegundos
+          });
+        } else {
+          this._snackBar.open('Error desconocido del servidor', 'Cerrar', {
+            duration: 5000, // Duración en milisegundos
+          });
+        }
+      }
+    );
   }
 
   cancelar(){
