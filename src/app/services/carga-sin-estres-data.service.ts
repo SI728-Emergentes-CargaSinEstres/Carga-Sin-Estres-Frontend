@@ -64,7 +64,7 @@ export class CargaSinEstresDataService {
   }
 
   getReservationByCompanyId(companyId: any): Observable<Reservation> {
-    return this.http.get<Reservation>(`${this.base_url}/reservations/companies/${companyId}`, this.httpOptions)
+    return this.http.get<Reservation>(`${this.base_url}/reservations/company/${companyId}`, this.httpOptions)
       .pipe(retry(2),catchError(this.handleError))
   }
 

@@ -10,7 +10,7 @@
 
     <div class="flex justify-between mb-2">
         <p class="text-gray-500">Nombre del cliente</p>
-        <p>{{ reservation.customer.firstName }} {{ reservation.customer.lastName }} </p>
+        <p>{{ reservation.customer?.firstName }} {{ reservation.customer?.lastName }} </p>
     </div>
 
     <div class="flex justify-between mb-2" *ngIf="reservation.status === 'En curso'">

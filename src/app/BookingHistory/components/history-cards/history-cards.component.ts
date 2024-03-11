@@ -19,7 +19,7 @@ import {MatSnackBar} from '@angular/material/snack-bar';
 export class HistoryCardsComponent implements OnInit {
 
     userType: any;
-    companyId: any;
+    userId: any;
     newReservations: any[];
     pendingReservations: any[];
     serviceFilter: string = '';
@@ -38,7 +38,7 @@ export class HistoryCardsComponent implements OnInit {
                 // Obtiene el tipo de usuario
                 this.userType = url[0].path;
                 // Obtiene el id del usuario
-                this.companyId = url[1].path;
+                this.userId = url[1].path;
             }
         );
     }
@@ -49,17 +49,41 @@ export class HistoryCardsComponent implements OnInit {
     }
 
     getNewReservations() {
-        const status = 'solicited';
-        this.companyDataService.getReservationsByCompanyIdAndStatus(this.companyId, status).subscribe((res: any) => {
-            this.newReservations = res;
-        });
+        if (this.userType === 'client') {
+            this.companyDataService.getReservationById(this.userId).subscribe((res: any) => {
+                this.newReservations = res;
+                this.newReservations = this.newReservations.filter(reservation =>
+                    reservation.status === 'solicited'
+                );
+            });
+        }
+        else{
+            this.companyDataService.getReservationByCompanyId(this.userId).subscribe((res: any) => {
+                this.newReservations = res;
+                this.newReservations = this.newReservations.filter(reservation =>
+                    reservation.status === 'solicited'
+                );
+            });
+        }
     }
 
     getPendingReservations() {
-        const status = 'scheduled';
-        this.companyDataService.getReservationsByCompanyIdAndStatus(this.companyId, status).subscribe((res: any) => {
-            this.pendingReservations = res;
-        });
+        if (this.userType === 'client') {
+            this.companyDataService.getReservationById(this.userId).subscribe((res: any) => {
+                this.pendingReservations = res;
+                this.pendingReservations = this.pendingReservations.filter(reservation =>
+                    reservation.status === 'scheduled'
+                );
+            });
+        }
+        else{
+            this.companyDataService.getReservationByCompanyId(this.userId).subscribe((res: any) => {
+                this.pendingReservations = res;
+                this.pendingReservations = this.pendingReservations.filter(reservation =>
+                    reservation.status === 'scheduled'
+                );
+            });
+        }
     }
 
     applyFilter(event: Event) {
