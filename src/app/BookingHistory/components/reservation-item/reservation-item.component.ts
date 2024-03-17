@@ -27,22 +27,22 @@ export class ReservationItemComponent {
     setReservationStatus(company: any, status: any) {
         this.companyDataService.updateReservationStatus(company.id, status, {}).subscribe((response: any) => {
             if (status === 'scheduled') {
-                this._snackBar.open('Se confirmó la reserva con éxito', 'Confirmado', {
+                this._snackBar.open('Se confirmó la reserva con éxito', 'Cerrar', {
                     duration: 2000,
                 });
             }
             else if (status == 'rescheduled') {
-                this._snackBar.open('Se reprogramó la reserva con éxito', 'Reprogramado', {
+                this._snackBar.open('Se reprogramó la reserva con éxito', 'Cerrar', {
                     duration: 2000,
                 });
             }
             else if (status == 'finalized') {
-                this._snackBar.open('Se finalizó la reserva con éxito', 'Finalizado', {
+                this._snackBar.open('Se finalizó la reserva con éxito', 'Cerrar', {
                     duration: 2000,
                 });
             }
             else if (status == 'cancelled') {
-                this._snackBar.open('Se canceló la reserva con éxito', 'Rechazado', {
+                this._snackBar.open('Se canceló la reserva con éxito', 'Cerrar', {
                     duration: 2000,
                 });
             }

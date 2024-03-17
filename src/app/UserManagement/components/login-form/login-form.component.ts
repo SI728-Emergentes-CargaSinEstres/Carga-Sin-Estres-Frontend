@@ -67,7 +67,7 @@ export class LoginFormComponent {
             this._snackBar.open('Inicio de sesión exitoso', 'Cerrar', {
               duration: 2000, // Duración en milisegundos
             });
-            this.router.navigate(['company/'+ companyResponse.id + '/history-cards']);
+            this.router.navigate(['company/'+ companyResponse.id + '/active-reservations']);
           } else {
             this.errorMessage = 'Credenciales incorrectas. Intente nuevamente.';
           }

@@ -16,7 +16,7 @@ import { ToolbarLandingComponent } from './Public/components/toolbar-landing/too
 import { FooterComponent } from './Public/components/footer/footer.component';
 import { LandingPageComponent } from './Public/components/landing-page/landing-page.component';
 import { ChatDialogComponent } from './BookingHistory/components/chat-dialog/chat-dialog.component';
-import { HistoryCardsComponent } from './BookingHistory/components/history-cards/history-cards.component';
+import { ActiveReservationsComponent } from './BookingHistory/components/active-reservations/active-reservations.component';
 import { CompanyDetailComponent } from './CompanySearch/components/company-detail/company-detail.component';
 import { CompanyTableComponent } from './CompanySearch/components/company-table/company-table.component';
 import { MembershipComponent } from './Memberships/components/membership/membership.component';
@@ -31,18 +31,16 @@ import { ReviewDialogComponent } from './BookingHistory/components/review-dialog
 import { EditPaymentDialogComponent } from './BookingHistory/components/edit-payment-dialog/edit-payment-dialog.component';
 import { SignUpFormComponent } from './UserManagement/components/sign-up-form/sign-up-form.component';
 import { PageNotFoundComponent } from './Public/components/page-not-found/page-not-found.component';
+import { ReservationItemComponent } from './BookingHistory/components/reservation-item/reservation-item.component';
+import { ReservationDetailComponent } from './BookingHistory/components/reservation-detail/reservation-detail.component';
+import {MatDatepickerModule} from "@angular/material/datepicker";
+import {FormsModule} from "@angular/forms";
 
 import { LanguageSelectionComponent } from "./Public/components/language-selection/language-selection.component";
 
 export function createTranslateLoader(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
 }
-
-import { ReservationItemComponent } from './BookingHistory/components/reservation-item/reservation-item.component';
-import { ReservationDetailComponent } from './BookingHistory/components/reservation-detail/reservation-detail.component';
-import {MatDatepickerModule} from "@angular/material/datepicker";
-import {FormsModule} from "@angular/forms";
-
 
 @NgModule({
   declarations: [
@@ -52,7 +50,7 @@ import {FormsModule} from "@angular/forms";
     FooterComponent,
     LandingPageComponent,
     ChatDialogComponent,
-    HistoryCardsComponent,
+    ActiveReservationsComponent,
     CompanyDetailComponent,
     CompanyTableComponent,
     MembershipComponent,
@@ -69,7 +67,7 @@ import {FormsModule} from "@angular/forms";
     PageNotFoundComponent,
     LanguageSelectionComponent,
     ReservationItemComponent,
-    ReservationDetailComponent
+    ReservationDetailComponent,
   ],
   imports: [
     BrowserModule,

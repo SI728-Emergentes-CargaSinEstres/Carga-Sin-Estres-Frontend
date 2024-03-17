@@ -2,7 +2,7 @@ import { Component, Inject, ViewChild } from '@angular/core';
 import { CargaSinEstresDataService } from 'src/app/services/carga-sin-estres-data.service';
 import { Chat } from 'src/app/models/chat.model';
 import { NgForm } from '@angular/forms';
-import { HistoryCardsComponent } from '../history-cards/history-cards.component';
+import { ActiveReservationsComponent } from '../active-reservations/active-reservations.component';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 
@@ -16,7 +16,7 @@ export class ChatDialogComponent {
 
   chatData!: Chat;
   messages!: any[];
-  historyDialog!: HistoryCardsComponent;
+  historyDialog!: ActiveReservationsComponent;
   elementData!: any[];
   history!: any[];
 

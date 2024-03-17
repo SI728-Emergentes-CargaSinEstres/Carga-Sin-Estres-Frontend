@@ -12,11 +12,11 @@ import {Form, NgForm, FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {MatSnackBar} from '@angular/material/snack-bar';
 
 @Component({
-    selector: 'app-history-cards',
-    templateUrl: './history-cards.component.html',
-    styleUrls: ['./history-cards.component.scss']
+    selector: 'app-active-reservations',
+    templateUrl: './active-reservations.component.html',
+    styleUrls: ['./active-reservations.component.scss']
 })
-export class HistoryCardsComponent implements OnInit {
+export class ActiveReservationsComponent implements OnInit {
 
     userType: any;
     userId: any;

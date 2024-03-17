@@ -13,7 +13,7 @@
         <p>{{ reservation.customer?.firstName }} {{ reservation.customer?.lastName }} </p>
     </div>
 
-    <div class="flex justify-between mb-2" *ngIf="reservation.status === 'En curso'">
+    <div class="flex justify-between mb-2" *ngIf="reservation.status === 'scheduled'">
         <p class="text-gray-500">Costo del servicio</p>
         <a (click)="openEditPaymentDialog()" class="cursor-pointer">S/. {{ reservation.price }} <i class="ml-2 fa fa-pen"></i></a>
     </div>

@@ -45,8 +45,12 @@ export class ToolbarCompanyComponent implements OnInit {
     this.router.navigateByUrl(`company/${this.userId}/membership`);
   }
 
-  pageHistoryCards(){
+  pageActiveReservations(){
     this.router.navigateByUrl(`company/${this.userId}/history-cards`);
+  }
+
+  pageReservationHistory(){
+    this.router.navigateByUrl(`company/${this.userId}/reservation-history`);
   }
 
 }

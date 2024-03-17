@@ -1,16 +1,16 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { HistoryCardsComponent } from './history-cards.component';
+import { ActiveReservationsComponent } from './active-reservations.component';
 
 describe('HistoryCardsComponent', () => {
-  let component: HistoryCardsComponent;
-  let fixture: ComponentFixture<HistoryCardsComponent>;
+  let component: ActiveReservationsComponent;
+  let fixture: ComponentFixture<ActiveReservationsComponent>;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [HistoryCardsComponent]
+      declarations: [ActiveReservationsComponent]
     });
-    fixture = TestBed.createComponent(HistoryCardsComponent);
+    fixture = TestBed.createComponent(ActiveReservationsComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

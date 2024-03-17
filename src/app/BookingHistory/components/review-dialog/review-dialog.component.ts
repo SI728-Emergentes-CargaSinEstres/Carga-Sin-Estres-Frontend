@@ -2,7 +2,7 @@ import { Component, Inject, ViewChild } from '@angular/core';
 import { CargaSinEstresDataService } from 'src/app/services/carga-sin-estres-data.service';
 import { Review } from 'src/app/models/review.model';
 import { NgForm } from '@angular/forms';
-import { HistoryCardsComponent } from '../history-cards/history-cards.component';
+import { ActiveReservationsComponent } from '../active-reservations/active-reservations.component';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';

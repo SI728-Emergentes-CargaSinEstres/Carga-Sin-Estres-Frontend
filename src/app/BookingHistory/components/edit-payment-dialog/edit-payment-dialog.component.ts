@@ -1,7 +1,7 @@
 import { Component, Inject, ViewChild } from '@angular/core';
 import { CargaSinEstresDataService } from 'src/app/services/carga-sin-estres-data.service';
 import { NgForm } from '@angular/forms';
-import { HistoryCardsComponent } from '../history-cards/history-cards.component';
+import { ActiveReservationsComponent } from '../active-reservations/active-reservations.component';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
@@ -18,7 +18,7 @@ export class EditPaymentDialogComponent {
 
   @ViewChild('paymentForm', {static: false}) currentForm!: NgForm;
 
-  constructor(private cargaSinEstresDataService: CargaSinEstresDataService, private historyCardsComponent: HistoryCardsComponent, 
+  constructor(private cargaSinEstresDataService: CargaSinEstresDataService, private historyCardsComponent: ActiveReservationsComponent,
     private route: ActivatedRoute, private router: Router, @Inject(MAT_DIALOG_DATA) public data: any, private _snackBar: MatSnackBar) {
     this.payment = 0;
   }

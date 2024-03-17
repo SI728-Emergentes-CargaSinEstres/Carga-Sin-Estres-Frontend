@@ -177,7 +177,7 @@ export class CompanyDetailComponent implements OnInit {
     onSubmit() {
       this.addReservation();
 
-      this.router.navigateByUrl(`client/${this.userId}/history-cards`);
+      this.router.navigateByUrl(`client/${this.userId}/active-reservations`);
     }
 
     fetchReviews() {
