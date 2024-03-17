@@ -69,12 +69,12 @@ export class CargaSinEstresDataService {
   }
 
   //update status
-  updateReservationStatus(id: any, data: any): Observable<Reservation> {
-    return this.http.patch<Reservation>(`${this.base_url}/reservations/${id}/status`, JSON.stringify(data), this.httpOptions)
-      .pipe(retry(2),catchError(this.handleError))
+  updateReservationStatus(companyId: any, status: string, data: any): Observable<any> {
+    return this.http.patch(`${this.base_url}/reservations/${companyId}/status?status=${status}`, JSON.stringify(data), this.httpOptions);
   }
 
-   //update payment
+
+  //update payment
   updateReservationPayment(id: any, data: any): Observable<Reservation> {
     return this.http.patch<Reservation>(`${this.base_url}/reservations/${id}/payment`, JSON.stringify(data), this.httpOptions)
       .pipe(retry(2),catchError(this.handleError))

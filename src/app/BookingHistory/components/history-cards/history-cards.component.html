@@ -7,7 +7,7 @@
         <div class="my-12 md:mx-24">
             <div *ngIf="newReservations.length > 0; else noNewReservations">
                 <div *ngFor="let reservation of newReservations">
-                    <app-reservation-item [reservation]="reservation" [userType]="userType"></app-reservation-item>
+                    <app-reservation-item [reservation]="reservation" [userType]="userType" (reservationUpdated)="updateReservations()"></app-reservation-item>
                 </div>
             </div>
             <ng-template #noNewReservations>

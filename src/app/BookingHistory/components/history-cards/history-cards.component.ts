@@ -86,6 +86,11 @@ export class HistoryCardsComponent implements OnInit {
         }
     }
 
+    updateReservations() {
+        this.getNewReservations();
+        this.getPendingReservations();
+    }
+
     applyFilter(event: Event) {
         const filterValue = (event.target as HTMLInputElement).value.trim().toLowerCase();
         if (!filterValue) {
