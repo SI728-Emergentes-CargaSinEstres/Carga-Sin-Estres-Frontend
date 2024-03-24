@@ -11,6 +11,8 @@ import {ChatDialogComponent} from "../chat-dialog/chat-dialog.component";
 })
 export class ReservationDetailComponent {
   @Input() reservation!: Reservation;
+  @Input() userType!: string;
+
   constructor(private dialog: MatDialog) { }
   openEditPaymentDialog() {
     this.dialog.open(EditPaymentDialogComponent, {

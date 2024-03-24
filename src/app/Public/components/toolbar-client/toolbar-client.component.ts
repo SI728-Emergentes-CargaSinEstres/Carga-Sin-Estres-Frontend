@@ -38,7 +38,7 @@ export class ToolbarClientComponent implements OnInit {
   }
 
   pageHistoryCards(){
-    this.router.navigateByUrl(`client/${this.userId}/history-cards`);
+    this.router.navigateByUrl(`client/${this.userId}/active-reservations`);
   }
   pageCompanyTable(){
     this.router.navigateByUrl(`client/${this.userId}/company-table`);

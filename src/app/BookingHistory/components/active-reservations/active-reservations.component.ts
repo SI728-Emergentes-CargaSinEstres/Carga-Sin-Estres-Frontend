@@ -1,6 +1,4 @@
 import {Component, OnInit} from '@angular/core';
-import {Router} from '@angular/router';
-import {MatDialog} from '@angular/material/dialog';
 import {ActivatedRoute} from '@angular/router';
 import {CargaSinEstresDataService} from 'src/app/services/carga-sin-estres-data.service';
 
@@ -39,7 +37,7 @@ export class ActiveReservationsComponent implements OnInit {
 
     getNewReservations() {
         if (this.userType === 'client') {
-            this.companyDataService.getReservationById(this.userId).subscribe((res: any) => {
+            this.companyDataService.getReservationByCustomerId(this.userId).subscribe((res: any) => {
                 this.newReservations = res;
                 this.newReservations = this.newReservations.filter(reservation =>
                     reservation.status === 'solicited'
@@ -58,8 +56,9 @@ export class ActiveReservationsComponent implements OnInit {
 
     getPendingReservations() {
         if (this.userType === 'client') {
-            this.companyDataService.getReservationById(this.userId).subscribe((res: any) => {
+            this.companyDataService.getReservationByCustomerId(this.userId).subscribe((res: any) => {
                 this.pendingReservations = res;
+                console.log(res)
                 this.pendingReservations = this.pendingReservations.filter(reservation =>
                     reservation.status === 'scheduled'
                 );
