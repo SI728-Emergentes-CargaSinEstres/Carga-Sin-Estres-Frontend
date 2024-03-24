@@ -1,15 +1,8 @@
-import {Component, ViewChild, OnInit} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
-import {Reservation} from 'src/app/models/reservation.model';
-import {MatPaginator} from '@angular/material/paginator';
-import {PageEvent} from '@angular/material/paginator';
 import {MatDialog} from '@angular/material/dialog';
-import {ChatDialogComponent} from '../chat-dialog/chat-dialog.component';
-import {ReviewDialogComponent} from '../review-dialog/review-dialog.component';
 import {ActivatedRoute} from '@angular/router';
 import {CargaSinEstresDataService} from 'src/app/services/carga-sin-estres-data.service';
-import {Form, NgForm, FormBuilder, FormGroup, Validators} from '@angular/forms';
-import {MatSnackBar} from '@angular/material/snack-bar';
 
 @Component({
     selector: 'app-active-reservations',
@@ -22,14 +15,10 @@ export class ActiveReservationsComponent implements OnInit {
     userId: any;
     newReservations: any[];
     pendingReservations: any[];
-    serviceFilter: string = '';
 
     constructor(
         private companyDataService: CargaSinEstresDataService,
-        private router: Router,
-        private dialog: MatDialog,
         private route: ActivatedRoute,
-        private fb: FormBuilder
     ) {
         this.newReservations = [];
         this.pendingReservations = [];

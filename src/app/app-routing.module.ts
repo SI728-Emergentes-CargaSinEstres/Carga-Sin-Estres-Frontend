@@ -6,7 +6,6 @@ import { ClientFormComponent } from './UserManagement/components/client-form/cli
 import { CompanyFormComponent } from './UserManagement/components/company-form/company-form.component';
 import { ActiveReservationsComponent } from './BookingHistory/components/active-reservations/active-reservations.component';
 import { CompanyTableComponent } from './CompanySearch/components/company-table/company-table.component';
-import { CompanyDetailComponent } from './CompanySearch/components/company-detail/company-detail.component';
 import { ClientSettingsComponent } from './UserManagement/components/client-settings/client-settings.component';
 import { CompanySettingsComponent } from './UserManagement/components/company-settings/company-settings.component';
 import { MembershipComponent } from './Memberships/components/membership/membership.component';
@@ -15,6 +14,9 @@ import { ToolbarClientComponent } from './Public/components/toolbar-client/toolb
 import { ToolbarCompanyComponent } from './Public/components/toolbar-company/toolbar-company.component';
 import { SignUpFormComponent } from "./UserManagement/components/sign-up-form/sign-up-form.component";
 import { PageNotFoundComponent } from "./Public/components/page-not-found/page-not-found.component";
+import {
+  ReservationHistoryComponent
+} from "./BookingHistory/components/reservation-history/reservation-history.component";
 
 const routes: Routes = [
   {path: 'login', component: LoginFormComponent},
@@ -39,6 +41,7 @@ const routes: Routes = [
       {path: 'company-settings', component: CompanySettingsComponent},
       {path: 'membership', component: MembershipComponent},
       {path: 'active-reservations', component: ActiveReservationsComponent},
+      {path: 'reservation-history', component: ReservationHistoryComponent},
       {path: 'payment-form', component: PaymentFormComponent}
     ]
   },
