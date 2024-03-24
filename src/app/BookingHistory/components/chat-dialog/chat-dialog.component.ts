@@ -58,19 +58,31 @@ export class ChatDialogComponent {
   }
 
   //add
-  sendMessage(){
+  sendMessage() {
 
-    this.companyDataService.updateReservationMessage(this.data.element.id, this.userType,this.chatData.message).subscribe((response: any) => {
+    this.companyDataService.updateReservationMessage(this.data.element.id, this.chatData.message).subscribe(
+        (response: any) => {
+          console.log("El response es: " + JSON.stringify(response));
 
-      console.log("el response es: " + JSON.stringify(response));
-      console.log('this.messages antes de push:', this.messages); // Agregar este console.log para verificar el estado de this.messages antes de push
+          // Crear un nuevo mensaje con las propiedades de la respuesta
+          const newMessage = {
+            content: response.content,
+            messageDate: response.messageDate
+          };
 
-      this.messages.push(response); //este push no funiona porque "messages" aui es indefinido
+          console.log('Nuevo mensaje:', newMessage);
 
-    }, (error: any) => {
-    }
+          // Agregar el nuevo mensaje al arreglo messages
+          this.messages.push(newMessage);
+
+          console.log('Messages después de agregar:', this.messages);
+        },
+        (error: any) => {
+          console.error('Error al enviar mensaje:', error);
+        }
     );
     this.chatForm.reset();
   }
+
 
 }
