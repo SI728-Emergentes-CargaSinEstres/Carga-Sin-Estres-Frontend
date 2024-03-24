@@ -31,28 +31,42 @@ export class ChatDialogComponent {
     this.messages = [];
     this.elementData = [];
     this.history = [];
+    console.log('this.messages inicializado:', this.messages); // Agregar este console.log para verificar la inicialización de this.messages
 
   }
 
   ngOnInit(): void {
-    this.messages = this.data.element.chats;
+
     this.userType = this.data.userType;
     this.userId = this.data.userId;
+
+    // Llamar al servicio para obtener los mensajes
+    this.companyDataService.getMessagesByReservation(this.data.element.id).subscribe(
+        (response) => {
+          // Mapear la respuesta para obtener solo el contenido y la fecha del mensaje
+          this.messages = response.map((message: any) => ({
+            content: message.content,
+            messageDate: message.messageDate
+          }));
+          console.log('Mensajes obtenidos:', this.messages);
+        },
+        (error) => {
+          console.error('Error al obtener mensajes:', error);
+        }
+    );
+
   }
 
   //add
   sendMessage(){
-    this.chatData.user = this.userType;
 
-    this.chatData.dateTime = new Date().toLocaleDateString();
-    
-    const newMensaje = {
-      message : this.chatData.message
-    }
-    this.companyDataService.updateReservationMessage(this.data.element.id, this.userType,newMensaje).subscribe((response: any) => {
+    this.companyDataService.updateReservationMessage(this.data.element.id, this.userType,this.chatData.message).subscribe((response: any) => {
 
-      //se actualiza el arreglo de mensajes
-      this.messages.push(response);
+      console.log("el response es: " + JSON.stringify(response));
+      console.log('this.messages antes de push:', this.messages); // Agregar este console.log para verificar el estado de this.messages antes de push
+
+      this.messages.push(response); //este push no funiona porque "messages" aui es indefinido
+
     }, (error: any) => {
     }
     );
