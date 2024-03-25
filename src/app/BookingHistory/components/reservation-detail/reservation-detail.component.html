@@ -8,14 +8,28 @@
         <p>{{ reservation.services }}</p>
     </div>
 
-    <div class="flex justify-between mb-2">
+    <!-- Customer and company names -->
+    <div *ngIf="this.userType === 'company'" class="flex justify-between mb-2">
         <p class="text-gray-500">Nombre del cliente</p>
         <p>{{ reservation.customer?.firstName }} {{ reservation.customer?.lastName }} </p>
     </div>
+    <div *ngIf="this.userType === 'client'" class="flex justify-between mb-2">
+        <p class="text-gray-500">Nombre de la empresa</p>
+        <p>{{ reservation.company?.name }} </p>
+    </div>
 
-    <div class="flex justify-between mb-2" *ngIf="reservation.status === 'scheduled'">
+    <div *ngIf="reservation.status === 'scheduled'" class="flex justify-between mb-2">
         <p class="text-gray-500">Costo del servicio</p>
-        <a (click)="openEditPaymentDialog()" class="cursor-pointer">S/. {{ reservation.price }} <i class="ml-2 fa fa-pen"></i></a>
+        <p>S/. {{ reservation.price }}
+            <a class="cursor-pointer">
+                <i *ngIf="reservation.status === 'scheduled' && this.userType === 'company'" (click)="openEditPaymentDialog()" class="ml-2 fa fa-pen"></i>
+            </a>
+        </p>
+    </div>
+
+    <div class="flex justify-between mb-2">
+        <p class="text-gray-500">Estado del servicio</p>
+        <p>{{ reservation.status }}</p>
     </div>
 
     <hr class="mt-4 border-t-2 border-gray-300">

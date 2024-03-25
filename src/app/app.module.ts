@@ -37,6 +37,7 @@ import {MatDatepickerModule} from "@angular/material/datepicker";
 import {FormsModule} from "@angular/forms";
 
 import { LanguageSelectionComponent } from "./Public/components/language-selection/language-selection.component";
+import { ReservationHistoryComponent } from './BookingHistory/components/reservation-history/reservation-history.component';
 
 export function createTranslateLoader(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -68,6 +69,7 @@ export function createTranslateLoader(http: HttpClient) {
     LanguageSelectionComponent,
     ReservationItemComponent,
     ReservationDetailComponent,
+    ReservationHistoryComponent,
   ],
   imports: [
     BrowserModule,
