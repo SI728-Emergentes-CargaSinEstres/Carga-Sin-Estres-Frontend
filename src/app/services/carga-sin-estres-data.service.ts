@@ -81,8 +81,15 @@ export class CargaSinEstresDataService {
   }
 
   //Chat Controller ---------------------------------------------------------------
-  updateReservationMessage(id: any, data: any): Observable<any> {
-    return this.http.post<any>(`${this.base_url}/messages/${id}`, JSON.stringify(data), this.httpOptions)
+  updateReservationMessage(id: any, userType:any,data: any): Observable<any> {
+
+    // Combina los datos proporcionados con el userType en un nuevo objeto
+    const requestData = {
+      content:data,
+      userType: userType // Añade el userType al objeto de datos
+    };
+
+    return this.http.post<any>(`${this.base_url}/messages/${id}`, requestData, this.httpOptions)
       .pipe(retry(2),catchError(this.handleError))
   }
 

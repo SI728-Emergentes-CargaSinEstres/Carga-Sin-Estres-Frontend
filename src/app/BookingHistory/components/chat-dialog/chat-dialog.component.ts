@@ -31,8 +31,6 @@ export class ChatDialogComponent {
     this.messages = [];
     this.elementData = [];
     this.history = [];
-    console.log('this.messages inicializado:', this.messages); // Agregar este console.log para verificar la inicialización de this.messages
-
   }
 
   ngOnInit(): void {
@@ -46,9 +44,9 @@ export class ChatDialogComponent {
           // Mapear la respuesta para obtener solo el contenido y la fecha del mensaje
           this.messages = response.map((message: any) => ({
             content: message.content,
-            messageDate: message.messageDate
+            messageDate: message.messageDate,
+            userType: message.userType
           }));
-          console.log('Mensajes obtenidos:', this.messages);
         },
         (error) => {
           console.error('Error al obtener mensajes:', error);
@@ -60,22 +58,19 @@ export class ChatDialogComponent {
   //add
   sendMessage() {
 
-    this.companyDataService.updateReservationMessage(this.data.element.id, this.chatData.message).subscribe(
+    this.companyDataService.updateReservationMessage(this.data.element.id, this.userType, this.chatData.message).subscribe(
         (response: any) => {
-          console.log("El response es: " + JSON.stringify(response));
 
           // Crear un nuevo mensaje con las propiedades de la respuesta
           const newMessage = {
             content: response.content,
-            messageDate: response.messageDate
+            messageDate: response.messageDate,
+            userType: response.userType
           };
-
-          console.log('Nuevo mensaje:', newMessage);
 
           // Agregar el nuevo mensaje al arreglo messages
           this.messages.push(newMessage);
 
-          console.log('Messages después de agregar:', this.messages);
         },
         (error: any) => {
           console.error('Error al enviar mensaje:', error);

@@ -12,8 +12,13 @@
             <div class="message-user">
                 <mat-card>
                     <mat-card-content>
-                        <div *ngIf="message.user == 'client' ; else elseBlock "><b>Cliente</b></div>
-                        <ng-template #elseBlock><b>Compañía</b></ng-template>
+                        <!-- Utiliza la propiedad 'user' de cada mensaje para diferenciar entre usuarios -->
+                        <div *ngIf="message.userType === 'client'">
+                            <b>Cliente</b>
+                        </div>
+                        <div *ngIf="message.userType === 'company'">
+                            <b>Compañía</b>
+                        </div>
                         <p style="color: #9E9E9E; font-size: small; margin-bottom: 0px;">{{ message.messageDate }}</p>
                         <p>{{ message.content }}</p>
                     </mat-card-content>
