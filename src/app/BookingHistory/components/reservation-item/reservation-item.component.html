@@ -1,11 +1,19 @@
-<div class="mb-8 bg-white rounded-3xl">
+<div class="mb-8 bg-white rounded-3xl drop-shadow-md">
     <div class="p-8 md:px-20 md:py-12">
         <div class="flex items-center justify-between mb-4">
             <p class="text-gray-500">{{ (reservation.status === 'finalized' || reservation.status === 'cancelled') ?
-                'Fecha en la que se realizó el servicio' : 'Fecha para realizar el servicio' }}</p>
+                'Fecha de inicio del servicio' : 'Fecha para realizar el servicio' }}</p>
             <div class="text-right flex">
                 <p class="text-right">{{ reservation.startDate | date:'EEEE dd/MM/yyyy' }}</p>
                 <p class="text-right"> ・ {{ reservation.startTime }} hs</p>
+            </div>
+        </div>
+        <div *ngIf="reservation.status === 'finalized' || reservation.status === 'cancelled'" class="flex items-center justify-between mb-4">
+            <p class="text-gray-500"> {{ (reservation.status === 'finalized') ?
+                'Fecha de finalización del servicio' : 'Fecha de cancelación del servicio' }} </p>
+            <div class="text-right flex">
+                <p class="text-right">{{ reservation.endDate | date:'EEEE dd/MM/yyyy' }}</p>
+                <p class="text-right"> ・ {{ reservation.endTime }} hs</p>
             </div>
         </div>
 

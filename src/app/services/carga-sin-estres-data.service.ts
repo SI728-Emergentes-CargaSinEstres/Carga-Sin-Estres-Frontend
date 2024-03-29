@@ -73,7 +73,6 @@ export class CargaSinEstresDataService {
     return this.http.patch(`${this.base_url}/reservations/${companyId}/status?status=${status}`, JSON.stringify(data), this.httpOptions);
   }
 
-
   //update payment
   updateReservationPayment(id: any, data: any): Observable<Reservation> {
     return this.http.patch<Reservation>(`${this.base_url}/reservations/${id}/payment`, JSON.stringify(data), this.httpOptions)

@@ -31,6 +31,7 @@ const routes: Routes = [
       {path: 'client-settings', component: ClientSettingsComponent},
       {path: 'company-table', component: CompanyTableComponent},
       {path: 'active-reservations', component: ActiveReservationsComponent},
+      {path: 'reservation-history', component: ReservationHistoryComponent},
     ]
   },
 

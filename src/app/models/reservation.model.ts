@@ -7,6 +7,7 @@ export interface Reservation {
     originAddress: any;
     destinationAddress: any;
     endDate: any;
+    endTime: any;
     price: any;
     status: any;
     services: any;

@@ -18,7 +18,7 @@
         <p>{{ reservation.company?.name }} </p>
     </div>
 
-    <div *ngIf="reservation.status === 'scheduled'" class="flex justify-between mb-2">
+    <div *ngIf="reservation.status != 'solicited'" class="flex justify-between mb-2">
         <p class="text-gray-500">Costo del servicio</p>
         <p>S/. {{ reservation.price }}
             <a class="cursor-pointer">
