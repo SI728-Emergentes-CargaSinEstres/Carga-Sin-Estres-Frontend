@@ -50,6 +50,20 @@ export class ReservationItemComponent {
         });
     }
 
+    //set end date and end time
+    setReservationEndDateTime(reservation: any) {
+        const endDate = new Date();
+        const endTime = endDate.getHours() + ':' + endDate.getMinutes();
+        const endDateString = endDate.toISOString().split('T')[0];
+        const endTimeString = endTime;
+        this.companyDataService.updateReservationStatus(reservation.id,  endDateString, endTimeString).subscribe((response: any) => {
+            this._snackBar.open('Se finalizó la reserva con éxito', 'Cerrar', {
+                duration: 2000,
+            });
+            this.reservationUpdated.emit();
+        });
+    }
+    
 
     openChatDialog(element: any) {
         this.dialog.open(ChatDialogComponent, {
@@ -61,4 +75,10 @@ export class ReservationItemComponent {
             }
         });
     }
+
+    isReservationFinalized(startDate: string, startTime: string): boolean {
+        const startDateTime = new Date(startDate + ' ' + startTime);
+        const currentDateTime = new Date();
+        return startDateTime < currentDateTime;
+    }    
 }

@@ -79,6 +79,12 @@ export class CargaSinEstresDataService {
       .pipe(retry(2),catchError(this.handleError))
   }
 
+  //update end date and end time
+  updateReservationEndDateAndEndTime(id: any, endDate: Date, endTime: string): Observable<Reservation> {
+    return this.http.patch<Reservation>(`${this.base_url}/reservations/${id}/endDate-endTime`, this.httpOptions)
+      .pipe(retry(2),catchError(this.handleError))
+  }
+
   //Chat Controller ---------------------------------------------------------------
   updateReservationMessage(id: any, userType:any,data: any): Observable<any> {
 
