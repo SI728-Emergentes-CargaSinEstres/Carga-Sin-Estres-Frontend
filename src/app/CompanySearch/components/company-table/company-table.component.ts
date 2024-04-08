@@ -1,17 +1,12 @@
-import {Component, ViewChild, Inject} from '@angular/core';
+import {Component, ViewChild} from '@angular/core';
 import {MatTableDataSource} from '@angular/material/table';
 import {CargaSinEstresDataService} from 'src/app/services/carga-sin-estres-data.service';
 import {MatPaginator} from '@angular/material/paginator';
-import {Router} from '@angular/router';
 import {ActivatedRoute} from '@angular/router';
-
-import {MatDialog, MatDialogModule, MatDialogRef} from '@angular/material/dialog';
-import {MatButtonModule} from '@angular/material/button';
-import {MatIconModule} from '@angular/material/icon';
-import {MatSnackBar, MatSnackBarModule} from '@angular/material/snack-bar';
-
-import {MAT_DIALOG_DATA} from '@angular/material/dialog';
+import {MatDialog} from '@angular/material/dialog';
 import {CompanyDetailComponent} from "../company-detail/company-detail.component";
+import {CargaRapidaDialogComponent} from "../cargaRapida-dialog/cargaRapida-dialog.component";
+
 
 @Component({
     selector: 'app-company-table',
@@ -155,92 +150,21 @@ export class CompanyTableComponent {
     /* GO TO COMPANY INFO PAGE */
     getRow(row: any) {
         const dialogRef = this.dialog.open(CompanyDetailComponent, {
-            data: {company: row, customerId: this.customerId}
+            data: {
+                company: row,
+                customerId: this.customerId
+            }
         });
     }
 
     openDialog() {
-        const dialogRef = this.dialog.open(CargaRapidaDialog, {
+        const dialogRef = this.dialog.open(CargaRapidaDialogComponent, {
             data: {
-                userId: parseInt(this.customerId),
+                customerId: this.customerId,
             }
-        });
-        dialogRef.afterClosed().subscribe(result => {
-            //console.log(`Dialog result: ${result}`);
         });
     }
 
 }
 
 
-@Component({
-    selector: 'cargaRapida-dialog',
-    templateUrl: 'cargaRapida-dialog/cargaRapida-dialog.html',
-    styleUrls: ['cargaRapida-dialog/cargaRapida-dialog.scss'],
-    standalone: true,
-    imports: [MatDialogModule, MatButtonModule, MatIconModule, MatSnackBarModule]
-})
-export class CargaRapidaDialog {
-
-    companies: any[] = [];
-
-    reservation: any = {
-        pickupAddress: undefined,
-        destinationAddress: undefined,
-        movingDate: undefined,
-        movingTime: undefined,
-        services: undefined,
-    };
-
-    userId: number = 0;
-
-    constructor(public dialogRef: MatDialogRef<CargaRapidaDialog>, private companyDataService: CargaSinEstresDataService,
-                public router: Router, private _snackBar: MatSnackBar, @Inject(MAT_DIALOG_DATA) public data: any) {
-
-        this.userId = this.data.userId;
-    }
-
-    closeDialog(): void {
-        this.dialogRef.close();
-    }
-
-    ngOnInit(): void {
-        this.getAllCompanies();
-    }
-
-    getAllCompanies() {
-        this.companyDataService.getAllCompanies().subscribe((res: any) => {
-            this.companies = res;
-        })
-    }
-
-    generateCargaRapida() {
-        let now = new Date(); //current date al momento de hacer la reserva
-
-        let randCompanyIndex = Math.floor(Math.random() * this.companies.length); //index al azar
-        let randCompany = this.companies[randCompanyIndex]; //company al azar
-
-        this.reservation.pickupAddress = "Locación actual";
-        this.reservation.destinationAddress = "Por Definir";
-        this.reservation.bookingDate = now.getFullYear() + "-" + now.getMonth() + "-" + now.getDate();
-        this.reservation.movingDate = now.getFullYear() + "-" + now.getMonth() + "-" + now.getDate();
-        this.reservation.movingTime = now.getHours() + ":" + now.getMinutes();
-        this.reservation.services = "Carga";
-        //se genera la reserva con company random y fecha actual
-        this.companyDataService.createReservation(this.userId, randCompany.id, this.reservation).subscribe(
-            (res: any) => {
-                //console.log("Reservation created:", res);
-            },
-            err => {
-                //console.log("Error:", err);
-            }
-        );
-        this._snackBar.open('Se ha generado una reserva Carga Rapida', 'Cerrar', {
-            duration: 5000,
-            horizontalPosition: 'center',
-            verticalPosition: 'bottom',
-        });
-        this.closeDialog();
-    }
-
-}
