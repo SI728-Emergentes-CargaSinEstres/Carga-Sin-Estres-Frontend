@@ -60,7 +60,10 @@ export class ActiveReservationsComponent implements OnInit {
                 this.pendingReservations = res;
                 console.log(res)
                 this.pendingReservations = this.pendingReservations.filter(reservation =>
-                    reservation.status === 'scheduled'
+                    reservation.status === 'scheduled' ||
+                    reservation.status === 'to be scheduled' ||
+                    reservation.status === 'rescheduled' ||
+                    reservation.status === 'in progress'
                 );
             });
         }
@@ -68,7 +71,10 @@ export class ActiveReservationsComponent implements OnInit {
             this.companyDataService.getReservationByCompanyId(this.userId).subscribe((res: any) => {
                 this.pendingReservations = res;
                 this.pendingReservations = this.pendingReservations.filter(reservation =>
-                    reservation.status === 'scheduled'
+                    reservation.status === 'scheduled' ||
+                    reservation.status === 'to be scheduled' ||
+                    reservation.status === 'rescheduled' ||
+                    reservation.status === 'in progress'
                 );
             });
         }

@@ -19,12 +19,18 @@ export class ReservationItemComponent {
     constructor(private companyDataService: CargaSinEstresDataService, private _snackBar: MatSnackBar, private dialog: MatDialog) {
     }
 
+    ngOnInit() {
+        // Llamar a una función que se ejecuta periódicamente, por ejemplo, cada segundo
+        this.checkReservationsInProgress();
+    }
+
     toggleDetails() {
         this.showDetails = !this.showDetails;
     }
 
     @Output() reservationUpdated: EventEmitter<void> = new EventEmitter<void>();
     setReservationStatus(company: any, status: any) {
+        console.log("status:", status)
         this.companyDataService.updateReservationStatus(company.id, status, {}).subscribe((response: any) => {
             if (status === 'scheduled') {
                 this._snackBar.open('Se confirmó la reserva con éxito', 'Cerrar', {
@@ -33,6 +39,11 @@ export class ReservationItemComponent {
             }
             else if (status == 'rescheduled') {
                 this._snackBar.open('Se reprogramó la reserva con éxito', 'Cerrar', {
+                    duration: 2000,
+                });
+            }
+            else if (status == 'in progress') {
+                this._snackBar.open('La reserva se va llevar a cabo', 'Cerrar', {
                     duration: 2000,
                 });
             }
@@ -76,9 +87,21 @@ export class ReservationItemComponent {
         });
     }
 
-    isReservationFinalized(startDate: string, startTime: string): boolean {
+    reservationMarkedInProgress: boolean = false;
+
+    checkReservationsInProgress() {
+        // Verificar si la reserva aún no está marcada como 'in progress'
+        if (!this.reservationMarkedInProgress && this.reservation.status === 'scheduled' && this.isReservationInProgress(this.reservation.startDate, this.reservation.startTime)) {
+            // Cambiar el estado de la reserva a 'in progress' y marcarla como ya procesada
+            this.setReservationStatus(this.reservation, 'in progress');
+            this.reservationMarkedInProgress = true;
+        }
+    }
+
+    isReservationInProgress(startDate: string, startTime: string): boolean {
         const startDateTime = new Date(startDate + ' ' + startTime);
         const currentDateTime = new Date();
-        return startDateTime < currentDateTime;
-    }    
+        return startDateTime <= currentDateTime; 
+    }
+    
 }

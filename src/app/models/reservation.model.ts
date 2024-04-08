@@ -12,4 +12,5 @@ export interface Reservation {
     status: any;
     services: any;
     chatId: any;
+    companyName:any;
 }

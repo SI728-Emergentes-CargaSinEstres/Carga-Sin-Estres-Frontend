@@ -13,7 +13,9 @@ export class ReservationDetailComponent {
   @Input() reservation!: Reservation;
   @Input() userType!: string;
 
-  constructor(private dialog: MatDialog) { }
+  constructor(private dialog: MatDialog) {
+  }
+
   openEditPaymentDialog() {
     this.dialog.open(EditPaymentDialogComponent, {
       width: '600px',
@@ -22,5 +24,4 @@ export class ReservationDetailComponent {
       }
     });
   }
-
 }
