@@ -67,6 +67,13 @@ export class CompanyDetailComponent {
         this.api.createReservation(this.data.customerId, this.data.company.id, this.reservation).subscribe(
             (res: any) => {
                 this.openSnackBar('Reserva agregada exitosamente');
+            },
+            (error: any) => {
+                if (error.status === 400) {
+                    this.openSnackBar(error.error.message);
+                } else {
+                    this.openSnackBar('Error al desconocido del servidor'); //error generico
+                }
             }
         );
         this.dialogRef.close();
