@@ -13,15 +13,23 @@ export class ReservationDetailComponent {
   @Input() reservation!: Reservation;
   @Input() userType!: string;
 
-  constructor(private dialog: MatDialog) {
-  }
-
+  constructor(private dialog: MatDialog) { }
   openEditPaymentDialog() {
-    this.dialog.open(EditPaymentDialogComponent, {
+    const dialogRef = this.dialog.open(EditPaymentDialogComponent, {
       width: '600px',
       data: {
         element: this.reservation
       }
     });
+    dialogRef.afterClosed().subscribe(element =>{
+      if (element){
+        this.reservation = element;
+        console.log('Nuevo precio:', this.reservation.price);
+      }else{
+        console.log('Edición cancelada');
+      }
+    })
+
   }
+
 }

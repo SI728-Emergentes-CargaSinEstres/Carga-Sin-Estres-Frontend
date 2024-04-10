@@ -1,22 +1,30 @@
-<p><button mat-icon-button mat-dialog-close class="btn-close">
-    <mat-icon>close</mat-icon>
-</button></p>
-<p>
+<h2 mat-dialog-title>Edit Price</h2>
+<form #editPriceForm="ngForm" (ngSubmit)="submit()">
     <mat-dialog-content>
-        <header style="display: flex ;">
-            <mat-icon> edit</mat-icon>&nbsp;&nbsp;
-            <h1>Editar</h1>
-        </header>
-        <form  #paymentForm='ngForm'>
-            <div class="dialog-content">
-                <div>
-                    <mat-form-field appearance="outline">
-                        <input  matInput placeholder="Ex. S/200" [(ngModel)]="payment" name="payment">
-                    </mat-form-field>
-                </div>&nbsp;&nbsp;
+        <mat-form-field>
+            <mat-label for="price">Price</mat-label>
+            <input matInput id="price" type="number" name="price" [(ngModel)]="payment" required>
+        </mat-form-field>
 
-                <!--<div><button mat-raised-button  class="btn-save-payment" (click)="save()">Guardar</button></div>-->
-            </div>
-        </form>
+        <div class="flex justify-between mb-4">
+            <mat-form-field class="w-1/2" color="accent">
+                <mat-label for="startDate">Fecha</mat-label>
+                <input matInput id="startDate" name="startDate" [matDatepicker]="picker" [(ngModel)]="startDate" required>
+                <mat-hint>MM/DD/YYYY</mat-hint>
+                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-datepicker #picker></mat-datepicker>
+            </mat-form-field>
+
+            <mat-form-field class="w-1/2" color="accent">
+                <mat-label for="startTime">Hora</mat-label>
+                <input matInput id="startTime" name="startTime" type="time" [(ngModel)]="startTime" required>
+            </mat-form-field>
+        </div>
+
+
     </mat-dialog-content>
-</p>
+    <mat-dialog-actions>
+        <button mat-button (click)="cancel()">Cancel</button>
+        <button mat-button [disabled]="editPriceForm.invalid" type="submit">Save</button>
+    </mat-dialog-actions>
+</form>
