@@ -73,10 +73,26 @@ export class CargaSinEstresDataService {
     return this.http.patch(`${this.base_url}/reservations/${companyId}/status?status=${status}`, JSON.stringify(data), this.httpOptions);
   }
 
-  //update payment
-  updateReservationPayment(id: any, data: any): Observable<Reservation> {
-    return this.http.patch<Reservation>(`${this.base_url}/reservations/${id}/payment`, JSON.stringify(data), this.httpOptions)
-      .pipe(retry(2),catchError(this.handleError))
+//update payment
+  //http://localhost:8080/api/v1/reservations/1/price-startDate-startTime-status?price=10&startDate=2024-05-06&startTime=10%3A30&status=to%20be%20schedule
+  updateReservationPayment(id: any, price:any, startDate: any, startTime:any): Observable<Reservation> {
+    if (startDate instanceof Date) {
+      startDate = startDate.toISOString().split('T')[0];
+      // Continúa con el código que utiliza startDateISOString
+    }
+    let response;
+    response = this.http.patch<Reservation>
+    (`${this.base_url}/reservations/${id}/price-startDate-startTime?price=${price}&startDate=${startDate}&startTime=${startTime}`,
+        {
+          id: id,
+          price:price,
+          startDate:startDate,
+          startTime:startTime
+        })
+        .pipe(retry(2),catchError(this.handleError))
+
+    console.log(response);
+    return response;
   }
 
   //update end date and end time

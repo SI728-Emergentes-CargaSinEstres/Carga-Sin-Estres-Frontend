@@ -4,6 +4,7 @@ import {CargaSinEstresDataService} from 'src/app/services/carga-sin-estres-data.
 import {MatSnackBar} from '@angular/material/snack-bar';
 import {ChatDialogComponent} from "../chat-dialog/chat-dialog.component";
 import {MatDialog} from "@angular/material/dialog";
+import {EditPaymentDialogComponent} from "../edit-payment-dialog/edit-payment-dialog.component";
 
 @Component({
     selector: 'app-reservation-item',
@@ -102,6 +103,24 @@ export class ReservationItemComponent {
         const startDateTime = new Date(startDate + ' ' + startTime);
         const currentDateTime = new Date();
         return startDateTime <= currentDateTime; 
+    }
+
+    openEditPaymentDialog() {
+        const dialogRef = this.dialog.open(EditPaymentDialogComponent, {
+            width: '600px',
+            data: {
+                element: this.reservation
+            }
+        });
+        dialogRef.afterClosed().subscribe(element =>{
+            if (element){
+                this.reservation = element;
+                console.log('Nuevo precio:', this.reservation.price);
+            }else{
+                console.log('Edición cancelada');
+            }
+        })
+
     }
     
 }
