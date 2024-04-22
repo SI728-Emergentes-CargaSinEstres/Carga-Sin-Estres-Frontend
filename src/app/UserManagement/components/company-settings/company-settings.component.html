@@ -38,8 +38,11 @@
             <div class="w-full md:w-1/2 lg:w-1/2 mb-10">
                 <h2 class="text-black font-bold mt-1">Servicios</h2>
             </div>
-            <div class="service-boxes">
-                <p>Marque los servicios que ofrece su empresa:</p>
+            <div class="w-full lg:w-1/2 lg:flex flex-col">
+                <label class="mb-2">Servicios Actuales</label>
+                <label class="mb-2" style="color: gray; font-style: italic;">{{currentServicesLabel}}</label>
+                <br>
+                <label class="mb-2">Sevicios Nuevos </label>
                 <div class="checkboxes col">
                     <div class="check row-1">
                         <input type="checkbox" name="transporte" formControlName="transporte" value="transporte" id="transporte">
@@ -65,8 +68,7 @@
                         <input type="checkbox" name="desmontaje" formControlName="desmontaje" value="desmontaje" id="desmontaje">
                         <label for="desmontaje">Desmontaje</label>                          
                     </div>
-                    
-                </div>       
+                </div>      
             </div>
         </div>
         <hr class="my-12 border-t-2 border-gray-300 ml-14 mr-14">
@@ -115,7 +117,7 @@
                 </div>
                 <div class="flex flex-col lg:w-1/2 lg:ml-4">
                     <label for="confirmPassword" class="mb-2">Confirmar contraseña</label>
-                    <input type="confirmPassword" placeholder="" formControlName="confirmPassword" id="confirmPassword" required class="w-full p-2 mb-4">
+                    <input type="Password" placeholder="" formControlName="confirmPassword" id="confirmPassword" required class="w-full p-2 mb-4">
                 </div>
             </div>
         </div>

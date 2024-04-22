@@ -15,7 +15,8 @@ export class CompanySettingsComponent {
   errorMessage: string = '';
   id: any;
   company: any;
-  servicioIds = [];
+  currentServices = [];
+  currentServicesLabel = '';
 
   constructor(private fb: FormBuilder, private api: CargaSinEstresDataService, private route: ActivatedRoute, private router: Router, private _snackBar: MatSnackBar) {//private http: HttpClient
     this.companySettingsForm = this.fb.group({
@@ -26,9 +27,13 @@ export class CompanySettingsComponent {
       password: [null],
       confirmPassword: [null],
       logo: [null],
-      servicioIds: [null],
       tic: [null],
-      description: [null]
+      description: [null],
+      transporte: [null],
+      carga: [null],
+      embalaje: [null],
+      montaje: [null],
+      desmontaje: [null]
     });
 
     this.route.pathFromRoot[1].url.subscribe(
@@ -47,7 +52,10 @@ export class CompanySettingsComponent {
       (res: any) => 
       {
         this.company = res;
-        this.servicioIds = this.company.servicioIds;
+        this.currentServices = this.company.servicios.map((servicio: { name: any; }) => servicio.name);
+        this.currentServicesLabel = this.currentServices.join(', ');
+        console.log("Servicios actuales: ", this.currentServices);
+        console.log("Servicios actuales: ", this.currentServicesLabel);
       }
     );
   }
@@ -65,18 +73,16 @@ export class CompanySettingsComponent {
       return;
     }
 
-    // Handle checkbox validation
-    const services = [];
-    const checkboxes = [
-      'transporte', 'carga', 'embalaje', 'montaje', 'desmontaje'
-    ];
+    // Almacenar los id de los servicios que son seleccionados
+    const servicioIds = [];
+    if (formData.transporte) { servicioIds.push('transporte'); }
+    if (formData.carga) { servicioIds.push('carga'); }
+    if (formData.embalaje) {servicioIds.push('embalaje');}
+    if (formData.montaje) {servicioIds.push('montaje'); }
+    if (formData.desmontaje) {servicioIds.push('desmontaje');}
 
-    checkboxes.forEach(checkboxName => {
-      const control = this.companySettingsForm.get(checkboxName);
-      if (control && control.value) {
-        services.push(checkboxName);
-      }
-    });
+    console.log('Servicios seleccionados que seran los nuevos: ', servicioIds);
+
 
     const newCompanySettings={
       name: formData.name,
@@ -85,7 +91,7 @@ export class CompanySettingsComponent {
       phoneNumber: formData.phoneNumber,
       password: formData.password,
       logo: formData.logo,
-      servicioIds: [],
+      servicioIds: this.currentServices,
       tic: formData.tic,
       description: formData.description
     }
