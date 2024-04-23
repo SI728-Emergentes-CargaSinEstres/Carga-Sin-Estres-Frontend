@@ -62,7 +62,7 @@ export class ActiveReservationsComponent implements OnInit {
                 this.pendingReservations = this.pendingReservations.filter(reservation =>
                     reservation.status === 'scheduled' ||
                     reservation.status === 'to be scheduled' ||
-                    reservation.status === 'rescheduled' ||
+                    reservation.status === 're-scheduled' ||
                     reservation.status === 'in progress'
                 );
             });
@@ -73,7 +73,7 @@ export class ActiveReservationsComponent implements OnInit {
                 this.pendingReservations = this.pendingReservations.filter(reservation =>
                     reservation.status === 'scheduled' ||
                     reservation.status === 'to be scheduled' ||
-                    reservation.status === 'rescheduled' ||
+                    reservation.status === 're-scheduled' ||
                     reservation.status === 'in progress'
                 );
             });

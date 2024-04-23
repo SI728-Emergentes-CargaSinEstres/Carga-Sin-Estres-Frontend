@@ -1,4 +1,4 @@
-import { Component, Inject, ViewChild } from '@angular/core';
+import { Component, Inject, EventEmitter, ViewChild, Input, Output } from '@angular/core';
 import { CargaSinEstresDataService } from 'src/app/services/carga-sin-estres-data.service';
 import { NgForm } from '@angular/forms';
 import { ActiveReservationsComponent } from '../active-reservations/active-reservations.component';
@@ -37,6 +37,19 @@ export class EditPaymentDialogComponent {
     //this.status = 'rescheduled';
   }
 
+  @Output() reservationUpdated: EventEmitter<void> = new EventEmitter<void>();
+    setReservationStatus(company: any, status: any) {
+        console.log("status:", status)
+        this.cargaSinEstresDataService.updateReservationStatus(company.id, status, {}).subscribe((response: any) => {
+            if (status === 're-scheduled') {
+                this._snackBar.open('La reserva ha sido reprogramada con éxito', 'Cerrar', {
+                    duration: 2000,
+                });
+            }
+            this.reservationUpdated.emit();
+        });
+    }
+
   submit() {
     console.log('Enviando');
     this.cargaSinEstresDataService.updateReservationPayment(this.data.element.id, this.payment, this.startDate, this.startTime).subscribe((response: any) => {
@@ -49,21 +62,21 @@ export class EditPaymentDialogComponent {
         this.data.element.startDate = this.startDate;
       }
       this.data.element.startTime = this.startTime;
+
+      if(this.data.element.status === 'scheduled'){
+        this.setReservationStatus(this.data.element, 're-scheduled');
+      }
+
       this._snackBar.open('Se cambió el pago de la reserva con éxito', 'Pago cambiado', {
         duration: 2000, // Duración en milisegundos
       });
       this.dialogRef.close(this.data.element);
-      setTimeout(() => { location.reload();}, 2000);
       return response;
     });
-
 
   }
   cancel(){
     this.dialogRef.close();
   }
-
-
-
 
 }
