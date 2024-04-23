@@ -10,5 +10,5 @@ export interface Company {
     description: any;
     ratings: any;
     membershipId: any;
-    servicios: any;
+    servicioIds: any;
   }

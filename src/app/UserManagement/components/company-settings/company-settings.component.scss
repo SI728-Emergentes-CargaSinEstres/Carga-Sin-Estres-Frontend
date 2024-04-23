@@ -6,23 +6,38 @@ select {
     border-radius: 5px;
 }
 
-.service-boxes{
-    max-width: 80%;
-    margin: auto auto 20px auto;
+.services-list {
     display: flex;
     flex-direction: column;
 }
 
-.service-boxes .checkboxes{
-    border-radius: 5px;
-    border: 1px solid #FDAE39;
-    background-color: white;
-    display: flex;
-    flex-direction: column;
+.service-item {
+    margin-bottom: 10px;
 }
 
-.error-messages {
-    color: #ff0000;
-    font-weight: bold;
-    margin-top: 10px;
+.checkbox-container {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+.checkbox-container input {
+    display: none;
+}
+
+.checkmark {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    margin-right: 10px;
+}
+
+.checkbox-container input:checked + .checkmark {
+    background-color: #FFCA28;
+}
+
+.checkbox-container:hover .checkmark {
+    background-color: #ccc;
 }

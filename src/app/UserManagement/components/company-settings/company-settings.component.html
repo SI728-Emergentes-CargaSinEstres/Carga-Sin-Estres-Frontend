@@ -40,35 +40,21 @@
             </div>
             <div class="w-full lg:w-1/2 lg:flex flex-col">
                 <label class="mb-2">Servicios Actuales</label>
+                <div>
                 <label class="mb-2" style="color: gray; font-style: italic;">{{currentServicesLabel}}</label>
+                </div>
                 <br>
-                <label class="mb-2">Sevicios Nuevos </label>
-                <div class="checkboxes col">
-                    <div class="check row-1">
-                        <input type="checkbox" name="transporte" formControlName="transporte" value="transporte" id="transporte">
-                        <label for="transporte">Transporte</label>                           
+                <label class="mb-2">Servicios Nuevos</label>
+                <div class="services-list">
+                    <div *ngFor="let service of services" class="service-item">
+                        <label class="checkbox-container">
+                            <input type="checkbox" [name]="service!.name" [checked]="isServiceSelected(service.id)" (change)="toggleServiceSelection(service.id)">
+                            <span class="checkmark"></span>
+                            {{ service!.name }}
+                        </label>
                     </div>
-                    
-                    <div class="check row-1">
-                        <input type="checkbox" name="carga" formControlName="carga" value="carga" id="carga">
-                        <label for="carga">Carga</label>                            
-                    </div>
-                    
-                    <div class="check row-1">
-                        <input type="checkbox" name="embalaje" formControlName="embalaje" value="embalaje" id="embalaje">
-                        <label for="embalaje">Embalaje</label>                           
-                    </div>
-                    
-                    <div class="check row-1">
-                        <input type="checkbox" name="montaje" formControlName="montaje" value="montaje" id="montaje">
-                        <label for="montaje">Montaje</label>                        
-                    </div>
-                    
-                    <div class="check row-1">
-                        <input type="checkbox" name="desmontaje" formControlName="desmontaje" value="desmontaje" id="desmontaje">
-                        <label for="desmontaje">Desmontaje</label>                          
-                    </div>
-                </div>      
+                </div>
+                
             </div>
         </div>
         <hr class="my-12 border-t-2 border-gray-300 ml-14 mr-14">

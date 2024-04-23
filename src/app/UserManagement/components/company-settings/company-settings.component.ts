@@ -17,6 +17,8 @@ export class CompanySettingsComponent {
   company: any;
   currentServices = [];
   currentServicesLabel = '';
+  services: { id: number, name: string }[] = []; 
+  servicesIds:number[] = []
 
   constructor(private fb: FormBuilder, private api: CargaSinEstresDataService, private route: ActivatedRoute, private router: Router, private _snackBar: MatSnackBar) {//private http: HttpClient
     this.companySettingsForm = this.fb.group({
@@ -28,12 +30,7 @@ export class CompanySettingsComponent {
       confirmPassword: [null],
       logo: [null],
       tic: [null],
-      description: [null],
-      transporte: [null],
-      carga: [null],
-      embalaje: [null],
-      montaje: [null],
-      desmontaje: [null]
+      description: [null]
     });
 
     this.route.pathFromRoot[1].url.subscribe(
@@ -43,6 +40,7 @@ export class CompanySettingsComponent {
     ); 
 
     this.getCompany(this.id);
+    this.getServices();
   }
 
   ngOnInit(){}
@@ -54,10 +52,28 @@ export class CompanySettingsComponent {
         this.company = res;
         this.currentServices = this.company.servicios.map((servicio: { name: any; }) => servicio.name);
         this.currentServicesLabel = this.currentServices.join(', ');
-        console.log("Servicios actuales: ", this.currentServices);
-        console.log("Servicios actuales: ", this.currentServicesLabel);
       }
     );
+  }
+
+  getServices(){
+    return this.api.getAllServices().subscribe(
+      (res: any) => {
+        this.services = res;
+      }
+    );
+  }
+
+  isServiceSelected(serviceId: number): boolean {
+    return this.servicesIds.includes(serviceId);
+  }
+
+  toggleServiceSelection(serviceId: number): void {
+      if (this.isServiceSelected(serviceId)) {
+          this.servicesIds = this.servicesIds.filter(id => id !== serviceId);
+      } else {
+          this.servicesIds.push(serviceId);
+      }
   }
 
   onSubmit(){
@@ -66,23 +82,12 @@ export class CompanySettingsComponent {
     // Verificar si todos los campos son nulos
     const allFieldsAreNull = Object.values(formData).every(value => value === null);
 
-    if (allFieldsAreNull) {
+    if (allFieldsAreNull && this.servicesIds.length === 0) {
       this._snackBar.open('No hay cambios para guardar', 'Cerrar', {
         duration: 5000, // Duración en milisegundos
       });
       return;
     }
-
-    // Almacenar los id de los servicios que son seleccionados
-    const servicioIds = [];
-    if (formData.transporte) { servicioIds.push('transporte'); }
-    if (formData.carga) { servicioIds.push('carga'); }
-    if (formData.embalaje) {servicioIds.push('embalaje');}
-    if (formData.montaje) {servicioIds.push('montaje'); }
-    if (formData.desmontaje) {servicioIds.push('desmontaje');}
-
-    console.log('Servicios seleccionados que seran los nuevos: ', servicioIds);
-
 
     const newCompanySettings={
       name: formData.name,
@@ -91,9 +96,9 @@ export class CompanySettingsComponent {
       phoneNumber: formData.phoneNumber,
       password: formData.password,
       logo: formData.logo,
-      servicioIds: this.currentServices,
       tic: formData.tic,
-      description: formData.description
+      description: formData.description,
+      servicioIds: this.servicesIds
     }
 
     if (formData.password !== null) {
@@ -134,5 +139,4 @@ export class CompanySettingsComponent {
   cancelar(){
     this.router.navigate(['/company', this.id, 'membership']);
   }
-
 }
