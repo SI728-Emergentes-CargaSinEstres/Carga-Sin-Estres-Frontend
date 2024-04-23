@@ -24,7 +24,7 @@
 
     </mat-dialog-content>
     <mat-dialog-actions>
-        <button mat-button (click)="cancel()">Cancel</button>
-        <button mat-button [disabled]="editPriceForm.invalid" type="submit">Save</button>
+        <button mat-button (click)="cancel()" class="text-black hover:bg-rose-400 font-medium rounded py-2.5 text-center" style="background-color: #F36F56;">Cancel</button>
+        <button mat-button [disabled]="payment === 0 || editPriceForm.invalid" type="submit" class="save-button text-black font-medium rounded py-2.5 text-center">Save</button>
     </mat-dialog-actions>
 </form>

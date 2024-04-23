@@ -48,8 +48,8 @@
             </div>
 
             <div class="flex justify-between">
-                <button *ngIf="reservation.price != 0" (click)="setReservationStatus(reservation, 'to be scheduled')"
-                        class="text-black bg-amber-500 hover:bg-amber-300 font-medium rounded py-2.5 text-center md:w-1/3 px-4" style="margin: 5px;">
+                <button [disabled]="reservation.price === 0" (click)="setReservationStatus(reservation, 'to be scheduled')"
+                        class="btn-aceptar text-black font-medium rounded py-2.5 text-center md:w-1/3 px-4" style="margin: 5px;">
                     Aceptar
                 </button>
                 

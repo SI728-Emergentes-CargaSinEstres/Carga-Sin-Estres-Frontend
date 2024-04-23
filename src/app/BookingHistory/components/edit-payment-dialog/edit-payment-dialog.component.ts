@@ -53,6 +53,7 @@ export class EditPaymentDialogComponent {
         duration: 2000, // Duración en milisegundos
       });
       this.dialogRef.close(this.data.element);
+      setTimeout(() => { location.reload();}, 2000);
       return response;
     });
 
