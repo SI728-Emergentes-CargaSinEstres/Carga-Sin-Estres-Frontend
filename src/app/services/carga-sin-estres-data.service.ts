@@ -147,6 +147,11 @@ export class CargaSinEstresDataService {
         .pipe(retry(2),catchError(this.handleError));
   }
 
+  getAllServices(): Observable<any> {
+    return this.http.get<any>(this.base_url+"/services", this.httpOptions).pipe(retry(2),catchError(this.handleError));
+  }
+
+
   //Subscription Controller ---------------------------------------------------------------
   createMembership(companyId: any, data: any): Observable<any> {
     return this.http.post<any>(`${this.base_url}/memberships/${companyId}`, JSON.stringify(data), this.httpOptions)

@@ -15,7 +15,10 @@ export class CompanySettingsComponent {
   errorMessage: string = '';
   id: any;
   company: any;
-  servicioIds = [];
+  currentServices = [];
+  currentServicesLabel = '';
+  services: { id: number, name: string }[] = []; 
+  servicesIds:number[] = []
 
   constructor(private fb: FormBuilder, private api: CargaSinEstresDataService, private route: ActivatedRoute, private router: Router, private _snackBar: MatSnackBar) {//private http: HttpClient
     this.companySettingsForm = this.fb.group({
@@ -26,7 +29,6 @@ export class CompanySettingsComponent {
       password: [null],
       confirmPassword: [null],
       logo: [null],
-      servicioIds: [null],
       tic: [null],
       description: [null]
     });
@@ -38,6 +40,7 @@ export class CompanySettingsComponent {
     ); 
 
     this.getCompany(this.id);
+    this.getServices();
   }
 
   ngOnInit(){}
@@ -47,9 +50,30 @@ export class CompanySettingsComponent {
       (res: any) => 
       {
         this.company = res;
-        this.servicioIds = this.company.servicioIds;
+        this.currentServices = this.company.servicios.map((servicio: { name: any; }) => servicio.name);
+        this.currentServicesLabel = this.currentServices.join(', ');
       }
     );
+  }
+
+  getServices(){
+    return this.api.getAllServices().subscribe(
+      (res: any) => {
+        this.services = res;
+      }
+    );
+  }
+
+  isServiceSelected(serviceId: number): boolean {
+    return this.servicesIds.includes(serviceId);
+  }
+
+  toggleServiceSelection(serviceId: number): void {
+      if (this.isServiceSelected(serviceId)) {
+          this.servicesIds = this.servicesIds.filter(id => id !== serviceId);
+      } else {
+          this.servicesIds.push(serviceId);
+      }
   }
 
   onSubmit(){
@@ -58,25 +82,12 @@ export class CompanySettingsComponent {
     // Verificar si todos los campos son nulos
     const allFieldsAreNull = Object.values(formData).every(value => value === null);
 
-    if (allFieldsAreNull) {
+    if (allFieldsAreNull && this.servicesIds.length === 0) {
       this._snackBar.open('No hay cambios para guardar', 'Cerrar', {
         duration: 5000, // Duración en milisegundos
       });
       return;
     }
-
-    // Handle checkbox validation
-    const services = [];
-    const checkboxes = [
-      'transporte', 'carga', 'embalaje', 'montaje', 'desmontaje'
-    ];
-
-    checkboxes.forEach(checkboxName => {
-      const control = this.companySettingsForm.get(checkboxName);
-      if (control && control.value) {
-        services.push(checkboxName);
-      }
-    });
 
     const newCompanySettings={
       name: formData.name,
@@ -85,9 +96,9 @@ export class CompanySettingsComponent {
       phoneNumber: formData.phoneNumber,
       password: formData.password,
       logo: formData.logo,
-      servicioIds: [],
       tic: formData.tic,
-      description: formData.description
+      description: formData.description,
+      servicioIds: this.servicesIds
     }
 
     if (formData.password !== null) {
@@ -128,5 +139,4 @@ export class CompanySettingsComponent {
   cancelar(){
     this.router.navigate(['/company', this.id, 'membership']);
   }
-
 }
