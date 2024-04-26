@@ -117,7 +117,6 @@
 
                 <div class="mt-6 flex justify-end">
                     <a *ngIf="this.userType === 'company'" class="mr-6 cursor-pointer text-[#FFC431]" (click)="openEditPaymentDialog()" >Reprogramar</a>
-                    <!--TODO: Falta cambiar el estado a re-scheduled una vez que se hace la edicion de la fecha y hora-->
                     <ng-container>
                         <a (click)="setReservationStatus(reservation, 'cancelled'); setReservationEndDateTime(reservation)" class="mr-6 cursor-pointer text-[#F36F56]">Cancelar servicio</a>
                     </ng-container>
