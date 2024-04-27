@@ -8,6 +8,10 @@ import { Router } from '@angular/router';
 })
 
 export class ToolbarLandingComponent {
+  showMenu = false;
+  toggleMenu() {
+    this.showMenu = !this.showMenu;
+  }
 
   constructor(private router: Router) { }
 
@@ -38,10 +42,7 @@ export class ToolbarLandingComponent {
   pageLoginForm(){
     this.router.navigateByUrl('/login');
   }
-  pageClientForm(){
-    this.router.navigateByUrl('/client-form');
-  }
-  pageCompanyForm(){
-    this.router.navigateByUrl('/company-form');
+  pageSignUpForm(){
+    this.router.navigateByUrl('/sign-up');
   }
 }

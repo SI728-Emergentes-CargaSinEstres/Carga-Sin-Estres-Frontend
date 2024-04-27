@@ -9,6 +9,10 @@ import { MatSnackBar } from '@angular/material/snack-bar';
   styleUrls: ['./toolbar-client.component.scss']
 })
 export class ToolbarClientComponent implements OnInit {
+  showMenu = false;
+  toggleMenu() {
+    this.showMenu = !this.showMenu;
+  }
 
   userId: string = '';
   userType: string = '';
@@ -28,13 +32,16 @@ export class ToolbarClientComponent implements OnInit {
 
   pageLanding(){
     this.router.navigateByUrl('/landing-page');
-    this._snackBar.open('Se cerro sesión con éxito', 'Cerrar', {
+    this._snackBar.open('Se cerró la sesión con éxito', 'Cerrar', {
       duration: 2000, // Duración en milisegundos
     });
   }
 
-  pageHistoryCards(){
-    this.router.navigateByUrl(`client/${this.userId}/history-cards`);
+  pageActiveReservations(){
+    this.router.navigateByUrl(`client/${this.userId}/active-reservations`);
+  }
+  pageReservationsHistory(){
+    this.router.navigateByUrl(`client/${this.userId}/reservation-history`);
   }
   pageCompanyTable(){
     this.router.navigateByUrl(`client/${this.userId}/company-table`);

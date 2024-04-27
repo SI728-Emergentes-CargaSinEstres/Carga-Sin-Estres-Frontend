@@ -18,28 +18,10 @@ import {MatGridListModule} from '@angular/material/grid-list';
 import {MatExpansionModule} from '@angular/material/expansion';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatNativeDateModule } from '@angular/material/core';
+import {MatDatepickerModule} from "@angular/material/datepicker";
 
 @NgModule({
-    imports: [
-        BrowserAnimationsModule,
-        MatButtonModule,
-        MatCardModule,
-        MatIconModule,
-        MatPaginatorModule,
-        MatProgressSpinnerModule,
-        MatTableModule,
-        MatInputModule,
-        MatToolbarModule,
-        MatFormFieldModule,
-        MatChipsModule,
-        MatGridListModule,
-        MatExpansionModule,
-        FormsModule,
-        ReactiveFormsModule,
-        MatSelectModule,
-        MatDialogModule,
-        MatSnackBarModule
-    ],
     exports: [
         BrowserAnimationsModule,
         MatButtonModule,
@@ -60,6 +42,28 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
         MatExpansionModule,
         MatDialogModule,
         MatSnackBarModule
+    ],
+    imports: [
+        BrowserAnimationsModule,
+        MatButtonModule,
+        MatCardModule,
+        MatIconModule,
+        MatPaginatorModule,
+        MatProgressSpinnerModule,
+        MatTableModule,
+        MatInputModule,
+        MatToolbarModule,
+        MatFormFieldModule,
+        MatChipsModule,
+        MatGridListModule,
+        MatExpansionModule,
+        FormsModule,
+        ReactiveFormsModule,
+        MatSelectModule,
+        MatDialogModule,
+        MatSnackBarModule,
+        MatDatepickerModule,
+        MatNativeDateModule,
     ]
 })
 export class MaterialModule { }

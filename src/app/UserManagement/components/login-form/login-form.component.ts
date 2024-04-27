@@ -50,14 +50,14 @@ export class LoginFormComponent {
       try {
         // Buscar en clientes
         
-        this.api.getClientsForLogin(this.emailVerify, this.passwordVerify)
+        this.api.getCustomersForLogin(this.emailVerify, this.passwordVerify)
           .subscribe((clientResponse: any) => {
             if (clientResponse != null) {
               // Las credenciales son válidas para un cliente, redirigir a la página correspondiente
               this._snackBar.open('Inicio de sesión exitoso', 'Cerrar', {
                 duration: 2000, // Duración en milisegundos
               });
-              this.router.navigate(['client/'+ clientResponse.id + '/client-settings']);
+              this.router.navigate(['client/'+ clientResponse.id + '/company-table']);
             }
           }
         );
@@ -67,7 +67,7 @@ export class LoginFormComponent {
             this._snackBar.open('Inicio de sesión exitoso', 'Cerrar', {
               duration: 2000, // Duración en milisegundos
             });
-            this.router.navigate(['company/'+ companyResponse.id + '/company-settings']);
+            this.router.navigate(['company/'+ companyResponse.id + '/active-reservations']);
           } else {
             this.errorMessage = 'Credenciales incorrectas. Intente nuevamente.';
           }
