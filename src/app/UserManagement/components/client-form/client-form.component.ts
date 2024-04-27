@@ -17,6 +17,7 @@ export class ClientFormComponent {
     this.clientRegistrationForm = this.fb.group({
       firstName: ['', Validators.required],
       lastName: ['', Validators.required],
+      dateOfBirth: ['', Validators.required],
       phoneNumber: ['', [Validators.required, Validators.pattern(/^\d+$/)]],
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required, Validators.pattern(/^(?=.*[A-Z])(?=.*\d).{12,}$/)]],
@@ -58,10 +59,10 @@ export class ClientFormComponent {
         phoneNumber: formData.phoneNumber,
         email: formData.email,
         password: formData.password,
-        userType: 'client',
+        dateOfBirth: formData.dateOfBirth,
       }
 
-      this.api.createClient(clientData).subscribe((clientResponse: any) => {
+      this.api.createCustomer(clientData).subscribe((clientResponse: any) => {
         if (clientResponse && clientResponse.id) { //se crea automaticamente el id del cliente
           this._snackBar.open('Registro exitoso', 'Cerrar', {
             duration: 2000, // Duración en milisegundos
@@ -72,9 +73,5 @@ export class ClientFormComponent {
 
     }
 
-  }
-
-  cancelar(){
-    this.router.navigate(['landing-page']);
   }
 }

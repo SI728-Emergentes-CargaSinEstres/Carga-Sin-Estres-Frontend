@@ -4,9 +4,8 @@ import { LoginFormComponent } from './UserManagement/components/login-form/login
 import { LandingPageComponent } from './Public/components/landing-page/landing-page.component';
 import { ClientFormComponent } from './UserManagement/components/client-form/client-form.component';
 import { CompanyFormComponent } from './UserManagement/components/company-form/company-form.component';
-import { HistoryCardsComponent } from './BookingHistory/components/history-cards/history-cards.component';
+import { ActiveReservationsComponent } from './BookingHistory/components/active-reservations/active-reservations.component';
 import { CompanyTableComponent } from './CompanySearch/components/company-table/company-table.component';
-import { CompanyDetailComponent } from './CompanySearch/components/company-detail/company-detail.component';
 import { ClientSettingsComponent } from './UserManagement/components/client-settings/client-settings.component';
 import { CompanySettingsComponent } from './UserManagement/components/company-settings/company-settings.component';
 import { MembershipComponent } from './Memberships/components/membership/membership.component';
@@ -15,6 +14,9 @@ import { ToolbarClientComponent } from './Public/components/toolbar-client/toolb
 import { ToolbarCompanyComponent } from './Public/components/toolbar-company/toolbar-company.component';
 import { SignUpFormComponent } from "./UserManagement/components/sign-up-form/sign-up-form.component";
 import { PageNotFoundComponent } from "./Public/components/page-not-found/page-not-found.component";
+import {
+  ReservationHistoryComponent
+} from "./BookingHistory/components/reservation-history/reservation-history.component";
 
 const routes: Routes = [
   {path: 'login', component: LoginFormComponent},
@@ -28,8 +30,8 @@ const routes: Routes = [
     children: [
       {path: 'client-settings', component: ClientSettingsComponent},
       {path: 'company-table', component: CompanyTableComponent},
-      {path: 'company/:id', component: CompanyDetailComponent},
-      {path: 'history-cards', component: HistoryCardsComponent},
+      {path: 'active-reservations', component: ActiveReservationsComponent},
+      {path: 'reservation-history', component: ReservationHistoryComponent},
     ]
   },
 
@@ -39,7 +41,8 @@ const routes: Routes = [
     children: [
       {path: 'company-settings', component: CompanySettingsComponent},
       {path: 'membership', component: MembershipComponent},
-      {path: 'history-cards', component: HistoryCardsComponent},
+      {path: 'active-reservations', component: ActiveReservationsComponent},
+      {path: 'reservation-history', component: ReservationHistoryComponent},
       {path: 'payment-form', component: PaymentFormComponent}
     ]
   },

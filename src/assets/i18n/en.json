@@ -57,6 +57,7 @@
     "signUp": "Sign up",
     "name": "Name",
     "lastName": "Last name",
+    "birthDate": "Birth date",
     "phone": "Phone number",
     "address": "Address",
     "email": "Email",

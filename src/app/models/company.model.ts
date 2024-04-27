@@ -1,16 +1,14 @@
 export interface Company {
     id: any;
     name: any;
-    photo: any;
+    TIC: any;
+    direction: any;
     email: any;
-    direccion: any;
-    numeroContacto: any;
+    phoneNumber: any;
     password: any;
-    confirmarpassword: any;
-    transporte: boolean;
-    carga: boolean;
-    embalaje: boolean;
-    montaje: boolean;
-    desmontaje: boolean;
+    logo: any;
     description: any;
+    ratings: any;
+    membershipId: any;
+    servicioIds: any;
   }

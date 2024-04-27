@@ -57,6 +57,7 @@
     "signUp": "Iniciar sesión",
     "name": "Nombres",
     "lastName": "Apellidos",
+    "birthDate": "Fecha de nacimiento",
     "phone": "Número de teléfono",
     "address": "Dirección",
     "email": "Correo electrónico",

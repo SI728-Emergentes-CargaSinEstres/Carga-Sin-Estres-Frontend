@@ -17,17 +17,17 @@
             </div>
         
             <div class="w-full lg:w-1/2 lg:flex flex-col"> 
-                <label for="name" class="mb-2">Nombres</label>
-                <input type="text" placeholder="{{client.name}}" formControlName="name" id="name" required class="w-full p-2 mb-4">
+                <label for="firstName" class="mb-2">Nombres</label>
+                <input type="text" placeholder="{{client?.firstName}}" formControlName="firstName" id="firstName" required class="w-full p-2 mb-4">
                 
-                <div class="lg:flex"> <!--TODO: Cambiar a apellidos-->
+                <div class="lg:flex">
                     <div class="flex flex-col lg:w-1/2">
-                        <label class="mb-2">Apellido Materno</label>
-                        <input type="text" placeholder="{{client.apellidoMaterno}}" formControlName="apellidoMaterno" id="apellidoMaterno" required class="w-full p-2 mb-4">
+                        <label for="lastName" class="mb-2">Apellidos</label>
+                        <input type="text" placeholder="{{client?.lastName}}" formControlName="lastName" id="lastName" required class="w-full p-2 mb-4">
                     </div>
                     <div class="flex flex-col lg:w-1/2 lg:ml-4">
-                        <label class="mb-2">Apellido Paterno</label>
-                        <input type="text" placeholder="{{client.apellidoPaterno}}" formControlName="apellidoPaterno" id="apellidoPaterno" required class="w-full p-2 mb-4">
+                        <label for="dateOfBirth" class="mb-2">Fecha de Nacimiento</label>
+                        <input type="text" placeholder="{{client?.dateOfBirth}}" formControlName="dateOfBirth" id="dateOfBirth" required class="w-full p-2 mb-4">
                     </div>
                 </div>
             </div>
@@ -41,27 +41,14 @@
             </div>
         
             <div class="w-full lg:w-1/2 lg:flex">
-                <div class="flex flex-col lg:w-1/2"> <!--TODO: Mostrar email actual-->
+                <div class="flex flex-col lg:w-1/2">
                     <label for="email" class="mb-2">Email</label>
-                    <input type="email" placeholder="" formControlName="email" id="email" required class="w-full p-2 mb-4">
+                    <input type="email" placeholder="{{client?.email}}" formControlName="email" id="email" required class="w-full p-2 mb-4">
                 </div>
                 <div class="flex flex-col lg:w-1/2 lg:ml-4">
-                    <label for="celular" class="mb-2">Celular</label>
-                    <input type="text" placeholder="{{client.celular}}" formControlName="celular" id="celular" required class="w-full p-2 mb-4">
+                    <label for="phoneNumber" class="mb-2">Celular</label>
+                    <input type="text" placeholder="{{client?.phoneNumber}}" formControlName="phoneNumber" id="phoneNumber" required class="w-full p-2 mb-4">
                 </div>
-            </div>
-        </div>
-        <hr class="my-12 border-t-2 border-gray-300 ml-14 mr-14">
-        
-        <!-- Dirección -->
-        <div class="md:flex lg:flex mb-10 mx-32">
-            <div class="w-full md:w-1/2 lg:w-1/2 mb-10">
-                <h2 class="text-black font-bold mt-1">Ubicación</h2>
-            </div>
-        
-            <div class="w-full flex flex-col lg:w-1/2">
-                <label for="direccion" class="mb-2">Dirección</label>
-                <input type="text" placeholder="{{client.direccion}}" formControlName="direccion" id="direccion" required class="w-full p-2 mb-4">
             </div>
         </div>
         <hr class="my-12 border-t-2 border-gray-300 ml-14 mr-14">
@@ -78,8 +65,8 @@
                     <input type="password" placeholder="" formControlName="password" id="password" required class="w-full p-2 mb-4">
                 </div>
                 <div class="flex flex-col lg:w-1/2 lg:ml-4">
-                    <label for="celular" class="mb-2">Confirmar contraseña</label>
-                    <input type="password" placeholder="" formControlName="confirmarpassword" id="confirmarpassword" required class="w-full p-2 mb-4">
+                    <label for="confirmPassword" class="mb-2">Confirmar contraseña</label>
+                    <input type="password" placeholder="" formControlName="confirmPassword" id="confirmPassword" required class="w-full p-2 mb-4">
                 </div>
             </div>
         </div>

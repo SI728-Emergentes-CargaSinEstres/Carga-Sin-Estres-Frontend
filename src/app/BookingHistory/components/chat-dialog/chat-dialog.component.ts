@@ -2,7 +2,7 @@ import { Component, Inject, ViewChild } from '@angular/core';
 import { CargaSinEstresDataService } from 'src/app/services/carga-sin-estres-data.service';
 import { Chat } from 'src/app/models/chat.model';
 import { NgForm } from '@angular/forms';
-import { HistoryCardsComponent } from '../history-cards/history-cards.component';
+import { ActiveReservationsComponent } from '../active-reservations/active-reservations.component';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 
@@ -16,7 +16,7 @@ export class ChatDialogComponent {
 
   chatData!: Chat;
   messages!: any[];
-  historyDialog!: HistoryCardsComponent;
+  historyDialog!: ActiveReservationsComponent;
   elementData!: any[];
   history!: any[];
 
@@ -31,32 +31,53 @@ export class ChatDialogComponent {
     this.messages = [];
     this.elementData = [];
     this.history = [];
-
   }
 
   ngOnInit(): void {
-    this.messages = this.data.element.chats;
+
     this.userType = this.data.userType;
     this.userId = this.data.userId;
+
+    // Llamar al servicio para obtener los mensajes
+    this.companyDataService.getMessagesByReservation(this.data.element.id).subscribe(
+        (response) => {
+          // Mapear la respuesta para obtener solo el contenido y la fecha del mensaje
+          this.messages = response.map((message: any) => ({
+            content: message.content,
+            messageDate: message.messageDate,
+            userType: message.userType
+          }));
+        },
+        (error) => {
+          console.error('Error al obtener mensajes:', error);
+        }
+    );
+
   }
 
   //add
-  sendMessage(){
-    this.chatData.user = this.userType;
+  sendMessage() {
 
-    this.chatData.dateTime = new Date().toLocaleDateString();
-    
-    const newMensaje = {
-      message : this.chatData.message
-    }
-    this.companyDataService.updateReservationMessage(this.data.element.id, this.userType,newMensaje).subscribe((response: any) => {
+    this.companyDataService.updateReservationMessage(this.data.element.id, this.userType, this.chatData.message).subscribe(
+        (response: any) => {
 
-      //se actualiza el arreglo de mensajes
-      this.messages.push(response);
-    }, (error: any) => {
-    }
+          // Crear un nuevo mensaje con las propiedades de la respuesta
+          const newMessage = {
+            content: response.content,
+            messageDate: response.messageDate,
+            userType: response.userType
+          };
+
+          // Agregar el nuevo mensaje al arreglo messages
+          this.messages.push(newMessage);
+
+        },
+        (error: any) => {
+          console.error('Error al enviar mensaje:', error);
+        }
     );
     this.chatForm.reset();
   }
+
 
 }
