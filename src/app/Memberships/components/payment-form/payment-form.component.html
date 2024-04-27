@@ -1,0 +1,87 @@
+
+<br><br><br>
+<h1>FORMULARIO MEMBRESÍA</h1>
+<div class="container">
+  <form (ngSubmit)="onSubmit()" [formGroup]="subscriptionForm" >
+    <img class="logo-img" src="https://github.com/LuceroObispoRios/Grupo1_SW53/blob/main/CargaSinEstres-V1/public-images/Cargalogo.png?raw=true" alt="logo Carga sin estres">
+  
+    <label for="Correo">Ingrese el correo de la cuenta empresa</label> 
+    <mat-form-field class="form-group" appearance="fill" id="correo">
+        <mat-label>Correo</mat-label>
+        <input matInput formControlName="correo" name="correo" required>
+    </mat-form-field>
+  
+    <label for="Contrasenia">Ingrese la contraseña de su cuenta empresa</label>
+    <mat-form-field class="form-group" appearance="fill" id="contrasenia">
+        <mat-label>Contraseña</mat-label>
+        <input matInput type="password"  formControlName="password" name="contrasenia" required>
+    </mat-form-field>
+  
+    <label for="ruc">Ingrese su RUC</label>
+    <mat-form-field class="form-group" appearance="fill" id="ruc">
+        <mat-label>RUC</mat-label>
+        <input matInput formControlName="ruc" name="ruc" required>
+    </mat-form-field>
+  
+    <label for="direccion">Ingrese su dirección</label>
+    <mat-form-field class="form-group" appearance="fill" id="direccion">
+      <mat-label>Dirección</mat-label>
+      <input matInput formControlName="direccion" name="direccion" required>
+    </mat-form-field>
+
+    <label for="vigenciaSuscripcion">Selecciona la vigencia de su suscripción</label>
+    <mat-form-field class="form-group" id="vigenciaSuscripcion">
+      <mat-label>Vigencia de suscripción</mat-label>
+      <mat-select formControlName="vigenciaSuscripcion" name="vigenciaSuscripcion" required>
+        <mat-option value="3 month plan">3 Meses</mat-option>
+        <mat-option value="6 month plan">6 Meses</mat-option>
+        <mat-option value="12 month plan">12 Meses</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <br>
+    <label for="numeroTarjeta">Ingrese el numero de su tarjeta de pago</label>
+    <mat-form-field class="form-group" appearance="fill" id="numeroTarjeta">
+      <mat-label>Numero de Tarjeta</mat-label>
+      <input matInput name="numeroTarjeta" formControlName="numeroTarjeta" required>
+    </mat-form-field>
+  
+    <label for="CVV">Ingrese el CVV de la tarjeta</label>
+    <mat-form-field class="form-group" appearance="fill" id="CVV">
+      <mat-label>CVV</mat-label>
+      <input matInput formControlName="CVV" name="CVV" required>
+    </mat-form-field>
+  
+    <label for="fechaVencimiento">Ingrese la fecha de vencimiento de la tarjeta</label>
+    <mat-form-field class="form-group" appearance="fill" id="fechaVencimiento">
+      <mat-label>Fecha de vencimiento de la tarjeta</mat-label>
+      <input matInput formControlName="fechaVencimiento" name="fechaVencimiento" required>
+    </mat-form-field>
+    
+    <button mat-button class="btn" [disabled]="!botonDesactivado" type = "submit">Continuar</button>
+  </form>
+</div>
+
+<div class="confirmation-card" *ngIf="confirmacionVisible">
+  <mat-card>
+    <mat-card-content>
+      <h2>Boleta de Confirmación</h2>
+      <p><strong>Credenciales cuenta empresa:</strong> {{ correo }} | {{ contrasenia }}</p>
+      <p><strong>RUC:</strong> {{ ruc }}</p>
+      <p><strong>Dirección:</strong> {{ direccion }}</p>
+      <p><strong>Vigencia de Suscripción:</strong> {{ vigenciaSuscripcion }}</p>
+      <br>
+      <p><strong>Numero de tarjeta de pago:</strong> {{ numeroTarjeta }}</p>
+    </mat-card-content>
+    <mat-card-actions>
+      <button mat-button class="btn" (click)="firmar()">Firmar</button>
+    </mat-card-actions>
+  </mat-card>
+
+  <div class="confirm-message">
+    <p>Confirmado </p>
+    <p>Firma autentificadora: {{ firma }}</p>
+  </div>
+  <button mat-button class="btn" (click)="descargarBoleta()">Descargar Boleta</button>
+</div>
+<br><br><br>

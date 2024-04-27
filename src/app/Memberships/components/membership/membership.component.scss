@@ -1,0 +1,32 @@
+.card-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 40px;
+  }
+  
+  .month-card {
+    max-width: 400px;
+    border: 1px solid #e6e6e6;
+    text-align: center;
+    padding: 20px;
+  }
+  
+  .img {
+    max-width: 200px;
+    display: block; 
+    margin: 0 auto; 
+  }
+  
+  p {
+    margin: 10px 0; 
+    font-size: small;
+  }
+  
+  h3 {
+    background-color: black;
+    color: white;
+    text-align: center;
+    padding: 10px; 
+  }

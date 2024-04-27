@@ -1,0 +1,23 @@
+/* Estilos para el footer */
+body {
+  display: flex;
+  flex-direction: row;
+  min-height: 100vh;
+  margin: 0;
+}
+
+footer {
+  background-color: #1f1e1e;
+  color: #fff;
+  padding: 30px 0;
+  text-align: center;
+}
+
+footer img {
+  margin-right: 10px;
+}
+
+footer a img {
+  max-width: 30px;
+  max-height: 30px;
+}

@@ -1,0 +1,64 @@
+<app-toolbar-landing></app-toolbar-landing>
+<br><br><br>
+<div class="container">
+    <div class="container-back"> 
+        <div class="user-info">
+
+            <form [formGroup]="companyRegistrationForm" id="registro" action="" method="POST" (ngSubmit)="onSubmit()">
+                <h2>Registrar Cuenta de Empresa</h2>
+                <img src="https://github.com/LuceroObispoRios/Grupo1_SW53/blob/main/CargaSinEstres-V1/public-images/Cargalogo.png?raw=true" alt="Logo de Carga sin estres" class="logo">
+
+                <div class="right-section">
+                    <input type="text" placeholder="Nombre de la empresa" formControlName="name" id="nombre">
+                    <input type="text" placeholder="Email de la empresa" formControlName="email" id="email">
+                    <input type="text" placeholder="Dirección" formControlName="direccion" id="direccion" >
+                    <input type="text" placeholder="Telefono" formControlName="numeroContacto" id="numeroContacto">
+                    <input type="password" placeholder="Contraseña" formControlName="password" id="password">
+                    <input type="password" placeholder="Confirmar contraseña" formControlName="confirmarpassword" id="confirmarpassword">
+                    <input type="text" placeholder="Link al logo" formControlName="photo" id="photo"> <!--se añadio logo-->
+                </div>
+    
+                <div class="service-boxes">
+                    <p>Marque los servicios que ofrece su empresa:</p>
+                    <div class="checkboxes col">
+                        <div class="check row-1">
+                            <input type="checkbox" name="transporte" formControlName="transporte" value="transporte" id="transporte">
+                            <label for="transporte">Transporte</label>                           
+                        </div>
+                        
+                        <div class="check row-1">
+                            <input type="checkbox" name="carga" formControlName="carga" value="carga" id="carga">
+                            <label for="carga">Carga</label>                            
+                        </div>
+                        
+                        <div class="check row-1">
+                            <input type="checkbox" name="embalaje" formControlName="embalaje" value="embalaje" id="embalaje">
+                            <label for="embalaje">Embalaje</label>                           
+                        </div>
+                        
+                        <div class="check row-1">
+                            <input type="checkbox" name="montaje" formControlName="montaje" value="montaje" id="montaje">
+                            <label for="montaje">Montaje</label>                        
+                        </div>
+                        
+                        <div class="check row-1">
+                            <input type="checkbox" name="desmontaje" formControlName="desmontaje" value="desmontaje" id="desmontaje">
+                            <label for="desmontaje">Desmontaje</label>                          
+                        </div>
+                        
+                    </div>       
+                </div>
+    
+                <div class="description-box">
+                    <label for="description">Descripción corta de la empresa:</label>
+                    <textarea name="description" formControlName="description" rows="6"  id="description"></textarea>
+                </div>
+    
+                <button id="registro-button" type="submit">Registrar Empresa</button>
+                <button id="cancel-button" type="button" (click)="cancelar()">Cancelar</button>
+                <div id="errorMessages" class="error-messages" [innerHTML]="errorMessage">{{errorMessage}}</div>
+            </form>
+        </div>
+    </div>
+</div>
+<br><br><br>

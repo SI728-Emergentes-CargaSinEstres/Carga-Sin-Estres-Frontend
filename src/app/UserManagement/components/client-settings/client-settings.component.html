@@ -1,0 +1,28 @@
+<br><br>
+<div class="container">
+    <div class="container-back"> 
+        <div class="user-info">  
+            <form id="settings" action="" method="post" [formGroup]="userSettingsForm" (submit)="onSubmit()">
+                <h2>Editar datos de Perfil de Cliente</h2>
+
+                <div class="right-section">
+                    <input type="text" placeholder="Nombre" formControlName="name" id="name" required>
+                    <input type="text" placeholder="Apellido Materno" formControlName="apellidoMaterno" id="apellidoMaterno" required>
+                    <input type="text" placeholder="Apellido Paterno" formControlName="apellidoPaterno" id="apellidoPaterno" required>
+                    <input type="text" placeholder="Celular" formControlName="celular" id="celular" required>
+                    <input type="text" placeholder="Dirección" formControlName="direccion" id="direccion" required>
+                </div>
+                <div class="right-section">
+                    <input type="email" placeholder="Correo electrónico" formControlName="email" id="email" required>
+                    <input type="password" placeholder="Contraseña" formControlName="password" id="password" required> <!--change to text?-->
+                    <input type="password" placeholder="Repetir contraseña" formControlName="confirmarpassword" id="confirmarpassword" required>
+                </div>
+
+                <button id="submitButton" type="submit">Guardar cambios</button>
+                <button id="cancelButton" type="button" (click)="cancelar()">Cancelar</button>
+                <div id="errorMessages" class="error-messages" [innerHTML]="errorMessage">{{errorMessage}}</div>
+            </form>
+        </div>     
+    </div>
+</div>
+<br><br><br>
