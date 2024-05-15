@@ -62,13 +62,15 @@ export class ReservationItemComponent {
         });
     }
 
-    //set end date and end time
+    //set end date and end times
     setReservationEndDateTime(reservation: any) {
+
         const endDate = new Date();
-        const endTime = endDate.getHours() + ':' + endDate.getMinutes();
-        const endDateString = endDate.toISOString().split('T')[0];
-        const endTimeString = endTime;
-        this.companyDataService.updateReservationStatus(reservation.id,  endDateString, endTimeString).subscribe((response: any) => {
+        
+        const endTime = endDate.getHours().toString().padStart(2, '0') + ':' + endDate.getMinutes().toString().padStart(2, '0');
+        const endDateSent= endDate.toISOString().split('T')[0];
+
+        this.companyDataService.updateReservationEndDateAndEndTime(reservation.id, endDateSent , endTime).subscribe((response: any) => {
             this._snackBar.open('Se finalizó la reserva con éxito', 'Cerrar', {
                 duration: 2000,
             });
