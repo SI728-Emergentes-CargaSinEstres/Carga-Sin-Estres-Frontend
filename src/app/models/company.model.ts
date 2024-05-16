@@ -9,6 +9,6 @@ export interface Company {
     logo: any;
     description: any;
     ratings: any;
-    membershipId: any;
     servicioIds: any;
+    hasMembership?: boolean;
   }
