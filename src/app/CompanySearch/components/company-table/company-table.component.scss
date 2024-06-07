@@ -19,8 +19,12 @@ table th {
 }
 
 .golden-background {
-    background-color: #ffe2b7;
-    border: 3px solid #FDAE39;
+    background-color: #DBBB68;
+    transition: background-color 0.3s ease;
+}
+
+.golden-background:hover {
+    background-color: #C8A352;
 }
 
 .default-background {
