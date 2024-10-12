@@ -42,15 +42,85 @@
     <p class="font-bold my-4 text-black">Detalles de la reserva</p>
 
     <form id="myForm" action="" method="post" (submit)="onSubmit()">
-      <mat-form-field class="w-5/6" color="accent">
-        <mat-label for="originAddress">Dirección de origen</mat-label>
-        <input matInput id="originAddress" name="originAddress" [(ngModel)]="reservation.originAddress" required>
-      </mat-form-field>
 
-      <mat-form-field class="w-5/6" color="accent">
-        <mat-label for="destinationAddress">Dirección de destino</mat-label>
-        <input matInput id="destinationAddress" name="destinationAddress" [(ngModel)]="reservation.destinationAddress" required>
-      </mat-form-field>
+      <p class="font-semibold">Direccion de origen</p>
+      <div class="flex space-x-4 m-2">
+        <!-- Primera casilla desplegable -->
+        <div class="w-1/4">
+          <label for="region_origen" class="block text-sm font-medium">Region</label>
+          <select id="region_origen" class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+          (change)="onRegionChangeOrigin($event.target)">
+            <option value=""></option>
+            <option *ngFor="let option of departamentosOrigin" [value]="option">{{ option }}</option>
+          </select>
+        </div>
+      
+        <!-- Segunda casilla desplegable -->
+        <div class="w-1/4">
+          <label for="provincia_origen" class="block text-sm font-medium">Provincia</label>
+          <select id="provincia_origen" class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+          (change)="onProvinceChangeOrigin($event.target)" [disabled]="!selectedRegionOrigin">
+            <option value=""></option>
+            <option *ngFor="let option of provincesOrigin" [value]="option">{{ option }}</option>
+          </select>
+        </div>
+      
+        <!-- Tercera casilla desplegable -->
+        <div class="w-1/4">
+          <label for="distrito_origen" class="block text-sm font-medium">Distrito</label>
+          <select [(ngModel)]="reservation.ubigeoOrigin" name="ubigeoOrigin" id="distrito_origen" class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+          [disabled]="!selectedProvinceOrigin">
+          <option value=""></option>
+            <option *ngFor="let ubigeo of districtsOrigin" [value]="ubigeo.id">{{ ubigeo.distrito }}</option>
+          </select>
+        </div>    
+
+        <mat-form-field class="w-1/4" color="accent">
+          <mat-label for="originAddress">Dirección de origen</mat-label>
+          <input matInput id="originAddress" name="originAddress" [(ngModel)]="reservation.originAddress" required>
+        </mat-form-field>
+      </div>  
+
+      <p class="font-semibold">Direccion de destino</p>
+      <div class="flex space-x-4 m-2">
+        <!-- Primera casilla desplegable -->
+        <div class="w-1/4">
+          <label for="region_destino" class="block text-sm font-medium text-gray-700">Region</label>
+          <select id="region_destino" class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+          (change)="onRegionChangeDestination($event.target)">
+            <option value=""></option>
+            <option *ngFor="let option of departamentosDestination" [value]="option">{{ option }}</option>
+          </select>
+        </div>
+      
+        <!-- Segunda casilla desplegable -->
+        <div class="w-1/4">
+          <label for="provincia_destino" class="block text-sm font-medium text-gray-700">Provincia</label>
+          <select id="provincia_destino" class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+          (change)="onProvinceChangeDestination($event.target)" [disabled]="!selectedRegionDestination">
+            <option value=""></option>
+            <option *ngFor="let option of provincesDestination" [value]="option">{{ option }}</option>
+          </select>
+        </div>
+      
+        <!-- Tercera casilla desplegable IMPORTANTÍSIMO PONER EL NAME, si no no captura el valor -->
+        <div class="w-1/4">
+          <label for="distrito_destino" class="block text-sm font-medium text-gray-700">Distrito</label>
+          <select id="distrito_destino" class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+          [disabled]="!selectedProvinceDestination" [(ngModel)]="reservation.ubigeoDestination" name="ubigeoDestination">
+            <option value=""></option>
+            <option *ngFor="let option of districtsDestination" [value]="option.id">{{ option.distrito }}</option>
+          </select>
+        </div>
+
+        <mat-form-field class="w-1/4" color="accent">
+          <mat-label for="destinationAddress">Dirección de destino</mat-label>
+          <input matInput id="destinationAddress" name="destinationAddress" [(ngModel)]="reservation.destinationAddress" required>
+        </mat-form-field>
+      
+      </div>
+
+      
 
       <div class="flex justify-between mb-4">
         <mat-form-field class="w-1/2" color="accent">
@@ -89,156 +159,3 @@
 
   </div>
 </mat-dialog-content>
-
-<!--
-<br><br><br>
-
-<div class="container-title">
-<h1 class="title">Información de empresa</h1>
-<button mat-raised-button (click)="ReturnToCompanyTable()" class="return">Regresar</button>
-</div>
-
-<mat-card class="custom-card">
-  <img mat-card-image src="{{company.photo}}" alt="Logo Company">
-  <mat-card-header>
-    <mat-card-title>{{company.name}}</mat-card-title>
-    <mat-card-subtitle>Empresa</mat-card-subtitle>
-  </mat-card-header>
-
-  <mat-card-content>
-    <div>
-      <p class="label">Descripción: </p>
-      <p class="value">{{company.description}}</p>
-    </div>
-    <div>
-      <p class="label">Servicios: </p>
-      <ul>
-        <li class="value" *ngIf="company.transporte">Transporte</li>
-        <li class="value" *ngIf="company.carga">Carga</li>
-        <li class="value" *ngIf="company.embalaje">Embalaje</li>
-        <li class="value" *ngIf="company.montaje">Montaje</li>
-        <li class="value" *ngIf="company.desmontaje">Desmontaje</li>
-      </ul>
-    </div>
-    <div>
-      <p class="label">Dirección: </p>
-      <p class="value">{{company.direccion}}</p>
-    </div>
-    <div>
-      <p class="label">Número de contacto: </p>
-      <p class="value">{{company.numeroContacto}}</p>
-    </div>
-  </mat-card-content>
-</mat-card>
-
-<div class="section-container">
-  <div class="panel-container">
-    <section class="reviews">
-      <mat-expansion-panel>
-        <mat-expansion-panel-header>
-          <mat-panel-title>
-            Reseñas
-          </mat-panel-title>
-        </mat-expansion-panel-header>
-
-        <div class="average-rating">
-          <h2>Calificación general</h2>
-          <div class="rating-container">
-            <div class="star-rating">
-              <mat-icon *ngFor="let _ of getStars(averageRating)">star</mat-icon>
-            </div>
-          </div>
-          <div class="company-logo-container">
-            <img src="{{company.photo}}" alt="logo de empresa" class="company-logo">
-          </div>
-        </div>
-
-        <div *ngFor="let review of reviews" class="review">
-
-          <div class="rating-container">
-            <div class="star-rating">
-              <mat-icon *ngFor="let _ of getStars(review.rating)">star</mat-icon>
-            </div>
-          </div>
-
-          <p>{{ review.comment }}</p>
-        </div>
-
-        <div *ngIf="reviews.length === 0" class="review">
-          <p>Actualmente, no hay reseñas disponibles para esta empresa. Sé el primero en compartir tu experiencia.</p>
-        </div>
-
-      </mat-expansion-panel>
-    </section>
-  </div>
-
-  <div class="panel-container">
-    <section class="custom-addReservation">
-      <mat-expansion-panel>
-        <mat-expansion-panel-header>
-          <mat-panel-title>
-            Reservar
-          </mat-panel-title>
-        </mat-expansion-panel-header>
-
-        <form (ngSubmit)="onSubmit()" #reservationForm="ngForm">
-          <div class="reservation-info">
-            <mat-label>Fecha de hoy:</mat-label>
-            <mat-form-field>
-              <input type="text" matInput placeholder="Ex. 2023-09-25" required [(ngModel)]="reservation.bookingDate" name="bookingData">
-            </mat-form-field>
-
-            <mat-label>Servicios:</mat-label>
-            <mat-form-field>
-
-              <input type="text" matInput placeholder="Ex. Carga" required [(ngModel)]="reservation.services" name="services">
-            </mat-form-field>
-
-            <mat-label>Dirección de entrega:</mat-label>
-            <mat-form-field>
-              <input type="text" matInput placeholder="Ex. Monterrico" required [(ngModel)]="reservation.pickupAddress" name="pickupAddress">
-            </mat-form-field>
-
-            <mat-label>Dirección de destino:</mat-label>
-            <mat-form-field>
-              <input type="text" matInput placeholder="Ex. Monterrico" required [(ngModel)]="reservation.destinationAddress" name="destinationAddress">
-            </mat-form-field>
-
-            <mat-label>Fecha cuando el servicio se lleva a cabo:</mat-label>
-            <mat-form-field>
-              <input type="text" matInput placeholder="Ex. 2023-09-30" required [(ngModel)]="reservation.movingDate" name="movingDate">
-            </mat-form-field>
-
-            <mat-label>Hora cuando el servicio se lleva a cabo:</mat-label>
-            <mat-form-field>
-              <input type="text" matInput placeholder="Ex. 16:00" required [(ngModel)]="reservation.movingTime" name="movingTime">
-            </mat-form-field>
-
-            <br>
-            <mat-label>Número de tarjeta de pago:</mat-label>
-            <mat-form-field>
-              <input type="text" matInput placeholder="Ex. 0000000000000000" required [(ngModel)]="numeroTarjeta" name="numeroTarjeta">
-            </mat-form-field>
-
-            <mat-label>CVV de la tarjeta de pago</mat-label>
-            <mat-form-field>
-              <input type="text" matInput placeholder="000" required [(ngModel)]="CVV" name="CVV">
-            </mat-form-field>
-
-            <mat-label>Fecha de vencimiento de la tarjeta:</mat-label>
-            <mat-form-field>
-              <input type="text" matInput placeholder="00/00" required [(ngModel)]="fechaVencimiento" name="fechaVencimiento">
-            </mat-form-field>
-
-            <ng-container>
-              <button type="submit">Realizar reserva</button>
-            </ng-container>
-          </div>
-        </form>
-
-      </mat-expansion-panel>
-    </section>
-  </div>
-</div>
--->
-

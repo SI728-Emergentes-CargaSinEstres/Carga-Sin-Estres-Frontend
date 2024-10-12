@@ -184,4 +184,28 @@ export class CargaSinEstresDataService {
             catchError(this.handleError)
         );
   }
+
+  getDepartamentos(): Observable<string[]> {
+    return this.http.get<string[]>(`${this.base_url}/departamentos`)
+      .pipe(
+        map(departamentos => [...new Set(departamentos)])
+      );
+  }
+
+  getProvincias(departamento: string): Observable<string[]> {
+    return this.http.get<string[]>(`${this.base_url}/provincias/${departamento}`)
+      .pipe(
+        map(provincias => [...new Set(provincias)]) 
+      );
+  }
+
+  getDistritos(provincia: string): Observable<string[]> {
+    return this.http.get<string[]>(`${this.base_url}/distritos/${provincia}`)
+      .pipe(
+        map(distritos => [...new Set(distritos)]) 
+      );
+  }
+
+
+      
 }
