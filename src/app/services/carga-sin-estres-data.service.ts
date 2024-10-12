@@ -185,6 +185,8 @@ export class CargaSinEstresDataService {
         );
   }
 
+
+  //for ubigeo
   getDepartamentos(): Observable<string[]> {
     return this.http.get<string[]>(`${this.base_url}/departamentos`)
       .pipe(
@@ -205,6 +207,12 @@ export class CargaSinEstresDataService {
         map(distritos => [...new Set(distritos)]) 
       );
   }
+
+  getLocation(idUbigeo: any): Observable<string[]> {
+    return this.http.get<string[]>(`${this.base_url}/location/${idUbigeo}`);
+  }
+
+
 
 
       
