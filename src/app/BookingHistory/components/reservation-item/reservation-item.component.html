@@ -26,13 +26,15 @@
                     <p class="bg-gradient-to-b from-[#8856F3] to-[#44B0FF] inline-block text-transparent bg-clip-text font-bold">
                         Origen
                     </p>
+                    <p>{{ getFormattedLocationOrigin() }}</p>
                     <p>{{reservation.originAddress}}</p>
                 </div>
                 <div class="mt-[62px]">
                     <p class="bg-gradient-to-b from-[#F36F56] to-[#FFC444] inline-block text-transparent bg-clip-text font-bold">
                         Destino
                     </p>
-                    <p>{{ reservation.destinationAddress }}</p>
+                    <p>{{ getFormattedLocationDestination() }}</p>
+                    <p>{{reservation.destinationAddress}}</p>
                 </div>
             </div>
         </div>

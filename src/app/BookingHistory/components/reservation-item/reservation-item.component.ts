@@ -15,14 +15,24 @@ export class ReservationItemComponent {
     @Input() reservation!: Reservation;
     @Input() userType!: string;
 
+    locationOrigin:string[] = [];
+    locationDestination:string[] = [];
+
     showDetails: boolean = false;
 
     constructor(private companyDataService: CargaSinEstresDataService, private _snackBar: MatSnackBar, private dialog: MatDialog) {
     }
 
+
+
     ngOnInit() {
         // Llamar a una función que se ejecuta periódicamente, por ejemplo, cada segundo
         this.checkReservationsInProgress();
+
+        this.loadLocationOrigin();
+        this.loadLocationDestination();
+        this.getFormattedLocationOrigin();
+        this.getFormattedLocationDestination();
     }
 
     toggleDetails() {
@@ -124,5 +134,37 @@ export class ReservationItemComponent {
         })
 
     }
-    
+
+    loadLocationOrigin() {
+        if (this.reservation.ubigeoOrigin) {
+            this.companyDataService.getLocation(this.reservation.ubigeoOrigin).subscribe((location: string[]) => {
+                this.locationOrigin = location;
+                console.log('Ubicación de origen:', this.locationOrigin);
+            }, (error) => {
+                console.error('Error al obtener la ubicación de origen:', error);
+            });
+        }
+    }
+
+    loadLocationDestination() {
+        if (this.reservation.ubigeoDestination) {
+            this.companyDataService.getLocation(this.reservation.ubigeoDestination).subscribe((location: string[]) => {
+                this.locationDestination = location;
+                console.log('Ubicación de destino:', this.locationDestination);
+            }, (error) => {
+                console.error('Error al obtener la ubicación de destino:', error);
+            });
+        }
+    }
+
+    // Método para unir los elementos del arreglo en un string separado por guiones
+    getFormattedLocationOrigin(): string {
+        return this.locationOrigin.join(' - ');
+    }
+
+    getFormattedLocationDestination(): string {
+        return this.locationDestination.join(' - ');
+    }
+
+
 }

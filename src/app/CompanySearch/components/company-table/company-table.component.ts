@@ -137,7 +137,8 @@ export class CompanyTableComponent {
 
     /* GO TO COMPANY INFO PAGE */
     getRow(row: any) {
-        const dialogRef = this.dialog.open(CompanyDetailComponent, {
+        const dialogRef = this.dialog.open(CompanyDetailComponent,{
+            panelClass: ['w-full'],
             data: {
                 company: row,
                 customerId: this.customerId
