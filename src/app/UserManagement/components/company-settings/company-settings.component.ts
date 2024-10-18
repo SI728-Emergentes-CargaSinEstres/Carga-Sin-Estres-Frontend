@@ -18,20 +18,11 @@ export class CompanySettingsComponent {
   currentServices = [];
   currentServicesLabel = '';
   services: { id: number, name: string }[] = []; 
-  servicesIds:number[] = []
+  servicesIds:number[] = [];
+  timeblock: any;
 
   constructor(private fb: FormBuilder, private api: CargaSinEstresDataService, private route: ActivatedRoute, private router: Router, private _snackBar: MatSnackBar) {//private http: HttpClient
-    this.companySettingsForm = this.fb.group({
-      name: [null],
-      email: [null],
-      direction: [null],
-      phoneNumber: [null],
-      password: [null],
-      confirmPassword: [null],
-      logo: [null],
-      tic: [null],
-      description: [null]
-    });
+   
 
     this.route.pathFromRoot[1].url.subscribe(
       url => {
@@ -41,6 +32,22 @@ export class CompanySettingsComponent {
 
     this.getCompany(this.id);
     this.getServices();
+    this.getTimeblock();
+
+      this.companySettingsForm = this.fb.group({
+        name: [null],
+        email: [null],
+        direction: [null],
+        phoneNumber: [null],
+        password: [null],
+        confirmPassword: [null],
+        logo: [null],
+        tic: [null],
+        description: [null],
+        startTime: [null],
+        endTime: [null]
+      });
+
   }
 
   ngOnInit(){}
@@ -54,6 +61,19 @@ export class CompanySettingsComponent {
         this.currentServicesLabel = this.currentServices.join(', ');
       }
     );
+  }
+
+  getTimeblock(){
+    this.api.getTimeblock(this.id).subscribe(
+      (res:any) =>{
+        this.timeblock = res;
+        this.companySettingsForm.patchValue({
+          startTime: this.timeblock.startTime,
+          endTime: this.timeblock.endTime
+        });
+      }
+    )
+    
   }
 
   getServices(){
@@ -113,11 +133,25 @@ export class CompanySettingsComponent {
     this.api.updateCompany(this.id, newCompanySettings).subscribe(
       (response) => {
         console.log('Respuesta del servidor: ', response);
+        const newTimeblock = {
+          companyId: this.id,
+          startTime: formData.startTime,
+          endTime: formData.endTime
+        };
+
+        this.api.updateTimeblock(this.timeblock.id, newTimeblock).subscribe(
+          (res) =>
+          {
+            console.log ('Timeblock actualizado');
+            
         this._snackBar.open('Edicion de datos exitoso', 'Cerrar', {
           duration: 2000, // Duración en milisegundos
         });
 
         setTimeout(() => { location.reload();}, 2000);
+          }
+        );
+        
       },
       (error) => {
         console.log('Error al actualizar los ajustes: ', error);

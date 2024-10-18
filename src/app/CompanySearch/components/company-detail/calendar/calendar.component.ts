@@ -21,12 +21,13 @@ export class CalendarComponent implements OnInit {
   events: Event[] = [];
   initialEvents = [];
   selectedEvent:any = {};
+  timeblock:any = {};
 
   constructor(
     public dialogRef: MatDialogRef<CalendarComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any
   ) {
-    this.initialEvents = data.map((item:any) => ({
+    this.initialEvents = data.events.map((item:any) => ({
       date: new Date(`${item.startDate}T${item.startTime}`), // Combina fecha y hora
       title: '', // Título vacío
       startHour: parseInt(item.startTime.split(':')[0]), // Hora de inicio
@@ -34,6 +35,8 @@ export class CalendarComponent implements OnInit {
       isLocked: true // Marca como bloqueado
     }));
     this.events = [...this.initialEvents];
+    this.timeblock = data.timeblock;
+    console.log(this.timeblock);
   }
 
 
@@ -60,9 +63,13 @@ export class CalendarComponent implements OnInit {
 
   generateHours(): void {
     this.hours = [];
-    for (let i = 7; i < 18; i++) {
-      this.hours.push(i);
-    }
+
+    const startHour = parseInt(this.timeblock.startTime.split(':')[0], 10);
+  const endHour = parseInt(this.timeblock.endTime.split(':')[0], 10);
+
+  for (let i = startHour; i <= endHour; i++) {
+    this.hours.push(i);
+  }
   }
 
   prevWeek(): void {

@@ -167,19 +167,30 @@ export class CompanyDetailComponent {
 
     openCalendar() {
         this.api.getReservationByCompanyId(this.data.company.id).subscribe(
-            (res:any) =>{
-                const dialogRef = this.dialog.open(CalendarComponent,{
-                    panelClass: ['w-1/2'],
-                    data:res
-                });
-        
-                dialogRef.afterClosed().subscribe(result => {
-                    if (result) {
-                      this.handleSaveEvent(result);
-                    } 
-                  });
+            (response:any) =>{
+
+                this.api.getTimeblock(this.data.company.id).subscribe(
+                    (res:any) =>{
+
+                        const dialogRef = this.dialog.open(CalendarComponent,{
+                            panelClass: ['w-1/2'],
+                            data: {
+                                events: response,
+                                timeblock: res,
+                            }
+                        });
+                
+                        dialogRef.afterClosed().subscribe(result => {
+                            if (result) {
+                              this.handleSaveEvent(result);
+                            } 
+                          });
+                    }
+                );
+
+               
             }
-        )
+        );
         
     }
 
