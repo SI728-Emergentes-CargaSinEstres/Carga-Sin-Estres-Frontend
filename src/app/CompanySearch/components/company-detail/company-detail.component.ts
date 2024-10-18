@@ -122,6 +122,14 @@ export class CompanyDetailComponent {
         });
     }
 
+    getReservationByCompanyId(){
+        this.api.getReservationByCompanyId(this.data.companyId).subscribe(
+            (res:any) =>{
+
+            }
+        )
+    }
+
     addReservation() {
         console.log(this.reservation);
         this.reservation = {
@@ -158,15 +166,21 @@ export class CompanyDetailComponent {
     }
 
     openCalendar() {
-        const dialogRef = this.dialog.open(CalendarComponent,{
-            panelClass: ['w-1/2'],
-        });
-
-        dialogRef.afterClosed().subscribe(result => {
-            if (result) {
-              this.handleSaveEvent(result);
-            } 
-          });
+        this.api.getReservationByCompanyId(this.data.company.id).subscribe(
+            (res:any) =>{
+                const dialogRef = this.dialog.open(CalendarComponent,{
+                    panelClass: ['w-1/2'],
+                    data:res
+                });
+        
+                dialogRef.afterClosed().subscribe(result => {
+                    if (result) {
+                      this.handleSaveEvent(result);
+                    } 
+                  });
+            }
+        )
+        
     }
 
     handleSaveEvent(event: any): void {

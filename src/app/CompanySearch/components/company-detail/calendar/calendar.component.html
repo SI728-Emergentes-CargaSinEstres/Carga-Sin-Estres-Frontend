@@ -22,7 +22,8 @@
         <div class="day-header">{{ day | date: 'EEE MMM d' }}</div>
         <div class="hours">
           <div *ngFor="let hour of hours" class="hour-cell" (click)="addEvent(day, hour)">
-            <div *ngFor="let event of getEventsForDayAndHour(day, hour)" class="event">
+            <div *ngFor="let event of getEventsForDayAndHour(day, hour)"
+            [ngClass]="event.isLocked ? 'event locked' : 'event'">
               {{ event.title }}
             </div>
           </div>

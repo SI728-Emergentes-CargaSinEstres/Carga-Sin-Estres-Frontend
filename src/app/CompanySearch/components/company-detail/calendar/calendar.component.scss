@@ -78,3 +78,9 @@
     box-sizing: border-box;
   }
   
+  .event.locked {
+    background-color: lightgray; /* Color gris para eventos bloqueados */
+    pointer-events: none; /* Desactiva eventos de ratón */
+    opacity: 0.5; /* Translucidez para indicar que está bloqueado */
+  }
+  

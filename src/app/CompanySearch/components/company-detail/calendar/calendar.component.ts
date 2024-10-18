@@ -6,6 +6,7 @@ interface Event {
   title: string;
   startHour: number;
   endHour: number;
+  isLocked?: boolean;
 }
 
 @Component({
@@ -18,17 +19,30 @@ export class CalendarComponent implements OnInit {
   weekDays: Date[] = [];
   hours: number[] = [];
   events: Event[] = [];
+  initialEvents = [];
+  selectedEvent:any = {};
 
   constructor(
     public dialogRef: MatDialogRef<CalendarComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any
-  ) {}
+  ) {
+    this.initialEvents = data.map((item:any) => ({
+      date: new Date(`${item.startDate}T${item.startTime}`), // Combina fecha y hora
+      title: '', // Título vacío
+      startHour: parseInt(item.startTime.split(':')[0]), // Hora de inicio
+      endHour: parseInt(item.startTime.split(':')[0]) + 1, // Hora de fin (una hora después)
+      isLocked: true // Marca como bloqueado
+    }));
+    this.events = [...this.initialEvents];
+  }
 
 
   ngOnInit(): void {
     this.generateWeek(this.currentDate);
     this.generateHours();
   }
+
+  
 
   generateWeek(date: Date): void {
     this.weekDays = [];
@@ -77,15 +91,16 @@ export class CalendarComponent implements OnInit {
       return;
     }
 
-    this.events = [];
-    const selectedEvent = {
+    this.events = [...this.initialEvents];
+
+    this.selectedEvent = {
       date: day,
       title: 'Selected',
       startHour: hour,
       endHour: hour + 1
     };
 
-    this.events.push(selectedEvent);
+    this.events.push(this.selectedEvent);
   }
 
   getEventsForDayAndHour(day: Date, hour: number): Event[] {
@@ -97,7 +112,7 @@ export class CalendarComponent implements OnInit {
 
   save(): void {
     if (this.events.length > 0) {
-      this.dialogRef.close(this.events[0]);
+      this.dialogRef.close(this.selectedEvent);
     } else {
       this.dialogRef.close();
     }
