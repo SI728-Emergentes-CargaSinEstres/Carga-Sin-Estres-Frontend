@@ -66,15 +66,8 @@ export class CalendarComponent implements OnInit {
   }
 
   prevWeek(): void {
-    const previousWeekDate = new Date(this.currentDate);
-    previousWeekDate.setDate(this.currentDate.getDate() - 7);
-    const startOfPreviousWeek = this.getStartOfWeek(previousWeekDate);
-    const startOfCurrentWeek = this.getStartOfWeek(new Date());
-
-    if (startOfPreviousWeek >= startOfCurrentWeek) {
-      this.currentDate = previousWeekDate;
-      this.generateWeek(this.currentDate);
-    }
+    this.currentDate.setDate(this.currentDate.getDate() - 7);
+    this.generateWeek(this.currentDate);
   }
 
   nextWeek(): void {
