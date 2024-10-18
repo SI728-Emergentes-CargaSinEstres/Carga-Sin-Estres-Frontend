@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -40,6 +40,12 @@ import {FormsModule} from "@angular/forms";
 import { LanguageSelectionComponent } from "./Public/components/language-selection/language-selection.component";
 import { ReservationHistoryComponent } from './BookingHistory/components/reservation-history/reservation-history.component';
 
+import { CalendarModule, DateAdapter} from 'angular-calendar';
+import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
+import { CommonModule } from '@angular/common';
+import { CalendarComponent } from './CompanySearch/components/company-detail/calendar/calendar.component';
+
+
 export function createTranslateLoader(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
 }
@@ -71,7 +77,8 @@ export function createTranslateLoader(http: HttpClient) {
     ReservationItemComponent,
     ReservationDetailComponent,
     ReservationHistoryComponent,
-    CargaRapidaDialogComponent
+    CargaRapidaDialogComponent,
+    CalendarComponent
   ],
   imports: [
     BrowserModule,
@@ -86,9 +93,14 @@ export function createTranslateLoader(http: HttpClient) {
       }
     }),
     RouterModule,
-    MatDatepickerModule
+    MatDatepickerModule,
+    CalendarModule.forRoot({
+      provide: DateAdapter,
+      useFactory: adapterFactory
+    })
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 export class AppModule { }
