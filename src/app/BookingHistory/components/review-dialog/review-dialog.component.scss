@@ -112,6 +112,11 @@ img{
     direction: rtl;
     unicode-bidi: bidi-override;
   }
+
+  .clasificacion label {
+    font-size: 4rem; /* Ajusta este valor según el tamaño deseado */
+    cursor: pointer; /* Esto te permite hacer clic en las estrellas */
+  }
   
   label:hover,
   label:hover ~ label {
