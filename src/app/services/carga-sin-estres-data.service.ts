@@ -47,11 +47,23 @@ export class CargaSinEstresDataService {
   createCompany(data: any): Observable<any> {
     return this.http.post(`${this.base_url}/companies`, JSON.stringify(data), this.httpOptions);
   }
+  
+  createTimeblock(idCompany: any): Observable<any>{
+    return this.http.post(`${this.base_url}/timeblock/`, { startTime: '08:00', endTime: '17:00', companyId: idCompany}, 
+  {headers: {'Content-Type': 'application/json'}});
+  }
 
   updateCompany(id: any, data: any): Observable<any> {
     return this.http.patch(`${this.base_url}/companies/${id}`, JSON.stringify(data), this.httpOptions);
   }
 
+  updateTimeblock(timeblockId:any, data:any): Observable<any>{
+    return this.http.put(`${this.base_url}/timeblock/${timeblockId}`, data);
+  }
+
+  getTimeblock(companyId: any): Observable<any>{
+    return this.http.get(`${this.base_url}/timeblock/${companyId}`, this.httpOptions);
+  }
 
   //BookingHistory Controller ---------------------------------------------------------------
   createReservation(customerId: any, companyId: any, item: any): Observable<Reservation>{
@@ -212,6 +224,7 @@ export class CargaSinEstresDataService {
     return this.http.get<string[]>(`${this.base_url}/location/${idUbigeo}`);
   }
 
+  
 
 
 

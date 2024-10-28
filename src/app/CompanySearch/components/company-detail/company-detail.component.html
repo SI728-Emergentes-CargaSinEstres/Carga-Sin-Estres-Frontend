@@ -122,19 +122,34 @@
 
       
 
-      <div class="flex justify-between mb-4">
-        <mat-form-field class="w-1/2" color="accent">
+      <div class="flex justify-between mb-2">
+
+        <div class="w-1/3 content-center">
+          <label class="font-semibold">
+            Fecha y hora de la reserva:
+          </label>
+        </div>
+       
+
+        <div class="w-1/3 flex">
+        <mat-form-field class="w-1/2 m-2" color="accent">
           <mat-label for="startDate">Fecha</mat-label>
-          <input matInput id="startDate" name="startDate" [matDatepicker]="picker" [(ngModel)]="reservation.startDate" required>
-          <mat-hint>MM/DD/YYYY</mat-hint>
-          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-          <mat-datepicker #picker></mat-datepicker>
+          <input matInput id="startDate" name="startDate" [(ngModel)]="reservation.startDate" required readonly>
         </mat-form-field>
 
-        <mat-form-field class="w-1/2" color="accent">
+        <mat-form-field class="w-1/2 m-2" color="accent">
           <mat-label for="startTime">Hora</mat-label>
-          <input matInput id="startTime" name="startTime" type="time" [(ngModel)]="reservation.startTime" required>
+          <input matInput id="startTime" name="startTime" type="time" [(ngModel)]="reservation.startTime" required readonly>
         </mat-form-field>
+      </div>
+        
+        <div class="w-1/3 m-2 ml-3 content-center">
+          <button class="text-black bg-amber-500 hover:bg-amber-300 font-medium rounded text-center py-2.5 px-4 align-middle"
+           (click)="openCalendar()">
+          Ver calendario
+          </button>
+        </div>
+      
       </div>
 
       <div>

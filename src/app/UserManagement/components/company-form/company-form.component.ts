@@ -105,6 +105,10 @@ export class CompanyFormComponent {
           this._snackBar.open('Registro exitoso', 'Cerrar', {
             duration: 2000, // Duración en milisegundos
           });
+          console.log(response);
+          this.api.createTimeblock(response.id).subscribe((response: any) =>{
+            console.log('Timeblock creado');
+          });
           this.router.navigate(['login']);
         }
       });

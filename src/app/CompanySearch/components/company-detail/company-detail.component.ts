@@ -3,6 +3,8 @@ import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material/dialog';
 import {CargaSinEstresDataService} from "../../../services/carga-sin-estres-data.service";
 import {MatSnackBar} from "@angular/material/snack-bar";
 import { FormsModule } from '@angular/forms';
+import { MatDialog } from '@angular/material/dialog';
+import { CalendarComponent } from './calendar/calendar.component';
 
 @Component({
     selector: 'app-company-detail',
@@ -39,6 +41,7 @@ export class CompanyDetailComponent {
         @Inject(MAT_DIALOG_DATA) public data: any,
         private api: CargaSinEstresDataService,
         private snackBar: MatSnackBar,
+        private dialog: MatDialog,
         private dialogRef: MatDialogRef<CompanyDetailComponent>
     ) {
       this.getDepartamentos();
@@ -119,6 +122,14 @@ export class CompanyDetailComponent {
         });
     }
 
+    getReservationByCompanyId(){
+        this.api.getReservationByCompanyId(this.data.companyId).subscribe(
+            (res:any) =>{
+
+            }
+        )
+    }
+
     addReservation() {
         console.log(this.reservation);
         this.reservation = {
@@ -136,7 +147,7 @@ export class CompanyDetailComponent {
                 this.openSnackBar('Reserva agregada exitosamente');
             },
             (error: any) => {
-                if (error.status === 400) {
+                if (error.status == 400) {
                     this.openSnackBar(error.error.message);
                 } else {
                     this.openSnackBar('Error al desconocido del servidor'); //error generico
@@ -153,5 +164,42 @@ export class CompanyDetailComponent {
     cancel() {
         this.dialogRef.close();
     }
+
+    openCalendar() {
+        this.api.getReservationByCompanyId(this.data.company.id).subscribe(
+            (response:any) =>{
+
+                this.api.getTimeblock(this.data.company.id).subscribe(
+                    (res:any) =>{
+
+                        const dialogRef = this.dialog.open(CalendarComponent,{
+                            panelClass: ['w-1/2'],
+                            data: {
+                                events: response,
+                                timeblock: res,
+                            }
+                        });
+                
+                        dialogRef.afterClosed().subscribe(result => {
+                            if (result) {
+                              this.handleSaveEvent(result);
+                            } 
+                          });
+                    }
+                );
+
+               
+            }
+        );
+        
+    }
+
+    handleSaveEvent(event: any): void {
+        console.log('Evento guardado:', event);
+       this.reservation.startDate = event.date;
+        this.reservation.startTime = `${event.startHour.toString().padStart(2, '0')}:00`;
+        console.log(this.reservation.startTime);
+      }
+    
 }
 
