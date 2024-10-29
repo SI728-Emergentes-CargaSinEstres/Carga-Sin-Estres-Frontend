@@ -14,7 +14,6 @@ import {TranslateLoader, TranslateModule} from "@ngx-translate/core";
 
 import { ToolbarLandingComponent } from './Public/components/toolbar-landing/toolbar-landing.component';
 import { FooterComponent } from './Public/components/footer/footer.component';
-import { LandingPageComponent } from './Public/components/landing-page/landing-page.component';
 import { ChatDialogComponent } from './BookingHistory/components/chat-dialog/chat-dialog.component';
 import { ActiveReservationsComponent } from './BookingHistory/components/active-reservations/active-reservations.component';
 import { CompanyDetailComponent } from './CompanySearch/components/company-detail/company-detail.component';
@@ -56,7 +55,6 @@ export function createTranslateLoader(http: HttpClient) {
     LoginFormComponent,
     ToolbarLandingComponent,
     FooterComponent,
-    LandingPageComponent,
     ChatDialogComponent,
     ActiveReservationsComponent,
     CompanyDetailComponent,
