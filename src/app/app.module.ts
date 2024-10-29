@@ -32,7 +32,6 @@ import { SignUpFormComponent } from './UserManagement/components/sign-up-form/si
 import { PageNotFoundComponent } from './Public/components/page-not-found/page-not-found.component';
 import { ReservationItemComponent } from './BookingHistory/components/reservation-item/reservation-item.component';
 import { ReservationDetailComponent } from './BookingHistory/components/reservation-detail/reservation-detail.component';
-import { CargaRapidaDialogComponent } from "./CompanySearch/components/cargaRapida-dialog/cargaRapida-dialog.component";
 import {MatDatepickerModule} from "@angular/material/datepicker";
 import {FormsModule} from "@angular/forms";
 
@@ -75,7 +74,6 @@ export function createTranslateLoader(http: HttpClient) {
     ReservationItemComponent,
     ReservationDetailComponent,
     ReservationHistoryComponent,
-    CargaRapidaDialogComponent,
     CalendarComponent
   ],
   imports: [
