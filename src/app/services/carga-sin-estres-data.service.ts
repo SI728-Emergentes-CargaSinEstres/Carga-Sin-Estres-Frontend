@@ -40,6 +40,10 @@ export class CargaSinEstresDataService {
     return this.http.get<any>(`${this.base_url}/companies/${id}`, this.httpOptions).pipe(retry(2),catchError(this.handleError));
   }
 
+  getCompanyByName(name: any): Observable<any> {
+    return this.http.get<any>(`${this.base_url}/companiesByName?name=${name}`, this.httpOptions).pipe(retry(2),catchError(this.handleError));
+  }
+
   getCompaniesForLogin(email: string, password: string): Observable<any> {
     return this.http.get(`${this.base_url}/companiesForLogin?email=${email}&password=${password}`, this.httpOptions);
   }
@@ -179,7 +183,9 @@ export class CargaSinEstresDataService {
   
   //Review Controller ---------------------------------------------------------------
   addReview(companyId: any, review: any): Observable<any> {
-    return this.http.post<any>(`${this.base_url}/reviews/${companyId}`, JSON.stringify(review), this.httpOptions)
+    console.log('review:', review);
+    console.log('companyId:', companyId);
+    return this.http.post<any>(`${this.base_url}/${companyId}/ratings`, review, this.httpOptions)
       .pipe(retry(2),catchError(this.handleError));
   }
 
@@ -187,6 +193,7 @@ export class CargaSinEstresDataService {
     return this.http.get<any>(`${this.base_url}/reviews/${companyId}`, this.httpOptions)
       .pipe(retry(2),catchError(this.handleError))
   }
+  
 
   // Obtain companies by status of the reservation
   getReservationsByCompanyIdAndStatus(companyId: any, status: string): Observable<Reservation[]> {
