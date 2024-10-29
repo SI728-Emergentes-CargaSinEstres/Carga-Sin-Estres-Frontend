@@ -14,7 +14,6 @@ import {TranslateLoader, TranslateModule} from "@ngx-translate/core";
 
 import { ToolbarLandingComponent } from './Public/components/toolbar-landing/toolbar-landing.component';
 import { FooterComponent } from './Public/components/footer/footer.component';
-import { LandingPageComponent } from './Public/components/landing-page/landing-page.component';
 import { ChatDialogComponent } from './BookingHistory/components/chat-dialog/chat-dialog.component';
 import { ActiveReservationsComponent } from './BookingHistory/components/active-reservations/active-reservations.component';
 import { CompanyDetailComponent } from './CompanySearch/components/company-detail/company-detail.component';
@@ -33,7 +32,6 @@ import { SignUpFormComponent } from './UserManagement/components/sign-up-form/si
 import { PageNotFoundComponent } from './Public/components/page-not-found/page-not-found.component';
 import { ReservationItemComponent } from './BookingHistory/components/reservation-item/reservation-item.component';
 import { ReservationDetailComponent } from './BookingHistory/components/reservation-detail/reservation-detail.component';
-import { CargaRapidaDialogComponent } from "./CompanySearch/components/cargaRapida-dialog/cargaRapida-dialog.component";
 import {MatDatepickerModule} from "@angular/material/datepicker";
 import {FormsModule} from "@angular/forms";
 
@@ -56,7 +54,6 @@ export function createTranslateLoader(http: HttpClient) {
     LoginFormComponent,
     ToolbarLandingComponent,
     FooterComponent,
-    LandingPageComponent,
     ChatDialogComponent,
     ActiveReservationsComponent,
     CompanyDetailComponent,
@@ -77,7 +74,6 @@ export function createTranslateLoader(http: HttpClient) {
     ReservationItemComponent,
     ReservationDetailComponent,
     ReservationHistoryComponent,
-    CargaRapidaDialogComponent,
     CalendarComponent
   ],
   imports: [

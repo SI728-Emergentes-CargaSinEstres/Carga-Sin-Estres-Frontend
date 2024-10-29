@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { LoginFormComponent } from './UserManagement/components/login-form/login-form.component';
-import { LandingPageComponent } from './Public/components/landing-page/landing-page.component';
 import { ClientFormComponent } from './UserManagement/components/client-form/client-form.component';
 import { CompanyFormComponent } from './UserManagement/components/company-form/company-form.component';
 import { ActiveReservationsComponent } from './BookingHistory/components/active-reservations/active-reservations.component';
@@ -21,7 +20,6 @@ import {
 const routes: Routes = [
   {path: 'login', component: LoginFormComponent},
   {path: 'sign-up', component: SignUpFormComponent},
-  {path: 'landing-page', component: LandingPageComponent},
   {path: 'client-form', component: ClientFormComponent},
   {path: 'company-form', component: CompanyFormComponent},
   // Rutas para el cliente

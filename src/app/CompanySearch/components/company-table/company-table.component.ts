@@ -5,8 +5,8 @@ import {MatPaginator} from '@angular/material/paginator';
 import {ActivatedRoute} from '@angular/router';
 import {MatDialog} from '@angular/material/dialog';
 import {CompanyDetailComponent} from "../company-detail/company-detail.component";
-import {CargaRapidaDialogComponent} from "../cargaRapida-dialog/cargaRapida-dialog.component";
 import {Company} from "../../../models/company.model";
+import { Router } from '@angular/router';
 
 @Component({
     selector: 'app-company-table',
@@ -28,7 +28,8 @@ export class CompanyTableComponent {
     constructor(
         private companyDataService: CargaSinEstresDataService,
         private route: ActivatedRoute,
-        public dialog: MatDialog) {
+        public dialog: MatDialog,
+        private router: Router) {
 
         // Obtiene el id del usuario
         this.route.pathFromRoot[1].url.subscribe(
@@ -146,12 +147,8 @@ export class CompanyTableComponent {
         });
     }
 
-    openDialog() {
-        const dialogRef = this.dialog.open(CargaRapidaDialogComponent, {
-            data: {
-                customerId: this.customerId,
-            }
-        });
+    redirect() {
+        this.router.navigateByUrl(`client/${this.customerId}/active-reservations`);
     }
 
 }
