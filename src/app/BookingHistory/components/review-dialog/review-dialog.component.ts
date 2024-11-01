@@ -19,35 +19,28 @@ export class ReviewDialogComponent {
   companyId!: any;
   rating: number = 0;
 
-  userId: string = '';
-  userType: string = '';
   nameCompany: any;
-  logoCompany: any;
   company: any;
 
   constructor(private fb: FormBuilder, private companyDataService: CargaSinEstresDataService, private router: Router, private route: ActivatedRoute,@Inject(MAT_DIALOG_DATA) public data: any, private _snackBar: MatSnackBar){
     this.reviewData = {} as any;
 
     this.reviewForm = this.fb.group({
-      rating: [null, Validators.required],
-      comment: ['', Validators.required],
+      rating: [null, Validators.required]
     })
   }
 
 
   ngOnInit(): void {
-    this.companyId = this.data.company.company.id;
-    
-    this.userType = this.data.userType;
-    this.userId = this.data.userId;
-
+    this.nameCompany = this.data.element.companyName.toString();
     this.getInitialValues();
   }
 
   getInitialValues(){
-    this.companyDataService.getCompanyById(this.companyId).subscribe((response: any) => {
-      this.nameCompany = response.name;
-      this.logoCompany = response.photo;
+    console.log('nameCompany:', this.nameCompany);
+    this.companyDataService.getCompanyByName(this.nameCompany).subscribe((response: any) => {
+      console.log('response', response);
+      this.companyId = response.id;
       this.company=response;
     });
   }
@@ -56,14 +49,17 @@ export class ReviewDialogComponent {
   sendReview() {
     const formData = this.reviewForm.value;
     const ratingValue = formData.rating === null ? 0 : formData.rating;
-    const commentValue = formData.comment === null ? "..." : formData.comment;
   
+
     const reviewData = {
-      rating: ratingValue,
-      comment: commentValue,
+      stars: ratingValue
     }
+
+    console.log('ratingValue:', JSON.stringify(reviewData));
+    console.log('companyId:', this.companyId);
   
     this.companyDataService.addReview(this.companyId, reviewData).subscribe((response: any) => {
+      console.log('response to review:', response);
       if (!Array.isArray(this.data.element)) {
         this.data.element = [];
       }

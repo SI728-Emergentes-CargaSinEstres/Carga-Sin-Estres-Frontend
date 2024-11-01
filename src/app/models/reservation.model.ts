@@ -13,4 +13,6 @@ export interface Reservation {
     services: any;
     chatId: any;
     companyName:any;
+    ubigeoOrigin: any; // ID del ubigeo para el origen
+    ubigeoDestination: any; // ID del ubigeo para el destino
 }

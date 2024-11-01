@@ -40,6 +40,10 @@ export class CargaSinEstresDataService {
     return this.http.get<any>(`${this.base_url}/companies/${id}`, this.httpOptions).pipe(retry(2),catchError(this.handleError));
   }
 
+  getCompanyByName(name: any): Observable<any> {
+    return this.http.get<any>(`${this.base_url}/companiesByName?name=${name}`, this.httpOptions).pipe(retry(2),catchError(this.handleError));
+  }
+
   getCompaniesForLogin(email: string, password: string): Observable<any> {
     return this.http.get(`${this.base_url}/companiesForLogin?email=${email}&password=${password}`, this.httpOptions);
   }
@@ -47,11 +51,23 @@ export class CargaSinEstresDataService {
   createCompany(data: any): Observable<any> {
     return this.http.post(`${this.base_url}/companies`, JSON.stringify(data), this.httpOptions);
   }
+  
+  createTimeblock(idCompany: any): Observable<any>{
+    return this.http.post(`${this.base_url}/timeblock/`, { startTime: '08:00', endTime: '17:00', companyId: idCompany}, 
+  {headers: {'Content-Type': 'application/json'}});
+  }
 
   updateCompany(id: any, data: any): Observable<any> {
     return this.http.patch(`${this.base_url}/companies/${id}`, JSON.stringify(data), this.httpOptions);
   }
 
+  updateTimeblock(timeblockId:any, data:any): Observable<any>{
+    return this.http.put(`${this.base_url}/timeblock/${timeblockId}`, data);
+  }
+
+  getTimeblock(companyId: any): Observable<any>{
+    return this.http.get(`${this.base_url}/timeblock/${companyId}`, this.httpOptions);
+  }
 
   //BookingHistory Controller ---------------------------------------------------------------
   createReservation(customerId: any, companyId: any, item: any): Observable<Reservation>{
@@ -167,7 +183,9 @@ export class CargaSinEstresDataService {
   
   //Review Controller ---------------------------------------------------------------
   addReview(companyId: any, review: any): Observable<any> {
-    return this.http.post<any>(`${this.base_url}/reviews/${companyId}`, JSON.stringify(review), this.httpOptions)
+    console.log('review:', review);
+    console.log('companyId:', companyId);
+    return this.http.post<any>(`${this.base_url}/${companyId}/ratings`, review, this.httpOptions)
       .pipe(retry(2),catchError(this.handleError));
   }
 
@@ -175,6 +193,7 @@ export class CargaSinEstresDataService {
     return this.http.get<any>(`${this.base_url}/reviews/${companyId}`, this.httpOptions)
       .pipe(retry(2),catchError(this.handleError))
   }
+  
 
   // Obtain companies by status of the reservation
   getReservationsByCompanyIdAndStatus(companyId: any, status: string): Observable<Reservation[]> {
@@ -184,4 +203,37 @@ export class CargaSinEstresDataService {
             catchError(this.handleError)
         );
   }
+
+
+  //for ubigeo
+  getDepartamentos(): Observable<string[]> {
+    return this.http.get<string[]>(`${this.base_url}/departamentos`)
+      .pipe(
+        map(departamentos => [...new Set(departamentos)])
+      );
+  }
+
+  getProvincias(departamento: string): Observable<string[]> {
+    return this.http.get<string[]>(`${this.base_url}/provincias/${departamento}`)
+      .pipe(
+        map(provincias => [...new Set(provincias)]) 
+      );
+  }
+
+  getDistritos(provincia: string): Observable<string[]> {
+    return this.http.get<string[]>(`${this.base_url}/distritos/${provincia}`)
+      .pipe(
+        map(distritos => [...new Set(distritos)]) 
+      );
+  }
+
+  getLocation(idUbigeo: any): Observable<string[]> {
+    return this.http.get<string[]>(`${this.base_url}/location/${idUbigeo}`);
+  }
+
+  
+
+
+
+      
 }

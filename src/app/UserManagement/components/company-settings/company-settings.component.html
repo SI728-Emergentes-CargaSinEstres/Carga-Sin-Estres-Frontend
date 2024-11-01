@@ -17,7 +17,7 @@
             </div>
             <div class="w-full lg:w-1/2 lg:flex">
                 <div class="flex flex-col lg:w-1/2">
-                    <img src="{{company.logo}}" alt="company" class="flex flex-col md:flex-row items-center w-full p-2 mb-4" style="max-height: 300px; object-fit: contain; display: block;" >
+                    <img src="{{company?.logo}}" alt="company" class="flex flex-col md:flex-row items-center w-full p-2 mb-4" style="max-height: 300px; object-fit: contain; display: block;" >
                 </div>
 
                 <div class="flex flex-col lg:w-1/2 lg:ml-4">
@@ -75,6 +75,25 @@
                 
             </div>
         </div>
+        <hr class="my-12 border-t-2 border-gray-300 ml-14 mr-14">
+
+        <!-- Disponibilidad -->
+        <div class="md:flex lg:flex mb-10 mx-32">
+            <div class="w-full md:w-1/2 lg:w-1/2 mb-10">
+                <h2 class="text-black font-bold mt-1">Disponibilidad</h2>
+            </div>
+            <div class="w-full lg:w-1/2 lg:flex">
+                <div class="flex flex-col lg:w-1/2">
+                    <label for="startTime" class="mb-2">Hora inicio</label>
+                    <input type="time" formControlName="startTime" id="starTime" required class="w-full p-2 mb-4">
+                </div>
+                <div class="flex flex-col lg:w-1/2 lg:ml-4">
+                    <label for="endTime" class="mb-2">Hora fin</label>
+                    <input type="time" formControlName="endTime" id="endTime"  required class="w-full p-2 mb-4">
+                </div>
+            </div>
+        </div>
+
         <hr class="my-12 border-t-2 border-gray-300 ml-14 mr-14">
 
         <!-- Contacto -->

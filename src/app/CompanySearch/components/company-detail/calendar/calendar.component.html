@@ -1,0 +1,38 @@
+<div class="weekly-calendar">
+  <div class="header font-black">
+    <button (click)="prevWeek()">
+      <i class="fa-solid fa-arrow-right fa-flip-horizontal"></i>
+    </button>
+    <div class="current-week">
+      {{ weekDays[0] | date: 'MMM d' }} - {{ weekDays[6] | date: 'MMM d, yyyy' }}
+    </div>
+    <button (click)="nextWeek()">
+      <i class="fa-solid fa-arrow-right"></i>
+    </button>
+  </div>
+  <div class="calendar-grid">
+    <div class="hours-column">
+      <div class="hour-label"></div>
+      <div *ngFor="let hour of hours" class="hour-label">
+        {{ hour }}:00
+      </div>
+    </div>
+    <div class="days-column">
+      <div class="day" *ngFor="let day of weekDays">
+        <div class="day-header">{{ day | date: 'EEE MMM d' }}</div>
+        <div class="hours">
+          <div *ngFor="let hour of hours" class="hour-cell" (click)="addEvent(day, hour)">
+            <div *ngFor="let event of getEventsForDayAndHour(day, hour)"
+            [ngClass]="event.isLocked ? 'event locked' : 'event'">
+              {{ event.title }}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="flex justify-between">
+    <button (click)="save()" class="text-black bg-amber-500 hover:bg-amber-300 font-medium rounded py-2.5 text-center md:w-1/3 px-4" >Save</button>
+    <button (click)="cancel()" class="text-black bg-gray-300 hover:bg-gray-200 font-medium rounded py-2.5 text-center md:w-1/3 px-4">Cancel</button>
+  </div>
+</div>
