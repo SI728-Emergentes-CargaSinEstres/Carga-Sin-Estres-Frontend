@@ -1,6 +1,6 @@
 export const environment = {
     development: false,
-    baseURL: 'http://localhost:8080/api/v1',
+    baseURL: 'https://cse-modular-monolith.azurewebsites.net/',
 
     firebaseConfig : {
         apiKey: "AIzaSyA0d_Pt39uLmE3H01_5DwrkYuryIK9fjw0",
