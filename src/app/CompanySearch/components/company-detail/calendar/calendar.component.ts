@@ -7,6 +7,7 @@ interface Event {
   startHour: number;
   endHour: number;
   isLocked?: boolean;
+  status: string;
 }
 
 @Component({
@@ -32,8 +33,10 @@ export class CalendarComponent implements OnInit {
       title: '', // Título vacío
       startHour: parseInt(item.startTime.split(':')[0]), // Hora de inicio
       endHour: parseInt(item.startTime.split(':')[0]) + 1, // Hora de fin (una hora después)
-      isLocked: true // Marca como bloqueado
+      isLocked: true, // Marca como bloqueado
+      status: item.status
     }));
+    this.initialEvents = this.initialEvents.filter((e:Event) => e.status !== 'cancelled');
     this.events = [...this.initialEvents];
     this.timeblock = data.timeblock;
     console.log(this.timeblock);

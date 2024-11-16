@@ -49,7 +49,7 @@ export class ReservationItemComponent {
                     duration: 2000,
                 });
             }
-            else if (status == 'rescheduled') {
+            else if (status == 're-scheduled') {
                 this._snackBar.open('Se reprogramó la reserva con éxito', 'Cerrar', {
                     duration: 2000,
                 });
@@ -70,6 +70,7 @@ export class ReservationItemComponent {
                 });
             }
             this.reservationUpdated.emit();
+            window.location.reload();
         });
     }
 

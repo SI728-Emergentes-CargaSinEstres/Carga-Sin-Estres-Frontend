@@ -16,6 +16,7 @@ export class EditPaymentDialogComponent {
   payment: any;
   startDate: any;
   startTime: any;
+  initialStartTime:any;
   paymentForm!: NgForm;
 
   // @ViewChild('paymentForm', {static: false}) currentForm!: NgForm;
@@ -32,6 +33,7 @@ export class EditPaymentDialogComponent {
 
   ngOnInit(): void {
     this.startDate = this.data.element.startDate;
+    this.initialStartTime = this.data.element.startDate;
     this.startTime = this.data.element.startTime;
     this.payment = this.data.element.price;
     //this.status = 'rescheduled';
@@ -52,6 +54,20 @@ export class EditPaymentDialogComponent {
 
   submit() {
     console.log('Enviando');
+
+    const now = new Date();
+    const reservationDate = new Date(this.initialStartTime);
+    const diffInMs = reservationDate.getTime() - now.getTime();
+
+    const diffInHours = diffInMs / (1000 * 60 * 60);
+    console.log(diffInHours);
+    if (diffInHours < 48){
+      this._snackBar.open('No se puede reprogramar la reserva faltando menos de 48 horas', 'Cerrar', {
+        duration: 2000, 
+      });
+      this.dialogRef.close(this.data.element);
+    }
+    else{
     this.cargaSinEstresDataService.updateReservationPayment(this.data.element.id, this.payment, this.startDate, this.startTime).subscribe((response: any) => {
       this.data.element.price = this.payment;
       if (this.startDate instanceof Date) {
@@ -73,7 +89,7 @@ export class EditPaymentDialogComponent {
       this.dialogRef.close(this.data.element);
       return response;
     });
-
+  }
   }
   cancel(){
     this.dialogRef.close();
