@@ -52,7 +52,7 @@
             </div>
 
             <div class="flex justify-between">
-                <button [disabled]="reservation.price === 0" (click)="setReservationStatus(reservation, 'to be scheduled')"
+                <button [disabled]="reservation.price === 0" (click)="setReservationStatus(reservation, 'to be scheduled')" 
                         class="btn-aceptar text-black font-medium rounded py-2.5 text-center md:w-1/3 px-4" style="margin: 5px;">
                     Aceptar
                 </button>
@@ -79,7 +79,7 @@
             </div>
         </div>
 
-        <!-- View of 'to be sheduled' reservations for clients -->
+        <!-- View of 'to be scheduled' reservations for clients ------------------------------------------------------------------------------------------>
         <div *ngIf="(reservation.status === 'to be scheduled' || reservation.status==='re-scheduled') && this.userType === 'client'">
             <app-reservation-detail [reservation]="reservation" [userType]="this.userType" *ngIf="showDetails"></app-reservation-detail>
             <div class="flex flex-col justify-center items-end">
@@ -93,7 +93,7 @@
                 <button (click)="setReservationStatus(reservation, 'scheduled')"
                 class="text-black bg-amber-500 hover:bg-amber-300 font-medium rounded py-2.5 text-center md:w-1/3 px-4" (click)="setReservationStatus(reservation, 'scheduled')">
                     Aceptar cambios
-                </button>
+                </button><!--Creación de contrato-->
                 <button (click)="setReservationStatus(reservation, 'cancelled'); setReservationEndDateTime(reservation)"
                 class="text-black bg-[#F36F56] hover:bg-rose-400 font-medium rounded py-2.5 text-center md:w-1/3 px-4 " style="margin-left: 33%;">
                     Cancelar
@@ -114,7 +114,7 @@
             </div>
         </div>
 
-        <!-- View details, cancel service and open chat buttons for every user -->
+        <!-- View details, cancel service and open chat buttons for every user ----------------------------------------------------------------------------------------------------->
         <div *ngIf="reservation.status === 'scheduled'" class="flex flex-col">
             <app-reservation-detail [reservation]="reservation" [userType]="this.userType" *ngIf="showDetails"></app-reservation-detail>
             <div class="flex flex-col justify-center items-end">
@@ -124,7 +124,6 @@
                     <ng-container>
                         <a (click)="setReservationStatus(reservation, 'cancelled'); setReservationEndDateTime(reservation)" class="mr-6 cursor-pointer text-[#F36F56]">Cancelar servicio</a>
                     </ng-container>
-
                     <a (click)="openChatDialog(reservation)" class="mr-6 cursor-pointer"><i class="fa-regular fa-message mr-2"></i> Abrir chat</a>
                     <a (click)="toggleDetails()" class="cursor-pointer">{{ showDetails ? 'Ocultar detalles' : 'Ver detalles' }}</a>
                 </div>
@@ -142,6 +141,18 @@
                         <a (click)="setReservationStatus(reservation, 'finalized'); setReservationEndDateTime(reservation)" class="mr-6 cursor-pointer text-[#4CAF50]">Finalizar servicio</a>
                     </ng-container>
 
+                    <ng-container *ngIf="userType === 'company'">
+                        <a (click)="openReportClientDialog()" class="mr-6 cursor-pointer text-[#971d1d]">
+                            <i class="fa-solid fa-exclamation-triangle mr-2 text-[#971d1d]"></i> Reportar Cliente
+                          </a>
+                    </ng-container>
+                      
+                    <ng-container *ngIf="userType !== 'company'">
+                        <a (click)="openReportCompanyDialog()" class="mr-6 cursor-pointer text-[#971d1d]">
+                          <i class="fa-solid fa-exclamation-triangle mr-2 text-[#971d1d]"></i> Reportar Empresa
+                        </a>
+                    </ng-container>
+            
                     <a (click)="openChatDialog(reservation)" class="mr-6 cursor-pointer"><i class="fa-regular fa-message mr-2"></i> Abrir chat</a>
                     <a (click)="toggleDetails()" class="cursor-pointer">{{ showDetails ? 'Ocultar detalles' : 'Ver detalles' }}</a>
                 </div>

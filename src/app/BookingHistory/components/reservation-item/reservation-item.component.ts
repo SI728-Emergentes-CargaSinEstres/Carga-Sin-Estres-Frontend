@@ -6,6 +6,8 @@ import {ChatDialogComponent} from "../chat-dialog/chat-dialog.component";
 import {MatDialog} from "@angular/material/dialog";
 import {EditPaymentDialogComponent} from "../edit-payment-dialog/edit-payment-dialog.component";
 import {ReviewDialogComponent} from "../review-dialog/review-dialog.component";
+import { ReportCompanyDialogComponent } from '../report-company-dialog/report-company-dialog.component';
+import { ReportClientDialogComponent } from '../report-client-dialog/report-client-dialog.component';
 
 @Component({
     selector: 'app-reservation-item',
@@ -24,8 +26,6 @@ export class ReservationItemComponent {
     constructor(private companyDataService: CargaSinEstresDataService, private _snackBar: MatSnackBar, private dialog: MatDialog) {
     }
 
-
-
     ngOnInit() {
         // Llamar a una función que se ejecuta periódicamente, por ejemplo, cada segundo
         this.checkReservationsInProgress();
@@ -41,19 +41,18 @@ export class ReservationItemComponent {
     }
 
     @Output() reservationUpdated: EventEmitter<void> = new EventEmitter<void>();
-    setReservationStatus(company: any, status: any) {
-        console.log("status:", status)
-        this.companyDataService.updateReservationStatus(company.id, status, {}).subscribe((response: any) => {
+    setReservationStatus(reservation: any, status: any) {
+        this.companyDataService.updateReservationStatus(reservation.id, status, {}).subscribe((response: any) => {
+            const contractData = { reservationId: reservation.id };
+
             if (status === 'scheduled') {
-                this._snackBar.open('Se confirmó la reserva con éxito', 'Cerrar', {
-                    duration: 2000,
-                });
+                this.createContractForReservation(contractData);
             }
-            else if (status == 'rescheduled') {
-                this._snackBar.open('Se reprogramó la reserva con éxito', 'Cerrar', {
-                    duration: 2000,
-                });
+
+            else if (status == 're-scheduled') {
+                this.createContractForReservation(contractData);
             }
+
             else if (status == 'in progress') {
                 this._snackBar.open('La reserva se va llevar a cabo', 'Cerrar', {
                     duration: 2000,
@@ -69,8 +68,26 @@ export class ReservationItemComponent {
                     duration: 2000,
                 });
             }
-            this.reservationUpdated.emit();
+
+            setTimeout(() => {
+                this.reservationUpdated.emit();
+                window.location.reload();
+            }, 2000);
         });
+    }
+
+    private createContractForReservation(contractRequest : any): void { //----------------------------------------------------------------------------------------------------
+        console.log('Objeto a enviarse para contrato:', contractRequest );
+    
+        this.companyDataService.createContract(contractRequest).subscribe(
+            () => {
+                this._snackBar.open('Contrato generado', 'Cerrar', { duration: 2000 });
+            },
+            (error) => {
+                console.error('Error al crear el contrato:', error);
+                this._snackBar.open('Error al crear el contrato', 'Cerrar', { duration: 2000 });
+            }
+        );
     }
 
     //set end date and end times
@@ -102,7 +119,6 @@ export class ReservationItemComponent {
     }
 
     openReviewDialog(element: any) {
-        console.log('reserva:', this.reservation);
         this.dialog.open(ReviewDialogComponent, {
             width: '600px',
             data: {
@@ -110,6 +126,16 @@ export class ReservationItemComponent {
             }
         });
     }
+
+    openReportClientDialog() {
+        const dialogRef = this.dialog.open(ReportClientDialogComponent, {
+          width: '600px',
+          data: {
+            element: this.reservation
+          }
+        });
+      }
+    
 
     reservationMarkedInProgress: boolean = false;
 
@@ -146,11 +172,19 @@ export class ReservationItemComponent {
 
     }
 
+    openReportCompanyDialog(){
+        const dialogRef = this.dialog.open(ReportCompanyDialogComponent, {
+            width: '600px',
+            data: {
+                element: this.reservation
+            }
+        });
+    }
+
     loadLocationOrigin() {
         if (this.reservation.ubigeoOrigin) {
             this.companyDataService.getLocation(this.reservation.ubigeoOrigin).subscribe((location: string[]) => {
                 this.locationOrigin = location;
-                console.log('Ubicación de origen:', this.locationOrigin);
             }, (error) => {
                 console.error('Error al obtener la ubicación de origen:', error);
             });
@@ -161,7 +195,6 @@ export class ReservationItemComponent {
         if (this.reservation.ubigeoDestination) {
             this.companyDataService.getLocation(this.reservation.ubigeoDestination).subscribe((location: string[]) => {
                 this.locationDestination = location;
-                console.log('Ubicación de destino:', this.locationDestination);
             }, (error) => {
                 console.error('Error al obtener la ubicación de destino:', error);
             });

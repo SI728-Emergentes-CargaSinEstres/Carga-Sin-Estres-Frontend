@@ -1,0 +1,36 @@
+<p>
+    <button mat-icon-button mat-dialog-close class="btn-close">
+        <mat-icon>close</mat-icon>
+    </button>
+</p>
+
+<mat-dialog-content>
+    <header style="display: flex; align-items: center;">
+        <mat-icon>report</mat-icon>&nbsp;&nbsp;
+        <h1>Reportar</h1>
+    </header>
+
+    <mat-card>
+        <mat-card-content>
+            <h2>Al reportar el cliente por no llevarse a cabo el servicio, automáticamente se cancelará la reserva</h2>
+
+            <form id="reportForm" [formGroup]="reportClientForm" (ngSubmit)="reportClient()">
+                <div class="dialog-content">
+                    <label for="reason">Razón para reportar:</label>
+                    <input 
+                        type="text" 
+                        id="reason" 
+                        formControlName="reason" 
+                        placeholder="Escribe la razón" 
+                        required 
+                        class="reason-input"
+                    >
+                    <br><br>
+                    <div>
+                        <button mat-raised-button class="btn-send-report" type="submit">Enviar Reporte</button>
+                    </div>
+                </div>
+            </form>
+        </mat-card-content>
+    </mat-card>
+</mat-dialog-content>
