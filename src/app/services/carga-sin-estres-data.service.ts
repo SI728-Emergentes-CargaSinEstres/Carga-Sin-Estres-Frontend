@@ -156,7 +156,11 @@ export class CargaSinEstresDataService {
         retry(2),
         catchError(this.handleError)
       );
-}
+  }
+
+  createCompanyServiceViolation(companyServiceViolation: any): Observable<any> {
+    return this.http.post(`${this.base_url}/company-service-violation`, companyServiceViolation, this.httpOptions);
+  }
   
   //Client Controller ---------------------------------------------------------------
   getCustomersForLogin(email: string, password: string): Observable<any> {

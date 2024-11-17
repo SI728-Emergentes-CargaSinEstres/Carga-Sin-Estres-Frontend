@@ -6,6 +6,7 @@ import {ChatDialogComponent} from "../chat-dialog/chat-dialog.component";
 import {MatDialog} from "@angular/material/dialog";
 import {EditPaymentDialogComponent} from "../edit-payment-dialog/edit-payment-dialog.component";
 import {ReviewDialogComponent} from "../review-dialog/review-dialog.component";
+import { ReportCompanyDialogComponent } from '../report-company-dialog/report-company-dialog.component';
 
 @Component({
     selector: 'app-reservation-item',
@@ -158,6 +159,15 @@ export class ReservationItemComponent {
             }
         })
 
+    }
+
+    openReportCompanyDialog(){
+        const dialogRef = this.dialog.open(ReportCompanyDialogComponent, {
+            width: '600px',
+            data: {
+                element: this.reservation
+            }
+        });
     }
 
     loadLocationOrigin() {
