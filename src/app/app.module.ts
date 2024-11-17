@@ -42,6 +42,8 @@ import { CalendarModule, DateAdapter} from 'angular-calendar';
 import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
 import { CommonModule } from '@angular/common';
 import { CalendarComponent } from './CompanySearch/components/company-detail/calendar/calendar.component';
+import { ReportCompanyDialogComponent } from './BookingHistory/components/report-company-dialog/report-company-dialog.component';
+import { ReportClientDialogComponent } from './BookingHistory/components/report-client-dialog/report-client-dialog.component';
 
 
 export function createTranslateLoader(http: HttpClient) {
@@ -74,7 +76,9 @@ export function createTranslateLoader(http: HttpClient) {
     ReservationItemComponent,
     ReservationDetailComponent,
     ReservationHistoryComponent,
-    CalendarComponent
+    CalendarComponent,
+    ReportCompanyDialogComponent,
+    ReportClientDialogComponent
   ],
   imports: [
     BrowserModule,

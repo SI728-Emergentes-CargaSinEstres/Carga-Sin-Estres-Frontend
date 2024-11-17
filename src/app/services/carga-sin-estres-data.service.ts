@@ -148,6 +148,23 @@ export class CargaSinEstresDataService {
     return this.http.get<any>(`${this.base_url}/messages/${reservationId}`, this.httpOptions)
         .pipe(retry(2),catchError(this.handleError))
   }
+
+  // Business Rules Controller ---------------------------------------------------------------
+  getCompanyServiceViolationByCompanyIdAndYear(companyId: any, year: any): Observable<any> {
+    return this.http.get<any>(`${this.base_url}/company-service-violation/${companyId}/${year}`, this.httpOptions)
+      .pipe(
+        retry(2),
+        catchError(this.handleError)
+      );
+  }
+
+  createCompanyServiceViolation(companyServiceViolation: any): Observable<any> {
+    return this.http.post(`${this.base_url}/company-service-violation`, companyServiceViolation, this.httpOptions);
+  }
+
+  createadditionalWaitingTime(additionalWaitingTime: any): Observable<any> {
+    return this.http.post(`${this.base_url}/additional-waiting-time`, additionalWaitingTime, this.httpOptions);
+  }
   
   //Client Controller ---------------------------------------------------------------
   getCustomersForLogin(email: string, password: string): Observable<any> {
