@@ -24,8 +24,6 @@ export class ReservationItemComponent {
     constructor(private companyDataService: CargaSinEstresDataService, private _snackBar: MatSnackBar, private dialog: MatDialog) {
     }
 
-
-
     ngOnInit() {
         // Llamar a una función que se ejecuta periódicamente, por ejemplo, cada segundo
         this.checkReservationsInProgress();
@@ -43,40 +41,36 @@ export class ReservationItemComponent {
     @Output() reservationUpdated: EventEmitter<void> = new EventEmitter<void>();
     setReservationStatus(reservation: any, status: any) {
         this.companyDataService.updateReservationStatus(reservation.id, status, {}).subscribe((response: any) => {
+            const contractData = { reservationId: reservation.id };
 
             if (status === 'scheduled') {
-                console.log('Funcion 1');
-                const contractData = { reservationId: reservation.id };
                 this.createContractForReservation(contractData);
             }
 
             else if (status == 're-scheduled') {
-                console.log('Funcion 2');
-                const contractData = { reservationId: reservation.id };
                 this.createContractForReservation(contractData);
             }
 
             else if (status == 'in progress') {
-                console.log('Funcion 3');
                 this._snackBar.open('La reserva se va llevar a cabo', 'Cerrar', {
                     duration: 2000,
                 });
             }
             else if (status == 'finalized') {
-                console.log('Funcion 4');
                 this._snackBar.open('Se finalizó la reserva con éxito', 'Cerrar', {
                     duration: 2000,
                 });
             }
             else if (status == 'cancelled') {
-                console.log('Funcion 5');
                 this._snackBar.open('Se canceló la reserva con éxito', 'Cerrar', {
                     duration: 2000,
                 });
             }
-            console.log('Final de la función', response);
-            this.reservationUpdated.emit();
-            window.location.reload();
+
+            setTimeout(() => {
+                this.reservationUpdated.emit();
+                window.location.reload();
+            }, 2000);
         });
     }
 
