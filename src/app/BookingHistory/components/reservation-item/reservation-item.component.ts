@@ -7,6 +7,7 @@ import {MatDialog} from "@angular/material/dialog";
 import {EditPaymentDialogComponent} from "../edit-payment-dialog/edit-payment-dialog.component";
 import {ReviewDialogComponent} from "../review-dialog/review-dialog.component";
 import { ReportCompanyDialogComponent } from '../report-company-dialog/report-company-dialog.component';
+import { ReportClientDialogComponent } from '../report-client-dialog/report-client-dialog.component';
 
 @Component({
     selector: 'app-reservation-item',
@@ -125,6 +126,16 @@ export class ReservationItemComponent {
             }
         });
     }
+
+    openReportClientDialog() {
+        const dialogRef = this.dialog.open(ReportClientDialogComponent, {
+          width: '600px',
+          data: {
+            element: this.reservation
+          }
+        });
+      }
+    
 
     reservationMarkedInProgress: boolean = false;
 

@@ -161,6 +161,10 @@ export class CargaSinEstresDataService {
   createCompanyServiceViolation(companyServiceViolation: any): Observable<any> {
     return this.http.post(`${this.base_url}/company-service-violation`, companyServiceViolation, this.httpOptions);
   }
+
+  createadditionalWaitingTime(additionalWaitingTime: any): Observable<any> {
+    return this.http.post(`${this.base_url}/additional-waiting-time`, additionalWaitingTime, this.httpOptions);
+  }
   
   //Client Controller ---------------------------------------------------------------
   getCustomersForLogin(email: string, password: string): Observable<any> {
