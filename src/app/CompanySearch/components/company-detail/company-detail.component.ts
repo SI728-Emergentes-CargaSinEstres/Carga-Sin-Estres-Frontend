@@ -26,6 +26,7 @@ export class CompanyDetailComponent {
 
     selectedRegionOrigin: string | null = null;
     selectedProvinceOrigin: string | null = null;
+    countCompanyServiceViolation: number = 0; 
 
     reservation: any = {
         ubigeoOrigin: undefined,
@@ -45,6 +46,7 @@ export class CompanyDetailComponent {
         private dialogRef: MatDialogRef<CompanyDetailComponent>
     ) {
       this.getDepartamentos();
+      this.getCompanyViolationServiceByCompanyIdAndYear();
     }
 
     getDepartamentos(){
@@ -122,13 +124,20 @@ export class CompanyDetailComponent {
         });
     }
 
-    getReservationByCompanyId(){
-        this.api.getReservationByCompanyId(this.data.companyId).subscribe(
-            (res:any) =>{
-
+    getCompanyViolationServiceByCompanyIdAndYear() {
+        const companyId = this.data.company.id;
+    
+        this.api.getCompanyServiceViolationByCompanyIdAndYear(companyId, 2024).subscribe(
+            (res: any) => {
+                console.log(res);
+                this.countCompanyServiceViolation = res;
+            },
+            (error) => {
+                console.error('Error al obtener los datos:', error);
             }
-        )
+        );
     }
+    
 
     addReservation() {
         console.log(this.reservation);
