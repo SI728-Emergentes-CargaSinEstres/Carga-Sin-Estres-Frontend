@@ -41,37 +41,57 @@ export class ReservationItemComponent {
     }
 
     @Output() reservationUpdated: EventEmitter<void> = new EventEmitter<void>();
-    setReservationStatus(company: any, status: any) {
-        console.log("status:", status)
-        this.companyDataService.updateReservationStatus(company.id, status, {}).subscribe((response: any) => {
+    setReservationStatus(reservation: any, status: any) {
+        this.companyDataService.updateReservationStatus(reservation.id, status, {}).subscribe((response: any) => {
+
             if (status === 'scheduled') {
-                this._snackBar.open('Se confirmó la reserva con éxito', 'Cerrar', {
-                    duration: 2000,
-                });
+                console.log('Funcion 1');
+                const contractData = { reservationId: reservation.id };
+                this.createContractForReservation(contractData);
             }
+
             else if (status == 're-scheduled') {
-                this._snackBar.open('Se reprogramó la reserva con éxito', 'Cerrar', {
-                    duration: 2000,
-                });
+                console.log('Funcion 2');
+                const contractData = { reservationId: reservation.id };
+                this.createContractForReservation(contractData);
             }
+
             else if (status == 'in progress') {
+                console.log('Funcion 3');
                 this._snackBar.open('La reserva se va llevar a cabo', 'Cerrar', {
                     duration: 2000,
                 });
             }
             else if (status == 'finalized') {
+                console.log('Funcion 4');
                 this._snackBar.open('Se finalizó la reserva con éxito', 'Cerrar', {
                     duration: 2000,
                 });
             }
             else if (status == 'cancelled') {
+                console.log('Funcion 5');
                 this._snackBar.open('Se canceló la reserva con éxito', 'Cerrar', {
                     duration: 2000,
                 });
             }
+            console.log('Final de la función', response);
             this.reservationUpdated.emit();
             window.location.reload();
         });
+    }
+
+    private createContractForReservation(contractRequest : any): void { //----------------------------------------------------------------------------------------------------
+        console.log('Objeto a enviarse para contrato:', contractRequest );
+    
+        this.companyDataService.createContract(contractRequest).subscribe(
+            () => {
+                this._snackBar.open('Contrato generado', 'Cerrar', { duration: 2000 });
+            },
+            (error) => {
+                console.error('Error al crear el contrato:', error);
+                this._snackBar.open('Error al crear el contrato', 'Cerrar', { duration: 2000 });
+            }
+        );
     }
 
     //set end date and end times
@@ -103,7 +123,6 @@ export class ReservationItemComponent {
     }
 
     openReviewDialog(element: any) {
-        console.log('reserva:', this.reservation);
         this.dialog.open(ReviewDialogComponent, {
             width: '600px',
             data: {
@@ -151,7 +170,6 @@ export class ReservationItemComponent {
         if (this.reservation.ubigeoOrigin) {
             this.companyDataService.getLocation(this.reservation.ubigeoOrigin).subscribe((location: string[]) => {
                 this.locationOrigin = location;
-                console.log('Ubicación de origen:', this.locationOrigin);
             }, (error) => {
                 console.error('Error al obtener la ubicación de origen:', error);
             });
@@ -162,7 +180,6 @@ export class ReservationItemComponent {
         if (this.reservation.ubigeoDestination) {
             this.companyDataService.getLocation(this.reservation.ubigeoDestination).subscribe((location: string[]) => {
                 this.locationDestination = location;
-                console.log('Ubicación de destino:', this.locationDestination);
             }, (error) => {
                 console.error('Error al obtener la ubicación de destino:', error);
             });

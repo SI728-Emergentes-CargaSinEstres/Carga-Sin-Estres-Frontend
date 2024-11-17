@@ -89,8 +89,22 @@ export class CargaSinEstresDataService {
     return this.http.patch(`${this.base_url}/reservations/${companyId}/status?status=${status}`, JSON.stringify(data), this.httpOptions);
   }
 
+  
+  //Contract Controller----------------------------------------------------------------------------------------------------------------------------
+  getContractByReservationId(reservationId: any): Observable<any> {
+    return this.http.get<any>(`${this.base_url}contracts/${reservationId}`, this.httpOptions)
+      .pipe(retry(2),catchError(this.handleError))
+  }
+
+  createContract(contractData: any): Observable<any> {
+    console.log('Se hace un llamdo a la función de crear contrato');
+    
+    return this.http.post<any>(`${this.base_url}contracts`, contractData, this.httpOptions)
+      .pipe(retry(2),catchError(this.handleError));
+  }
+
+
 //update payment
-  //http://localhost:8080/api/v1/reservations/1/price-startDate-startTime-status?price=10&startDate=2024-05-06&startTime=10%3A30&status=to%20be%20schedule
   updateReservationPayment(id: any, price:any, startDate: any, startTime:any): Observable<Reservation> {
     if (startDate instanceof Date) {
       startDate = startDate.toISOString().split('T')[0];
@@ -204,7 +218,6 @@ export class CargaSinEstresDataService {
         );
   }
 
-
   //for ubigeo
   getDepartamentos(): Observable<string[]> {
     return this.http.get<string[]>(`${this.base_url}/departamentos`)
@@ -231,9 +244,4 @@ export class CargaSinEstresDataService {
     return this.http.get<string[]>(`${this.base_url}/location/${idUbigeo}`);
   }
 
-  
-
-
-
-      
 }

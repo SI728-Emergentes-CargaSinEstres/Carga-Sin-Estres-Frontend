@@ -36,11 +36,32 @@
                 reservation.status === 'scheduled' ? 'Programado' :
                 reservation.status === 're-scheduled' ? 'Reprogramado' :
                 reservation.status === 'cancelled' ? 'Cancelada' :
-                reservation.status === 'in progress' ? 'En progreso' :
+                reservation.status === 'in progress' ? 'En progreso' : 
                 reservation.status // Valor predeterminado
             }}
         </p>
     </div>
+
+    <hr class="mt-4 border-t-2 border-gray-300">
+
+    <div class="contract-details" *ngIf="contract; else noContract">
+        <div class="flex justify-between mb-2">
+          <p class="text-gray-500">Código del Contrato</p>
+          <p>{{ contract.hashCodeValue }}</p>
+        </div>
+        <div class="flex justify-between mb-2">
+          <p class="text-gray-500">Fecha de Creación</p>
+          <p>{{ contract.registeredDate | date:'dd/MM/yyyy' }}</p>
+        </div>
+        <div class="flex justify-between mb-2">
+          <p class="text-gray-500">Hora de Creación</p>
+          <p>{{ contract.registeredTime | slice:0:5 }}</p>
+        </div>
+    </div>
+
+    <ng-template #noContract>
+        <p class="text-gray-500">No hay contrato asociado a esta reserva al momento, esta debe ser aceptada para generar se un contrato.</p>
+    </ng-template>
 
     <hr class="mt-4 border-t-2 border-gray-300">
 </div>
