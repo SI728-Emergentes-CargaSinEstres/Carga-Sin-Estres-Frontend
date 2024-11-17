@@ -15,26 +15,32 @@
 
   <hr class="my-6 border-t-2 border-gray-200">
 
-  <div class="flex flex-col">
-    <p class="font-bold mb-4 text-black">Detalles de la empresa</p>
-
-    <div class="flex justify-between mb-2">
+  <div class="flex flex-col gap-1">
+    <p class="font-bold mb-2 text-black">Detalles de la empresa</p>
+  
+    <div class="flex justify-between">
       <p class="text-gray-500">Teléfono</p>
       <p class="ml-2 text-black">{{ data.company.phoneNumber }}</p>
     </div>
-
-    <div class="flex justify-between mb-2">
+  
+    <div class="flex justify-between">
       <p class="text-gray-500">Ubicación</p>
       <p class="ml-2 text-black">{{ data.company.direction }}</p>
     </div>
-
-    <div class="flex justify-between mb-2">
+  
+    <div class="flex justify-between">
       <p class="text-gray-500">Servicios que ofrece</p>
-      <div class="ml-2">
-        <p *ngFor="let servicio of data.company.servicios" class=" text-black">{{ servicio.name }}, </p>
+      <div class="ml-2 flex flex-wrap gap-x-1">
+        <p *ngFor="let servicio of data.company.servicios" class="text-black">{{ servicio.name }}</p>
       </div>
     </div>
+  
+    <div class="flex justify-between">
+      <p class="text-gray-500">Reservas Contratadas Sin Completar en 2024</p>
+      <p class="ml-2 text-black">{{ countCompanyServiceViolation }}</p>
+    </div>
   </div>
+  
 
   <hr class="my-6 border-t-2 border-gray-200">
 

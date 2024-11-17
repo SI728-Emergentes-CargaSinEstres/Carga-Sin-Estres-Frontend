@@ -1,0 +1,90 @@
+/* Estilo para el botón de cierre */
+.btn-close {
+    background-color: transparent;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+  
+    mat-icon {
+      font-size: 24px;
+      color: #971d1d;
+    }
+  
+    &:hover {
+      background-color: #f0f0f0;
+    }
+  }
+  
+  /* Estilos para el contenido del diálogo */
+  mat-dialog-content {
+    padding: 20px;
+  
+    header {
+      display: flex;
+      align-items: center;
+      font-size: 18px;
+      font-weight: bold;
+  
+      mat-icon {
+        font-size: 30px;
+        color: #971d1d;
+      }
+  
+      h1 {
+        margin-left: 10px;
+      }
+    }
+  
+    mat-card {
+      margin-top: 20px;
+  
+      mat-card-content {
+        padding: 20px;
+        font-size: 16px;
+  
+        h2 {
+          font-weight: 500;
+          color: #333;
+          margin-bottom: 20px;
+        }
+      }
+    }
+  }
+  
+  /* Estilos para el formulario */
+  #reportForm {
+    .dialog-content {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+  
+      label {
+        font-size: 16px;
+        font-weight: 500;
+        color: #333;
+      }
+  
+      .reason-input {
+        padding: 10px;
+        font-size: 14px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        width: 100%;
+        max-width: 400px;
+      }
+  
+      button.btn-send-report {
+        padding: 10px 20px;
+        background-color: #971d1d;
+        color: #fff;
+        border-radius: 4px;
+        font-weight: bold;
+        font-size: 16px;
+  
+        &:hover {
+          background-color: #7f1717;
+        }
+      }
+    }
+  }
+  

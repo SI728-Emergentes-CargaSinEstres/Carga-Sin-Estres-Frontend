@@ -124,7 +124,6 @@
                     <ng-container>
                         <a (click)="setReservationStatus(reservation, 'cancelled'); setReservationEndDateTime(reservation)" class="mr-6 cursor-pointer text-[#F36F56]">Cancelar servicio</a>
                     </ng-container>
-
                     <a (click)="openChatDialog(reservation)" class="mr-6 cursor-pointer"><i class="fa-regular fa-message mr-2"></i> Abrir chat</a>
                     <a (click)="toggleDetails()" class="cursor-pointer">{{ showDetails ? 'Ocultar detalles' : 'Ver detalles' }}</a>
                 </div>
@@ -142,6 +141,18 @@
                         <a (click)="setReservationStatus(reservation, 'finalized'); setReservationEndDateTime(reservation)" class="mr-6 cursor-pointer text-[#4CAF50]">Finalizar servicio</a>
                     </ng-container>
 
+                    <ng-container *ngIf="userType === 'company'">
+                        <a (click)="openReportClientDialog()" class="mr-6 cursor-pointer text-[#971d1d]">
+                            <i class="fa-solid fa-exclamation-triangle mr-2 text-[#971d1d]"></i> Reportar Cliente
+                          </a>
+                    </ng-container>
+                      
+                    <ng-container *ngIf="userType !== 'company'">
+                        <a (click)="openReportCompanyDialog()" class="mr-6 cursor-pointer text-[#971d1d]">
+                          <i class="fa-solid fa-exclamation-triangle mr-2 text-[#971d1d]"></i> Reportar Empresa
+                        </a>
+                    </ng-container>
+            
                     <a (click)="openChatDialog(reservation)" class="mr-6 cursor-pointer"><i class="fa-regular fa-message mr-2"></i> Abrir chat</a>
                     <a (click)="toggleDetails()" class="cursor-pointer">{{ showDetails ? 'Ocultar detalles' : 'Ver detalles' }}</a>
                 </div>

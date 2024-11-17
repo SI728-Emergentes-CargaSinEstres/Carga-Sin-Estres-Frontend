@@ -21,7 +21,7 @@ export class ReservationDetailComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.loadContractData(); // Cargar datos del contrato al inicializar el componente
+    this.loadContractData();
   }
 
   openEditPaymentDialog() {
@@ -50,7 +50,7 @@ export class ReservationDetailComponent implements OnInit {
           console.log('Contrato:', this.contract);
         },
         error: (err) => {
-          this.contract = null; // Asegúrate de manejar este caso en la UI
+          this.contract = null;
           console.error(err);
         }
       });
